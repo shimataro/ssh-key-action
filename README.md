@@ -1,6 +1,6 @@
 # Install SSH key
 
-This action installs SSH private key into `~/.ssh`.
+This action installs SSH key into `~/.ssh`.
 
 Useful for `rsync` over SSH in deployment script.
 
