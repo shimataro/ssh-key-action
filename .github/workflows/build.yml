@@ -28,9 +28,5 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs }}
-    - name: Install node-gyp
-      run: npm i -g node-gyp
-    - name: Install dependencies
-      run: npm i
     - name: Build
       run: npm run build
