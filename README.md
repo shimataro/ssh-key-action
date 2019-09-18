@@ -1,5 +1,9 @@
 # Install SSH key
 
+[![Build check][image-build-check]][link-build-check]
+[![Release][image-release]][link-release]
+[![License][image-license]][link-license]
+
 This action installs SSH key into `~/.ssh`.
 
 Useful for `rsync` over SSH in deployment script.
@@ -28,3 +32,10 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
+
+[image-build-check]: https://github.com/shimataro/ssh-key-action/workflows/Build%20check/badge.svg
+[link-build-check]: https://github.com/shimataro/ssh-key-action
+[image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
+[link-release]: https://github.com/shimataro/ssh-key-action/releases
+[image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg
+[link-license]: ./LICENSE
