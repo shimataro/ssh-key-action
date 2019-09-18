@@ -1,0 +1,32 @@
+# https://help.github.com/ja/articles/workflow-syntax-for-github-actions
+
+on:
+  push:
+    branches:
+    - master
+    - develop
+  pull_request:
+name: Build
+jobs:
+  build:
+    name: Build on ${{ matrix.platform }} / Node.js v${{ matrix.nodejs }}
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      matrix:
+        platform:
+        - "Windows-latest"
+        - "macOS-latest"
+        - "Ubuntu-latest"
+        nodejs:
+        - 12
+    steps:
+    - name: Turn off auto-crlf
+      run: git config --global core.autocrlf false
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Build
+      run: npm run build

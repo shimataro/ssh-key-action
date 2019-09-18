@@ -1,5 +1,9 @@
 # Install SSH key
 
+[![Build][image-build]][link-build]
+[![Release][image-release]][link-release]
+[![License][image-license]][link-license]
+
 This action installs SSH key into `~/.ssh`.
 
 Useful for `rsync` over SSH in deployment script.
@@ -16,7 +20,7 @@ steps:
   with:
     private-key: ${{ secret.SSH_KEY }}
     public-key: ${{ secret.SSH_KEY_PUBLIC }}
-    name: 'id_rsa' # optional
+    name: id_rsa # optional
 - name: Install packages
   run: apt install openssh-client rsync
 - name: rsync over ssh
@@ -28,3 +32,14 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
+
+[image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg
+[link-build]: https://github.com/shimataro/ssh-key-action
+[image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
+[link-release]: https://github.com/shimataro/ssh-key-action/releases
+[image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg
+[link-license]: ./LICENSE
