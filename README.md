@@ -1,6 +1,6 @@
 # Install SSH key
 
-[![Build check][image-build-check]][link-build-check]
+[![Build][image-build]][link-build]
 [![Release][image-release]][link-release]
 [![License][image-license]][link-license]
 
@@ -37,8 +37,8 @@ The scripts and documentation in this project are released under the [MIT Licens
 
 See [CHANGELOG.md](CHANGELOG.md).
 
-[image-build-check]: https://github.com/shimataro/ssh-key-action/workflows/Build%20check/badge.svg
-[link-build-check]: https://github.com/shimataro/ssh-key-action
+[image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg
+[link-build]: https://github.com/shimataro/ssh-key-action
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
 [image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg
