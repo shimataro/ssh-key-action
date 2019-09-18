@@ -1,6 +1,9 @@
 name: 'Install SSH Key'
 description: 'Install SSH key to ~/.ssh'
 author: 'shimataro'
+branding:
+  icon: 'terminal'
+  color: 'gray-dark'
 inputs:
   private-key:
     description: 'private SSH key'
