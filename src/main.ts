@@ -18,7 +18,7 @@ function main(): void
 		const publicKey = core.getInput("public-key") as string;
 		const name = core.getInput("name") as string;
 
-		const fileName = path.resolve(dirName, name);
+		const fileName = path.join(dirName, name);
 		fs.writeFileSync(fileName, privateKey, {
 			mode: 0o400,
 		});
