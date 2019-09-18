@@ -1,7 +1,7 @@
 import * as fs from "fs";
-import * as path from 'path';
+import * as path from "path";
 
-import * as core from '@actions/core';
+import * as core from "@actions/core";
 
 function main(): void
 {
@@ -14,9 +14,9 @@ function main(): void
 			mode: 0o700,
 		});
 
-		const privateKey = core.getInput('private-key') as string;
-		const publicKey = core.getInput('public-key') as string;
-		const name = core.getInput('name') as string;
+		const privateKey = core.getInput("private-key") as string;
+		const publicKey = core.getInput("public-key") as string;
+		const name = core.getInput("name") as string;
 
 		const fileName = path.resolve(dirName, name);
 		fs.writeFileSync(fileName, privateKey, {
