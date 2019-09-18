@@ -3,6 +3,9 @@ import * as path from "path";
 
 import * as core from "@actions/core";
 
+/**
+ * main function
+ */
 function main(): void
 {
 	try
