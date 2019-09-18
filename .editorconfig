@@ -1,0 +1,37 @@
+# http://editorconfig.org/
+# https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
+root = true
+
+
+# recommended settings; DO NOT CHANGE!
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+
+# common settings
+[*]
+indent_style = tab
+indent_size = 4
+tab_width = 4
+max_line_length = off
+
+quote_type = double
+curly_bracket_next_line = true
+spaces_around_operators = true
+spaces_around_brackets = none
+indent_brace_style = allman
+
+
+# JSON/YAML
+[*.{json,babelrc,code-workspace,yml,yaml}]
+indent_style = space
+indent_size = 2
+tab_width = 2
+
+
+# markdown
+[*.md]
+indent_style = space
