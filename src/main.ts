@@ -40,11 +40,11 @@ function main(): void
  */
 function getHomeDirectory(): string
 {
-    const home_env = process.platform == "win32" ? "USERPROFILE" : "HOME";
-    const home = process.env[home_env];
+    const homeEnv = process.platform == "win32" ? "USERPROFILE" : "HOME";
+    const home = process.env[homeEnv];
     if(home === undefined)
     {
-        throw new Error(`${home_env} is not defined`);
+        throw new Error(`${homeEnv} is not defined`);
     }
 
     return home;
