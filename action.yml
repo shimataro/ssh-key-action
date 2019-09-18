@@ -1,0 +1,16 @@
+name: 'Install SSH Key'
+description: 'Install SSH key to ~/.ssh'
+author: 'shimataro'
+inputs:
+  private-key:
+    description: 'private SSH key'
+    required: true
+  public-key:
+    description: 'public SSH key'
+    required: true
+  name:
+    description: 'SSH key file name (default: id_rsa)'
+    default: 'id_rsa'
+runs:
+  using: 'node12'
+  main: 'lib/main.js'
