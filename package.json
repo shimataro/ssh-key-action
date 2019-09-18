@@ -1,0 +1,39 @@
+{
+  "name": "action-install-ssh-key",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Install SSH key to .ssh for GitHub Actions",
+  "main": "lib/main.js",
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">=5.7.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "check-updates": "ncu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shimataro/action-install-ssh-key.git"
+  },
+  "keywords": [
+    "actions",
+    "github actions",
+    "rsync",
+    "ssh",
+    "ssh key"
+  ],
+  "author": "shimataro",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "1.1.0",
+    "@actions/github": "1.1.0",
+    "@actions/io": "1.0.1",
+    "@actions/tool-cache": "1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "12.7.5",
+    "npm-check-updates": "3.1.23",
+    "typescript": "3.6.3"
+  }
+}
