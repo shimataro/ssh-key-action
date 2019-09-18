@@ -33,6 +33,10 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
+
 [image-build-check]: https://github.com/shimataro/ssh-key-action/workflows/Build%20check/badge.svg
 [link-build-check]: https://github.com/shimataro/ssh-key-action
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
