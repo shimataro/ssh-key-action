@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Others
 
 * Support Visual Studio Code officially.
+* Use GitHub Actions for build test.
 
 ## [1.0.0]
 
