@@ -26,10 +26,7 @@
   "author": "shimataro",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "1.1.1",
-    "@actions/github": "1.1.0",
-    "@actions/io": "1.0.1",
-    "@actions/tool-cache": "1.1.1"
+    "@actions/core": "1.1.1"
   },
   "devDependencies": {
     "@types/node": "12.7.5",
