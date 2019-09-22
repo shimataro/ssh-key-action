@@ -6,7 +6,7 @@
 
 This action installs SSH key into `~/.ssh`.
 
-Useful for SCP or SFTP or `rsync` over SSH in deployment script.
+Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
 ## Usage
 
