@@ -6,7 +6,7 @@
 
 This action installs SSH key into `~/.ssh`.
 
-Useful for `rsync` over SSH in deployment script.
+Useful for SCP or SFTP or `rsync` over SSH in deployment script.
 
 ## Usage
 
@@ -18,8 +18,8 @@ steps:
 - name: Install SSH key
   uses: shimataro/ssh-key-action@v1
   with:
-    private-key: ${{ secret.SSH_KEY }}
-    public-key: ${{ secret.SSH_KEY_PUBLIC }}
+    private-key: ${{ secrets.SSH_KEY }}
+    public-key: ${{ secrets.SSH_KEY_PUBLIC }}
     name: id_rsa # optional
 - name: Install packages
   run: apt install openssh-client rsync
