@@ -53,7 +53,7 @@ function main(): void
 			});
 		}
 
-		console.log(`SSH keys have been stored to ${dirName} successfully.`);
+		console.log(`SSH key has been stored to ${dirName} successfully.`);
 	}
 	catch(err)
 	{
