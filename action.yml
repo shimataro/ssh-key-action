@@ -1,3 +1,4 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
 name: "Install SSH Key"
 description: "Install SSH key to ~/.ssh"
 author: "shimataro"
