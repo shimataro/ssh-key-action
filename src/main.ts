@@ -3,6 +3,13 @@ import * as path from "path";
 
 import * as core from "@actions/core";
 
+interface FileInfo
+{
+	name: string;
+	mode: number;
+	contents: string;
+}
+
 /**
  * main function
  */
@@ -10,6 +17,26 @@ function main(): void
 {
 	try
 	{
+		const name = core.getInput("name") as string;
+		const files: FileInfo[] = [
+			{
+				name: name,
+				mode: 0o400,
+				contents: core.getInput("private-key"),
+			},
+			{
+				name: `${name}.pub`,
+				mode: 0o444,
+				contents: core.getInput("public-key"),
+			},
+			{
+				name: "known_hosts",
+				mode: 0o644,
+				contents: core.getInput("known-hosts"),
+			},
+		];
+
+		// create ".ssh" directory
 		const home = getHomeDirectory();
 		const dirName = path.resolve(home, ".ssh");
 		fs.mkdirSync(dirName, {
@@ -17,19 +44,16 @@ function main(): void
 			mode: 0o700,
 		});
 
-		const privateKey = core.getInput("private-key") as string;
-		const publicKey = core.getInput("public-key") as string;
-		const name = core.getInput("name") as string;
+		// create files
+		for(const file of files)
+		{
+			const fileName = path.join(dirName, file.name);
+			fs.writeFileSync(fileName, file.contents, {
+				mode: file.mode,
+			});
+		}
 
-		const fileName = path.join(dirName, name);
-		fs.writeFileSync(fileName, privateKey, {
-			mode: 0o400,
-		});
-		fs.writeFileSync(`${fileName}.pub`, publicKey, {
-			mode: 0o444,
-		});
-
-		console.log(`SSH key has been stored to ${fileName} successfully.`);
+		console.log(`SSH keys have been stored to ${dirName} successfully.`);
 	}
 	catch(err)
 	{

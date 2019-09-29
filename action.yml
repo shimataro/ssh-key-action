@@ -14,6 +14,9 @@ inputs:
   name:
     description: "SSH key file name (default: id_rsa)"
     default: "id_rsa"
+  known-hosts:
+    description: "public keys of SSH servers"
+    default: ""
 runs:
   using: "node12"
   main: "lib/main.js"
