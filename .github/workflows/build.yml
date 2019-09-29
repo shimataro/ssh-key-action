@@ -15,9 +15,9 @@ jobs:
     strategy:
       matrix:
         platform:
-        - "Windows-latest"
-        - "macOS-latest"
-        - "Ubuntu-latest"
+        - Windows-latest
+        - macOS-latest
+        - Ubuntu-latest
         nodejs:
         - 12
       fail-fast: false
