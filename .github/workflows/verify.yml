@@ -4,8 +4,15 @@ on: "pull_request"
 name: Connection test
 jobs:
   ssh:
-    name: Connect to github.com
-    runs-on: "ubuntu-latest"
+    name: Connect to github.com on ${{ matrix.platform }}
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      matrix:
+        platform:
+        - "Windows-latest"
+        - "macOS-latest"
+        - "Ubuntu-latest"
+      fail-fast: false
     steps:
     - name: Install SSH key
       uses: shimataro/ssh-key-action@development
@@ -14,9 +21,5 @@ jobs:
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
         name: 'id_rsa' # optional
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
-    - name: ls
-      run: ls -la ~/.ssh/
-    - name: install packages
-      run: sudo apt install -y openssh-client
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
