@@ -29,7 +29,7 @@
     "@actions/core": "1.1.1"
   },
   "devDependencies": {
-    "@types/node": "12.7.5",
+    "@types/node": "12.7.8",
     "npm-check-updates": "3.1.23",
     "typescript": "3.6.3"
   }
