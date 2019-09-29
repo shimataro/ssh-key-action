@@ -6,7 +6,7 @@
 
 This action installs SSH key into `~/.ssh`.
 
-Useful for SCP or SFTP or `rsync` over SSH in deployment script.
+Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
 ## Usage
 
@@ -21,10 +21,11 @@ steps:
     private-key: ${{ secrets.SSH_KEY }}
     public-key: ${{ secrets.SSH_KEY_PUBLIC }}
     name: id_rsa # optional
+    known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
 - name: Install packages
   run: apt install openssh-client rsync
 - name: rsync over ssh
-  run: rsync -e "ssh -o StrictHostKeyChecking=no" ./foo/ user@remote:bar/
+  run: rsync ./foo/ user@remote:bar/
 ```
 
 See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) for details.
