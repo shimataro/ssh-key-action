@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-on: "pull_request"
+on: push
 name: Connection test
 jobs:
   ssh:
@@ -9,9 +9,9 @@ jobs:
     strategy:
       matrix:
         platform:
-        - "Windows-latest"
-        - "macOS-latest"
-        - "Ubuntu-latest"
+        - Windows-latest
+        - macOS-latest
+        - Ubuntu-latest
       fail-fast: false
     steps:
     - name: Install SSH key
@@ -19,7 +19,7 @@ jobs:
       with:
         private-key: ${{ secrets.SSH_KEY }}
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
-        name: 'id_rsa' # optional
+        name: id_rsa # optional
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
