@@ -21,7 +21,7 @@ steps:
     private-key: ${{ secrets.SSH_KEY }}
     public-key: ${{ secrets.SSH_KEY_PUBLIC }}
     name: id_rsa # optional
-    known-hosts: "" # optional
+    known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
 - name: Install packages
   run: apt install openssh-client rsync
 - name: rsync over ssh
