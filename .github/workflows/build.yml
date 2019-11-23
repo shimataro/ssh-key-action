@@ -10,11 +10,11 @@ on:
 name: Build
 jobs:
   build:
-    name: Build on ${{ matrix.platform }} / Node.js v${{ matrix.nodejs }}
-    runs-on: ${{ matrix.platform }}
+    name: Build on ${{ matrix.os }} / Node.js v${{ matrix.nodejs }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        platform:
+        os:
         - Windows-latest
         - macOS-latest
         - Ubuntu-latest
