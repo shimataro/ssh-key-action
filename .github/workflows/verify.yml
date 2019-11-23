@@ -4,11 +4,11 @@ on: push
 name: Connection test
 jobs:
   ssh:
-    name: Connect to github.com on ${{ matrix.platform }}
-    runs-on: ${{ matrix.platform }}
+    name: Connect to github.com on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        platform:
+        os:
         - Windows-latest
         - macOS-latest
         - Ubuntu-latest
