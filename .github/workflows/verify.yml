@@ -22,6 +22,6 @@ jobs:
         name: id_rsa # optional
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
     - name: print created files
-      run: ls .ssh
+      run: ls ~/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
