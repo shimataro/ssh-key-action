@@ -29,8 +29,8 @@
     "@actions/core": "1.2.0"
   },
   "devDependencies": {
-    "@types/node": "12.12.12",
-    "npm-check-updates": "3.2.1",
-    "typescript": "3.7.2"
+    "@types/node": "12.12.21",
+    "npm-check-updates": "4.0.1",
+    "typescript": "3.7.4"
   }
 }
