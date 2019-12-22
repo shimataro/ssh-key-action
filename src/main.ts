@@ -17,7 +17,7 @@ function main(): void
 {
 	try
 	{
-		const name = core.getInput("name") as string;
+		const name = core.getInput("name");
 		const files: FileInfo[] = [
 			{
 				name: name,
