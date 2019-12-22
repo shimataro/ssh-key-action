@@ -42,6 +42,11 @@ jobs:
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
         name: ssh_key_name # optional
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
+        config: | # optional
+          Host github
+            Hostname github.com
+            User git
+            IdentityFile ~/.ssh/ssh_key_name
     - name: print created files
       run: ls ~/.ssh
     - name: git clone through SSH
