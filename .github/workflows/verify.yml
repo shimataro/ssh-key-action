@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
     steps:
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@v1
+      uses: shimataro/ssh-key-action@development
       with:
         private-key: ${{ secrets.SSH_KEY }}
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
@@ -36,7 +36,7 @@ jobs:
       fail-fast: false
     steps:
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@v1
+      uses: shimataro/ssh-key-action@development
       with:
         private-key: ${{ secrets.SSH_KEY }}
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
@@ -51,3 +51,5 @@ jobs:
       run: ls ~/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+      env:
+        GIT_SSH_COMMAND: ssh -i ~/.ssh/ssh_key_name
