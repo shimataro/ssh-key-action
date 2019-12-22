@@ -76,7 +76,7 @@ function getHomeDirectory(): string
 	const home = process.env[homeEnv];
 	if(home === undefined)
 	{
-		throw new Error(`${homeEnv} is not defined`);
+		throw Error(`${homeEnv} is not defined`);
 	}
 
 	return home;
