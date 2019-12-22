@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
     steps:
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@${{ github.sha }}
+      uses: shimataro/ssh-key-action@{{ github.sha }}
       with:
         private-key: ${{ secrets.SSH_KEY }}
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
@@ -36,7 +36,7 @@ jobs:
       fail-fast: false
     steps:
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@${{ github.sha }}
+      uses: shimataro/ssh-key-action@{{ github.sha }}
       with:
         private-key: ${{ secrets.SSH_KEY }}
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
