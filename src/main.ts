@@ -22,16 +22,12 @@ function main(): void
 			{
 				name: name,
 				mode: 0o400,
-				contents: core.getInput("private-key", {
-					required: true,
-				}),
+				contents: core.getInput("private-key"),
 			},
 			{
 				name: `${name}.pub`,
 				mode: 0o444,
-				contents: core.getInput("public-key", {
-					required: true,
-				}),
+				contents: core.getInput("public-key"),
 			},
 			{
 				name: "known_hosts",
