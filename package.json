@@ -26,11 +26,11 @@
   "author": "shimataro",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "1.1.1"
+    "@actions/core": "1.2.0"
   },
   "devDependencies": {
-    "@types/node": "12.7.8",
-    "npm-check-updates": "3.1.23",
-    "typescript": "3.6.3"
+    "@types/node": "12.12.21",
+    "npm-check-updates": "4.0.1",
+    "typescript": "3.7.4"
   }
 }

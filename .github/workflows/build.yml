@@ -1,23 +1,17 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-on:
-  push:
-    branches:
-    - master
-    - development
-    - "v*"
-  pull_request:
+on: push
 name: Build
 jobs:
   build:
-    name: Build on ${{ matrix.platform }} / Node.js v${{ matrix.nodejs }}
-    runs-on: ${{ matrix.platform }}
+    name: Build on ${{ matrix.os }} / Node.js v${{ matrix.nodejs }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        platform:
-        - "Windows-latest"
-        - "macOS-latest"
-        - "Ubuntu-latest"
+        os:
+        - Windows-latest
+        - macOS-latest
+        - Ubuntu-latest
         nodejs:
         - 12
       fail-fast: false
