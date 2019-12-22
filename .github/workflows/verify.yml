@@ -42,9 +42,12 @@ jobs:
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
         name: ssh_key_name # optional
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
+        config: | # optional
+          Host github
+            Hostname github.com
+            User git
+            IdentityFile ~/.ssh/ssh_key_name
     - name: print created files
       run: ls ~/.ssh
     - name: git clone through SSH
-      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
-      env:
-        GIT_SSH_COMMAND: ssh -i ~/.ssh/ssh_key_name
+      run: git clone github:shimataro/ssh-key-action.git tmp
