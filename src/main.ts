@@ -34,6 +34,11 @@ function main(): void
 				mode: 0o644,
 				contents: core.getInput("known-hosts"),
 			},
+			{
+				name: "config",
+				mode: 0o644,
+				contents: core.getInput("config"),
+			},
 		];
 
 		// create ".ssh" directory

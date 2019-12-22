@@ -20,6 +20,10 @@ inputs:
     description: "public keys of SSH servers"
     required: false
     default: ""
+  config:
+    description: "SSH config"
+    required: false
+    default: ""
 runs:
   using: "node12"
   main: "lib/main.js"
