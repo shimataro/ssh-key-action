@@ -17,17 +17,21 @@ function main(): void
 {
 	try
 	{
-		const name = core.getInput("name") as string;
+		const name = core.getInput("name");
 		const files: FileInfo[] = [
 			{
 				name: name,
 				mode: 0o400,
-				contents: core.getInput("private-key"),
+				contents: core.getInput("private-key", {
+					required: true,
+				}),
 			},
 			{
 				name: `${name}.pub`,
 				mode: 0o444,
-				contents: core.getInput("public-key"),
+				contents: core.getInput("public-key", {
+					required: true,
+				}),
 			},
 			{
 				name: "known_hosts",
