@@ -63,7 +63,7 @@ jobs:
       fail-fast: false
     steps:
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@HEAD
+      uses: shimataro/ssh-key-action@append-config-known_hosts
       with:
         private-key: "DUMMY-PRIVATE-KEY"
         public-key: "DUMMY-PUBLIC-KEY"
@@ -77,14 +77,14 @@ jobs:
         cat ~/.ssh/known_hosts
         cat ~/.ssh/config
     - name: Install SSH key again
-      uses: shimataro/ssh-key-action@HEAD
+      uses: shimataro/ssh-key-action@append-config-known_hosts
       with:
-        private-key: "DUMMY-PRIVATE-KEY" # overwritten; size fill be 17 bytes.
-        public-key: "DUMMY-PUBLIC-KEY"   # overwritten; size fill be 16 bytes.
+        private-key: "DUMMY-PRIVATE-KEY"
+        public-key: "DUMMY-PUBLIC-KEY"
         name: "id_rsa-2"
-        known-hosts: |                   # appended; size fill be 36 bytes.
+        known-hosts: |                   # appended
           DUMMY-KNOWN-HOSTS
-        config: |                        # appended; size fill be 26 bytes.
+        config: |                        # appended
           DUMMY-CONFIG
     - name: print created files again
       run: |
