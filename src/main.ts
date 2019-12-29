@@ -21,7 +21,9 @@ function main(): void
 		const files: FileInfo[] = [
 			{
 				name: name,
-				contents: core.getInput("private-key"),
+				contents: core.getInput("private-key", {
+					required: true,
+				}),
 				options: {
 					mode: 0o400,
 					flag: "ax",
@@ -29,7 +31,9 @@ function main(): void
 			},
 			{
 				name: `${name}.pub`,
-				contents: core.getInput("public-key"),
+				contents: core.getInput("public-key", {
+					required: true,
+				}),
 				options: {
 					mode: 0o444,
 					flag: "ax",
