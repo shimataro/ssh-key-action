@@ -7,6 +7,7 @@ interface FileInfo
 {
 	name: string;
 	mode: number;
+	flag: string;
 	contents: string;
 }
 
@@ -22,21 +23,25 @@ function main(): void
 			{
 				name: name,
 				mode: 0o400,
+				flag: "w",
 				contents: core.getInput("private-key"),
 			},
 			{
 				name: `${name}.pub`,
 				mode: 0o444,
+				flag: "w",
 				contents: core.getInput("public-key"),
 			},
 			{
 				name: "known_hosts",
 				mode: 0o644,
+				flag: "a",
 				contents: core.getInput("known-hosts"),
 			},
 			{
 				name: "config",
 				mode: 0o644,
+				flag: "a",
 				contents: core.getInput("config"),
 			},
 		];
@@ -55,6 +60,7 @@ function main(): void
 			const fileName = path.join(dirName, file.name);
 			fs.writeFileSync(fileName, file.contents, {
 				mode: file.mode,
+				flag: file.flag,
 			});
 		}
 
