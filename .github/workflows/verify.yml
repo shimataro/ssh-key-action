@@ -69,8 +69,10 @@ jobs:
         public-key: "DUMMY-PUBLIC-KEY"
         known-hosts: |
           DUMMY-KNOWN-HOSTS
+
         config: |
           DUMMY-CONFIG
+
     - name: print created files
       run: |
         ls ~/.ssh
@@ -84,8 +86,10 @@ jobs:
         name: "id_rsa-2"
         known-hosts: |                   # appended
           DUMMY-KNOWN-HOSTS
+
         config: |                        # appended
           DUMMY-CONFIG
+
     - name: print created files again
       run: |
         ls ~/.ssh
