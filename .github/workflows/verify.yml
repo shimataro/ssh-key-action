@@ -71,6 +71,8 @@ jobs:
           DUMMY-KNOWN-HOSTS
         config: |
           DUMMY-CONFIG
+    - name: print created files
+      run: ls ~/.ssh
     - name: Install SSH key again
       uses: shimataro/ssh-key-action@HEAD
       with:
@@ -81,5 +83,5 @@ jobs:
           DUMMY-KNOWN-HOSTS
         config: |                        # appended; size fill be 26 bytes.
           DUMMY-CONFIG
-    - name: print created files
+    - name: print created files again
       run: ls ~/.ssh
