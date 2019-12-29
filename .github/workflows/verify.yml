@@ -51,3 +51,34 @@ jobs:
       run: ls ~/.ssh
     - name: git clone through SSH
       run: git clone github:shimataro/ssh-key-action.git tmp
+  call-multiple-times:
+    name: Call this action multiple times on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - Windows-latest
+        - macOS-latest
+        - Ubuntu-latest
+      fail-fast: false
+    steps:
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@HEAD
+      with:
+        private-key: "DUMMY-PRIVATE-KEY"
+        public-key: "DUMMY-PUBLIC-KEY"
+        known-hosts: |
+          DUMMY-KNOWN-HOSTS
+        config: |
+          DUMMY-CONFIG
+    - name: Install SSH key again
+      uses: shimataro/ssh-key-action@HEAD
+      with:
+        private-key: "DUMMY-PRIVATE-KEY" # overwritten; size fill be 17 bytes.
+        public-key: "DUMMY-PUBLIC-KEY"   # overwritten; size fill be 16 bytes.
+        known-hosts: |                   # appended; size fill be 36 bytes.
+          DUMMY-KNOWN-HOSTS
+        config: |                        # appended; size fill be 26 bytes.
+          DUMMY-CONFIG
+    - name: print created files
+      run: ls ~/.ssh
