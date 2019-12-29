@@ -35,7 +35,7 @@ function main(): void
 			},
 			{
 				name: "known_hosts",
-				contents: core.getInput("known-hosts"),
+				contents: core.getInput("known-hosts") + "\n",
 				options: {
 					mode: 0o644,
 					flag: "a",
@@ -43,7 +43,7 @@ function main(): void
 			},
 			{
 				name: "config",
-				contents: core.getInput("config"),
+				contents: core.getInput("config") + "\n",
 				options: {
 					mode: 0o644,
 					flag: "a",
