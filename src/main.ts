@@ -6,9 +6,8 @@ import * as core from "@actions/core";
 interface FileInfo
 {
 	name: string;
-	mode: number;
-	flag: string;
 	contents: string;
+	options: fs.WriteFileOptions;
 }
 
 /**
@@ -22,27 +21,33 @@ function main(): void
 		const files: FileInfo[] = [
 			{
 				name: name,
-				mode: 0o400,
-				flag: "w",
 				contents: core.getInput("private-key"),
+				options: {
+					mode: 0o400,
+				},
 			},
 			{
 				name: `${name}.pub`,
-				mode: 0o444,
-				flag: "w",
 				contents: core.getInput("public-key"),
+				options: {
+					mode: 0o444,
+				},
 			},
 			{
 				name: "known_hosts",
-				mode: 0o644,
-				flag: "a",
 				contents: core.getInput("known-hosts"),
+				options: {
+					mode: 0o644,
+					flag: "a",
+				},
 			},
 			{
 				name: "config",
-				mode: 0o644,
-				flag: "a",
 				contents: core.getInput("config"),
+				options: {
+					mode: 0o644,
+					flag: "a",
+				},
 			},
 		];
 
@@ -58,10 +63,7 @@ function main(): void
 		for(const file of files)
 		{
 			const fileName = path.join(dirName, file.name);
-			fs.writeFileSync(fileName, file.contents, {
-				mode: file.mode,
-				flag: file.flag,
-			});
+			fs.writeFileSync(fileName, file.contents, file.options);
 		}
 
 		console.log(`SSH key has been stored to ${dirName} successfully.`);
