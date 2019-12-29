@@ -32,6 +32,47 @@ steps:
 
 See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) for details.
 
+### Install multiple keys
+
+If you want to install multiple keys, call this action multiple times.
+It is useful for port forwarding.
+
+**NOTE:**  When this action is called multiple times, **the contents of `known-hosts` and `config` will be appended**. But `public-key` and `private-key` must be saved as different name, by using `name` option.
+
+```yaml
+runs-on: ubuntu-latest
+steps:
+- name: Install SSH key of bastion
+  uses: shimataro/ssh-key-action@v1
+  with:
+    private-key: ${{ secrets.SSH_KEY_OF_BASTION }}
+    public-key: ${{ secrets.SSH_KEY_OF_BASTION_PUBLIC }}
+    name: id_rsa-bastion
+    known-hosts: ${{ secrets.KNOWN_HOSTS_OF_BASTION }}
+    config: |
+      Host bastion
+        HostName xxx.xxx.xxx.xxx
+        User user-of-bastion
+        IdentityFile ~/.ssh/id_rsa-bastion
+- name: Install SSH key of target
+  uses: shimataro/ssh-key-action@v1
+  with:
+    private-key: ${{ secrets.SSH_KEY_OF_TARGET }}
+    public-key: ${{ secrets.SSH_KEY_OF_TARGET }}
+    name: id_rsa-target
+    known-hosts: ${{ secrets.KNOWN_HOSTS_OF_TARGET }} # will be appended!
+    config: |                                         # will be appended!
+      Host target
+        HostName yyy.yyy.yyy.yyy
+        User user-of-target
+        IdentityFile ~/.ssh/id_rsa-target
+        ProxyCommand ssh -W %h:%p bastion
+- name: Install packages
+  run: apt install openssh-client
+- name: SCP via port-forwarding
+  run: scp ./foo/ target:bar/
+```
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
