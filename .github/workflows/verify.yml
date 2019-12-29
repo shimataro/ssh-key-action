@@ -79,7 +79,6 @@ jobs:
       with:
         private-key: "DUMMY-PRIVATE-KEY"
         public-key: "DUMMY-PUBLIC-KEY"
-        name: "id_rsa-2"
         known-hosts: "DUMMY-KNOWN-HOSTS"  # appended
         config: "DUMMY-CONFIG"            # appended
     - name: print created files again
