@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-* append contents of `config` and `known_hosts` when called multiple times
+* Append contents of `config` and `known_hosts` when called multiple times.
 
 ## [1.4.0]
 
