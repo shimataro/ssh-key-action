@@ -76,6 +76,7 @@ jobs:
       with:
         private-key: "DUMMY-PRIVATE-KEY" # overwritten; size fill be 17 bytes.
         public-key: "DUMMY-PUBLIC-KEY"   # overwritten; size fill be 16 bytes.
+        name: "id_rsa-2"
         known-hosts: |                   # appended; size fill be 36 bytes.
           DUMMY-KNOWN-HOSTS
         config: |                        # appended; size fill be 26 bytes.
