@@ -24,6 +24,7 @@ function main(): void
 				contents: core.getInput("private-key"),
 				options: {
 					mode: 0o400,
+					flag: "ax",
 				},
 			},
 			{
@@ -31,6 +32,7 @@ function main(): void
 				contents: core.getInput("public-key"),
 				options: {
 					mode: 0o444,
+					flag: "ax",
 				},
 			},
 			{
