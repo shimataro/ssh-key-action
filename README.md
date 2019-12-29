@@ -58,7 +58,7 @@ steps:
   uses: shimataro/ssh-key-action@v1
   with:
     private-key: ${{ secrets.SSH_KEY_OF_TARGET }}
-    public-key: ${{ secrets.SSH_KEY_OF_TARGET }}
+    public-key: ${{ secrets.SSH_KEY_OF_TARGET_PUBLIC }}
     name: id_rsa-target
     known-hosts: ${{ secrets.KNOWN_HOSTS_OF_TARGET }} # will be appended!
     config: |                                         # will be appended!
