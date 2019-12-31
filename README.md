@@ -7,6 +7,8 @@
 [![Release][image-release]][link-release]
 [![License][image-license]][link-license]
 
+[View on Marketplace](https://github.com/marketplace/actions/install-ssh-key)
+
 This action installs SSH key into `~/.ssh`.
 
 Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
