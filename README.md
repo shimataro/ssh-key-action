@@ -11,6 +11,8 @@ This action installs SSH key into `~/.ssh`.
 
 Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
+**Works on all [virtual environment](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) -- Windows, macOS, Ubuntu and Ubuntu 16.04.**
+
 ## Usage
 
 Add your SSH key to your product secrets by clicking `Settings` - `Secrets` - `Add a new secret` beforehand.
