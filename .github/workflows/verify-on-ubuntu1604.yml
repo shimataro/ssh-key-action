@@ -1,19 +1,11 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
 on: push
-name: Connection test
+name: Ubuntu 16.04
 jobs:
   ssh:
-    name: Connect to github.com on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os:
-        - Windows-latest
-        - macOS-latest
-        - Ubuntu-16.04
-        - Ubuntu-latest
-      fail-fast: false
+    name: Connect to github.com
+    runs-on: ubuntu-16.04
     steps:
     - name: Install SSH key
       uses: shimataro/ssh-key-action@HEAD
@@ -22,19 +14,12 @@ jobs:
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
     - name: print created files
-      run: ls ~/.ssh
+      run: ls -l ~/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-with-name:
-    name: Connect to github.com on ${{ matrix.os }} with name
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os:
-        - Windows-latest
-        - macOS-latest
-        - Ubuntu-latest
-      fail-fast: false
+    name: Connect to github.com with name and config
+    runs-on: ubuntu-16.04
     steps:
     - name: Install SSH key
       uses: shimataro/ssh-key-action@HEAD
@@ -49,6 +34,6 @@ jobs:
             User git
             IdentityFile ~/.ssh/ssh_key_name
     - name: print created files
-      run: ls ~/.ssh
+      run: ls -l ~/.ssh
     - name: git clone through SSH
       run: git clone github:shimataro/ssh-key-action.git tmp
