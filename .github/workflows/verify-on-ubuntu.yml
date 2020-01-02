@@ -1,7 +1,7 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
 on: push
-name: Linux
+name: Ubuntu
 jobs:
   ssh:
     name: Connect to github.com
