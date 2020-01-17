@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@feature/public-key
+      uses: shimataro/ssh-key-action@HEAD
       with:
         private-key: ${{ secrets.SSH_KEY }}
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@feature/public-key
+      uses: shimataro/ssh-key-action@HEAD
       with:
         private-key: ${{ secrets.SSH_KEY }}
         public-key: ${{ secrets.SSH_KEY_PUBLIC }}
