@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* `public-key` is no longer necessarily
+
 ## [1.5.0]
 
 ### Changed
