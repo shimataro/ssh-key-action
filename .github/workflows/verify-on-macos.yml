@@ -14,6 +14,8 @@ jobs:
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
     - name: print created files
       run: ls -l ~/.ssh
+    - name: SSH to github.com
+      run: ssh -v git@github.com
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-with-name:
@@ -33,5 +35,7 @@ jobs:
             IdentityFile ~/.ssh/ssh_key_name
     - name: print created files
       run: ls -l ~/.ssh
+    - name: SSH to github.com
+      run: ssh -v git@github.com
     - name: git clone through SSH
       run: git clone github:shimataro/ssh-key-action.git tmp
