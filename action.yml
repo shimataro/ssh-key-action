@@ -9,9 +9,6 @@ inputs:
   private-key:
     description: "private SSH key"
     required: true
-  public-key:
-    description: "public SSH key"
-    required: true
   name:
     description: "SSH key file name (default: id_rsa)"
     required: false
