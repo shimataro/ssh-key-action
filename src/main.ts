@@ -75,7 +75,7 @@ function main(): void
  */
 function getHomeDirectory(): string
 {
-	const homeEnv = process.platform == "win32" ? "USERPROFILE" : "HOME";
+	const homeEnv = getHomeEnv();
 	const home = process.env[homeEnv];
 	if(home === undefined)
 	{
@@ -83,6 +83,22 @@ function getHomeDirectory(): string
 	}
 
 	return home;
+}
+
+/**
+ * get HOME environment name
+ * @returns HOME environment name
+ */
+function getHomeEnv(): string
+{
+	if(process.platform === "win32")
+	{
+		// Windows
+		return "USERPROFILE";
+	}
+
+	// macOS / Linux
+	return "HOME";
 }
 
 /**
