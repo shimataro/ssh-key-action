@@ -7,6 +7,8 @@ jobs:
     name: Connect to github.com
     runs-on: windows-latest
     steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
     - name: Install SSH key
       uses: ./.
       with:
@@ -20,6 +22,8 @@ jobs:
     name: Connect to github.com with name and config
     runs-on: windows-latest
     steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
     - name: Install SSH key
       uses: ./.
       with:
