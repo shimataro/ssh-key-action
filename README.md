@@ -7,6 +7,7 @@
 [![Ubuntu 16.04][image-verify-ubuntu1604]][link-verify-ubuntu1604]
 [![Release][image-release]][link-release]
 [![License][image-license]][link-license]
+[![Stars][image-stars]][link-stars]
 
 This action installs SSH key into `~/.ssh`.
 
@@ -97,3 +98,5 @@ See [CHANGELOG.md](CHANGELOG.md).
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
 [image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg
 [link-license]: ./LICENSE
+[image-stars]: https://img.shields.io/github/stars/shimataro/ssh-key-action.svg
+[link-stars]: https://github.com/shimataro/ssh-key-action/stargazers
