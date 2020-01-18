@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@development
+      uses: shimataro/ssh-key-action@feature/ci
       with:
         private-key: ${{ secrets.SSH_KEY }}
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@development
+      uses: shimataro/ssh-key-action@feature/ci
       with:
         private-key: ${{ secrets.SSH_KEY }}
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
