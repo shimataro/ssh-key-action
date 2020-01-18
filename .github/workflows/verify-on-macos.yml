@@ -7,8 +7,10 @@ jobs:
     name: Connect to github.com
     runs-on: macos-latest
     steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@feature/ci
+      uses: ./.
       with:
         private-key: ${{ secrets.SSH_KEY }}
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
@@ -20,8 +22,10 @@ jobs:
     name: Connect to github.com with name and config
     runs-on: macos-latest
     steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
     - name: Install SSH key
-      uses: shimataro/ssh-key-action@feature/ci
+      uses: ./.
       with:
         private-key: ${{ secrets.SSH_KEY }}
         known-hosts: ${{ secrets.KNOWN_HOSTS }} # optional
