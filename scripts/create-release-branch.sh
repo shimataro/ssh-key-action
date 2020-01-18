@@ -3,7 +3,7 @@
 # - git; I believe it's already installed.
 # - sed; GNU sed is preferred. POSIX sed may not work.
 
-BASE_BRANCH="develop"
+BASE_BRANCH="development"
 
 PACKAGE_NAME="ssh-key-action"
 URL_PRODUCT="https://github.com/shimataro/${PACKAGE_NAME}"
