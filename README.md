@@ -9,7 +9,7 @@
 [![License][image-license]][link-license]
 [![Stars][image-stars]][link-stars]
 
-This action installs SSH key into `~/.ssh`.
+This action installs SSH key in `~/.ssh`.
 
 Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
