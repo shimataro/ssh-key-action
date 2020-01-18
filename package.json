@@ -2,7 +2,7 @@
   "name": "ssh-key-action",
   "version": "1.6.0",
   "private": true,
-  "description": "Install SSH key to .ssh",
+  "description": "Install SSH key in .ssh",
   "main": "lib/main.js",
   "engines": {
     "node": ">= 8.0.0",
