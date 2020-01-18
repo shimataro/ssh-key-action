@@ -17,10 +17,9 @@ function main(): void
 {
 	try
 	{
-		const name = core.getInput("name");
 		const files: FileInfo[] = [
 			{
-				name: name,
+				name: core.getInput("name"),
 				contents: core.getInput("private-key", {
 					required: true,
 				}),
@@ -30,18 +29,8 @@ function main(): void
 				},
 			},
 			{
-				name: `${name}.pub`,
-				contents: core.getInput("public-key", {
-					required: true,
-				}),
-				options: {
-					mode: 0o444,
-					flag: "ax",
-				},
-			},
-			{
 				name: "known_hosts",
-				contents: core.getInput("known-hosts") + "\n",
+				contents: prependLf(core.getInput("known-hosts")),
 				options: {
 					mode: 0o644,
 					flag: "a",
@@ -49,7 +38,7 @@ function main(): void
 			},
 			{
 				name: "config",
-				contents: core.getInput("config") + "\n",
+				contents: prependLf(core.getInput("config")),
 				options: {
 					mode: 0o644,
 					flag: "a",
@@ -86,7 +75,7 @@ function main(): void
  */
 function getHomeDirectory(): string
 {
-	const homeEnv = process.platform == "win32" ? "USERPROFILE" : "HOME";
+	const homeEnv = getHomeEnv();
 	const home = process.env[homeEnv];
 	if(home === undefined)
 	{
@@ -94,6 +83,38 @@ function getHomeDirectory(): string
 	}
 
 	return home;
+}
+
+/**
+ * get HOME environment name
+ * @returns HOME environment name
+ */
+function getHomeEnv(): string
+{
+	if(process.platform === "win32")
+	{
+		// Windows
+		return "USERPROFILE";
+	}
+
+	// macOS / Linux
+	return "HOME";
+}
+
+/**
+ * prepend LF to value if not empty
+ * @param value the value to prepend LF
+ * @returns prepended value
+ */
+function prependLf(value: string): string
+{
+	if(value.length === 0)
+	{
+		// do nothing if empty
+		return "";
+	}
+
+	return `\n${value}`;
 }
 
 main();

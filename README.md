@@ -26,7 +26,6 @@ steps:
   uses: shimataro/ssh-key-action@v1
   with:
     private-key: ${{ secrets.SSH_KEY }}
-    public-key: ${{ secrets.SSH_KEY_PUBLIC }}
     name: id_rsa # optional
     known-hosts: ${{ secrets.KNOWN_HOSTS }} # known_hosts; optional
     config: ${{ secrets.CONFIG }} # ssh_config; optional
@@ -43,7 +42,7 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 If you want to install multiple keys, call this action multiple times.
 It is useful for port forwarding.
 
-**NOTE:**  When this action is called multiple times, **the contents of `known-hosts` and `config` will be appended**. But `public-key` and `private-key` must be saved as different name, by using `name` option.
+**NOTE:**  When this action is called multiple times, **the contents of `known-hosts` and `config` will be appended**. But `private-key` must be saved as different name, by using `name` option.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -52,7 +51,6 @@ steps:
   uses: shimataro/ssh-key-action@v1
   with:
     private-key: ${{ secrets.SSH_KEY_OF_BASTION }}
-    public-key: ${{ secrets.SSH_KEY_OF_BASTION_PUBLIC }}
     name: id_rsa-bastion
     known-hosts: ${{ secrets.KNOWN_HOSTS_OF_BASTION }}
     config: |
@@ -64,7 +62,6 @@ steps:
   uses: shimataro/ssh-key-action@v1
   with:
     private-key: ${{ secrets.SSH_KEY_OF_TARGET }}
-    public-key: ${{ secrets.SSH_KEY_OF_TARGET_PUBLIC }}
     name: id_rsa-target
     known-hosts: ${{ secrets.KNOWN_HOSTS_OF_TARGET }} # will be appended!
     config: |                                         # will be appended!
