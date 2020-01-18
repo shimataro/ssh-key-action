@@ -27,7 +27,7 @@ steps:
   with:
     private-key: ${{ secrets.SSH_KEY }}
     name: id_rsa # optional
-    known-hosts: ${{ secrets.KNOWN_HOSTS }} # known_hosts; optional
+    known_hosts: ${{ secrets.KNOWN_HOSTS }} # optional
     config: ${{ secrets.CONFIG }} # ssh_config; optional
 - name: Install packages
   run: apt install openssh-client rsync
@@ -42,7 +42,7 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 If you want to install multiple keys, call this action multiple times.
 It is useful for port forwarding.
 
-**NOTE:**  When this action is called multiple times, **the contents of `known-hosts` and `config` will be appended**. But `private-key` must be saved as different name, by using `name` option.
+**NOTE:**  When this action is called multiple times, **the contents of `known_hosts` and `config` will be appended**. But `private-key` must be saved as different name, by using `name` option.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ steps:
   with:
     private-key: ${{ secrets.SSH_KEY_OF_BASTION }}
     name: id_rsa-bastion
-    known-hosts: ${{ secrets.KNOWN_HOSTS_OF_BASTION }}
+    known_hosts: ${{ secrets.KNOWN_HOSTS_OF_BASTION }}
     config: |
       Host bastion
         HostName xxx.xxx.xxx.xxx
@@ -63,7 +63,7 @@ steps:
   with:
     private-key: ${{ secrets.SSH_KEY_OF_TARGET }}
     name: id_rsa-target
-    known-hosts: ${{ secrets.KNOWN_HOSTS_OF_TARGET }} # will be appended!
+    known_hosts: ${{ secrets.KNOWN_HOSTS_OF_TARGET }} # will be appended!
     config: |                                         # will be appended!
       Host target
         HostName yyy.yyy.yyy.yyy
