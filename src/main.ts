@@ -15,6 +15,7 @@ interface FileInfo
  */
 function main(): void
 {
+	console.log("🍮test🍰");
 	try
 	{
 		const files: FileInfo[] = [
