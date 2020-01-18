@@ -20,7 +20,7 @@ function main(): void
 		const files: FileInfo[] = [
 			{
 				name: core.getInput("name"),
-				contents: core.getInput("private-key", {
+				contents: core.getInput("key", {
 					required: true,
 				}),
 				options: {
