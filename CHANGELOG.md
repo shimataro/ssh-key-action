@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.6.0] - 2020-01-18
+
+### Changed
+
+* `public-key` is no longer necessarily
+
 ## [1.5.0]
 
 ### Changed
@@ -47,7 +53,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/shimataro/ssh-key-action/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/shimataro/ssh-key-action/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/shimataro/ssh-key-action/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/shimataro/ssh-key-action/compare/v1.2.0...v1.3.0

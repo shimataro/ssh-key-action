@@ -11,6 +11,7 @@ jobs:
         os:
         - Windows-latest
         - macOS-latest
+        - Ubuntu-16.04
         - Ubuntu-latest
       fail-fast: false
     steps:
