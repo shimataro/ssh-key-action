@@ -1,4 +1,4 @@
-# Install SSH key
+# Install SSH Key
 
 [![Build][image-build]][link-build]
 [![Windows][image-verify-windows]][link-verify-windows]
