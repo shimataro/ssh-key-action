@@ -23,7 +23,7 @@ Add your SSH key to your product secrets by clicking `Settings` - `Secrets` - `A
 runs-on: ubuntu-latest
 steps:
 - name: Install SSH key
-  uses: shimataro/ssh-key-action@v1
+  uses: shimataro/ssh-key-action@v2
   with:
     private-key: ${{ secrets.SSH_KEY }}
     name: id_rsa # optional
@@ -48,7 +48,7 @@ It is useful for port forwarding.
 runs-on: ubuntu-latest
 steps:
 - name: Install SSH key of bastion
-  uses: shimataro/ssh-key-action@v1
+  uses: shimataro/ssh-key-action@v2
   with:
     private-key: ${{ secrets.SSH_KEY_OF_BASTION }}
     name: id_rsa-bastion
@@ -59,7 +59,7 @@ steps:
         User user-of-bastion
         IdentityFile ~/.ssh/id_rsa-bastion
 - name: Install SSH key of target
-  uses: shimataro/ssh-key-action@v1
+  uses: shimataro/ssh-key-action@v2
   with:
     private-key: ${{ secrets.SSH_KEY_OF_TARGET }}
     name: id_rsa-target
