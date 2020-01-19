@@ -1,6 +1,6 @@
 {
   "name": "install-ssh-key",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "private": true,
   "description": "Install SSH key in .ssh",
   "main": "lib/main.js",
