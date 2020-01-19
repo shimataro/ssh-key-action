@@ -14,7 +14,7 @@
     "lint": "run-p lint:*",
     "lint:ts": "eslint ./src --ext .ts",
     "lint:md": "markdownlint . --ignore node_modules --ignore examples",
-    "lint:yaml": "yamllint **/.*.yml **/*.yml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml",
+    "lint:yaml": "yamllint **/{,.}*.{yml,yaml} --ignore=node_modules/**",
     "verify": "run-p lint"
   },
   "repository": {
