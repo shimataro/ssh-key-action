@@ -7,7 +7,7 @@ COLOR_SUCCESS="\e[1;32m"
 COLOR_RESET="\e[m"
 
 # create branch
-git checkout development || exit 1
+git checkout develop || exit 1
 git checkout -b ${BRANCH} || exit 1
 
 # check updates
