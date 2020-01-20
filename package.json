@@ -1,11 +1,11 @@
 {
-  "name": "ssh-key-action",
-  "version": "1.6.0",
+  "name": "install-ssh-key",
+  "version": "1.6.1",
   "private": true,
-  "description": "Install SSH key to .ssh",
+  "description": "Install SSH key in .ssh",
   "main": "lib/main.js",
   "engines": {
-    "node": ">= 8.0.0",
+    "node": ">=8.0.0",
     "npm": ">=5.7.0"
   },
   "scripts": {
@@ -14,7 +14,7 @@
     "lint": "run-p lint:*",
     "lint:ts": "eslint ./src --ext .ts",
     "lint:md": "markdownlint . --ignore node_modules --ignore examples",
-    "lint:yaml": "yamllint .*.yml *.yml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml",
+    "lint:yaml": "yamllint **/{,.}*.{yml,yaml} --ignore=node_modules/**",
     "verify": "run-p lint"
   },
   "repository": {
