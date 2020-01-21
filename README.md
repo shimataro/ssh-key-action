@@ -29,8 +29,6 @@ steps:
     name: id_rsa # optional
     known-hosts: ${{ secrets.KNOWN_HOSTS }} # known_hosts; optional
     config: ${{ secrets.CONFIG }} # ssh_config; optional
-- name: Install packages
-  run: apt install openssh-client rsync
 - name: rsync over ssh
   run: rsync ./foo/ user@remote:bar/
 ```
@@ -70,8 +68,6 @@ steps:
         User user-of-target
         IdentityFile ~/.ssh/id_rsa-target
         ProxyCommand ssh -W %h:%p bastion
-- name: Install packages
-  run: apt install openssh-client
 - name: SCP via port-forwarding
   run: scp ./foo/ target:bar/
 ```
