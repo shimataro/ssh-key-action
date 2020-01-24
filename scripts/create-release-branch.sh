@@ -3,6 +3,8 @@
 # - git; I believe it's already installed.
 # - sed; GNU sed is preferred. POSIX sed may not work.
 
+set -e
+
 BASE_BRANCH="develop"
 
 PACKAGE_NAME="ssh-key-action"
@@ -36,14 +38,14 @@ function main() {
 	check_version_format ${VERSION}
 	check_current_branch
 
-	run create_branch ${BRANCH}
-	run update_changelog ${VERSION}
-	run update_package_version ${VERSION}
-	run update_dependencies_version
-	run regenerate_package_lock
-	run build_package
-	run commit_changes ${VERSION}
-	run finish ${VERSION} ${BRANCH} ${TAG}
+	create_branch ${BRANCH}
+	update_changelog ${VERSION}
+	update_package_version ${VERSION}
+	update_dependencies_version
+	regenerate_package_lock
+	build_package
+	commit_changes ${VERSION}
+	finish ${VERSION} ${BRANCH} ${TAG}
 }
 
 function usage() {
@@ -89,10 +91,6 @@ function check_current_branch() {
 	${COLOR_COMMAND}git checkout ${BASE_BRANCH}${COLOR_RESET}
 " >&2
 	exit 2
-}
-
-function run() {
-	"$@" || exit 1
 }
 
 function create_branch() {
