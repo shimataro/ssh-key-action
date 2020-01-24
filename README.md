@@ -82,15 +82,15 @@ The scripts and documentation in this project are released under the [MIT Licens
 
 See [CHANGELOG.md](CHANGELOG.md).
 
-[image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v1
+[image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v2
 [link-build]: https://github.com/shimataro/ssh-key-action
-[image-verify-windows]: https://github.com/shimataro/ssh-key-action/workflows/Windows/badge.svg?event=push&branch=v1
+[image-verify-windows]: https://github.com/shimataro/ssh-key-action/workflows/Windows/badge.svg?event=push&branch=v2
 [link-verify-windows]: https://github.com/shimataro/ssh-key-action
-[image-verify-macos]: https://github.com/shimataro/ssh-key-action/workflows/macOS/badge.svg?event=push&branch=v1
+[image-verify-macos]: https://github.com/shimataro/ssh-key-action/workflows/macOS/badge.svg?event=push&branch=v2
 [link-verify-macos]: https://github.com/shimataro/ssh-key-action
-[image-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu/badge.svg?event=push&branch=v1
+[image-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu/badge.svg?event=push&branch=v2
 [link-verify-ubuntu]: https://github.com/shimataro/ssh-key-action
-[image-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v1
+[image-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v2
 [link-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
