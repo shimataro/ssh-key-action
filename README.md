@@ -19,7 +19,7 @@ Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
 Add your SSH key to your product secrets by clicking `Settings` - `Secrets` - `Add a new secret` beforehand.
 
-**NOTE:** Due to version of OpenSSH on VM, OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work. Please use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`) instead.
+**NOTE:** OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work due to OpenSSH version on VM. Please use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`) instead.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 If you want to install multiple keys, call this action multiple times.
 It is useful for port forwarding.
 
-**NOTE:**  When this action is called multiple times, **the contents of `known-hosts` and `config` will be appended**. But `private-key` must be saved as different name, by using `name` option.
+**NOTE:**  When this action is called multiple times, **the contents of `known-hosts` and `config` will be appended**. `private-key` must be saved as different name, by using `name` option.
 
 ```yaml
 runs-on: ubuntu-latest
