@@ -20,8 +20,9 @@ npm run check-updates -- -u
 rm -rf package-lock.json node_modules
 npm i
 
-# build check
+# check
 npm run build
+npm run verify
 
 # commit
 npm ci --only=production
