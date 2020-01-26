@@ -98,7 +98,7 @@ Here are some methods:
 * `expect` command: please be careful not to expose passphrase to console
 * `SSH_ASKPASS` environment variable: it may be troublesome
 
-### Which one is the best way for transferring files, "direct SCP", "SCP via bastion", "direct SFTP", "SFTP via bastion", "direct rsync" or "rsync via bastion"?
+### Which one is the best way for transferring files, "direct SCP/SFTP/rsync" or "SCP/SFTP/rsync via bastion"?
 
 I recommend **rsync via bastion**.
 It has some advantages over other methods:
