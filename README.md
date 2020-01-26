@@ -76,12 +76,13 @@ steps:
 
 ## FAQ
 
-### What is the best way for copying files to multiple servers; SCP, SCP via bastion, SFTP, SFTP via bastion, rsync, and rsync via bastion?
+### What is the best way for copying files; SCP / SCP via bastion / SFTP / SFTP via bastion / rsync / rsync via bastion
 
 I recommend **rsync via bastion**.
 It has some advantages over other methods:
 
-* You only need to use this action once in order to connect to bastion from VM. Other methods require to use it multiple times in order to connect to each targets.
+* You only need to use this action **only once** even if it is necessary to transfer to multiple targets.
+    * Other methods require to use it multiple times in order to connect to each targets.
 * `rsync`:
     * is faster than others.
     * will **NOT** break files even if disconnected during sending.
