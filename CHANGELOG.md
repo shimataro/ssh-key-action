@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+* `node_modules/.bin` error (thanks [@george3447](https://github.com/george3447))
+
 ## [1.6.3] - 2020-01-27
 
 ### Others
 
-* add FAQ
+* add Q&A
 
 ## [1.6.2] - 2020-01-25
 
