@@ -88,6 +88,16 @@ Check belows:
     * The former is **HIGHLY** recommended for security reason.
     * I'm planning to make `known-hosts` required in v2.
 
+### How do I use encrypted SSH key by passphrase?
+
+This action doesn't support encrypted key directly.
+Here are some methods:
+
+* decrypting key beforehand: best bet, and works any VM
+* `sshpass` command: next best bet, but not supported in Windows
+* `expect` command: please be careful not to expose passphrase to console
+* `SSH_ASKPASS` environment variable: it may be troublesome
+
 ### Which one is the best way for transferring files, "SCP", "SCP via bastion", "SFTP", "SFTP via bastion", "rsync" or "rsync via bastion"?
 
 I recommend **rsync via bastion**.
