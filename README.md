@@ -74,7 +74,7 @@ steps:
   run: scp ./foo/ target:bar/
 ```
 
-## FAQ
+## Q&A
 
 ### SSH failed even though key has been installed.
 
