@@ -88,7 +88,7 @@ Check belows:
     * The former is **HIGHLY** recommended for security reason.
     * I'm planning to make `known-hosts` required in v2.
 
-### What is the best way for copying files; SCP / SCP via bastion / SFTP / SFTP via bastion / rsync / rsync via bastion
+### Which one is the best way for transferring files, "SCP", "SCP via bastion", "SFTP", "SFTP via bastion", "rsync" or "rsync via bastion"?
 
 I recommend **rsync via bastion**.
 It has some advantages over other methods:
