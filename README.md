@@ -108,7 +108,7 @@ It has some advantages over other methods:
     * Of course, it is necessary to install bastion public key on servers, and server keys on bastion. But you don't have to update workflow files and `secrets` even if number of servers changed.
 * `rsync`:
     * is faster than others.
-    * will **NOT** break files even if disconnected during sending.
+    * will **NOT** break files even if disconnected during transferring.
     * can remove files that don't exist in server.
 * SCP is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
 * Using bastion is more secure because:
