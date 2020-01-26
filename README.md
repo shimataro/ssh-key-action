@@ -83,6 +83,7 @@ It has some advantages over other methods:
 
 * You only need to use this action **only once** even if it is necessary to transfer to multiple targets.
     * Other methods require to use it multiple times in order to connect to each targets.
+    * Of course, it is necessary to install bastion public key on targets, and host keys on bastion. But you don't have to update workflow files and `secrets` even if number of targets changed.
 * `rsync`:
     * is faster than others.
     * will **NOT** break files even if disconnected during sending.
