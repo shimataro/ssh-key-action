@@ -113,6 +113,9 @@ It has some advantages over other methods:
 * SCP is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
 * Using bastion is more secure because:
     * it is not necessarily to expose SSH port on servers to public.
+        * Address filtering is less effective.
+        * Because Azure address range is [very wide](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#ip-addresses-of-github-hosted-runners).
+        * And will be updated continuously.
     * it requires to shutdown only bastion when security incident ―e.g., private key leaked, GitHub jacked― occurs.
 
 ## License
