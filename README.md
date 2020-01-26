@@ -76,7 +76,7 @@ steps:
 
 ## FAQ
 
-### SSH failed even though installed key.
+### SSH failed even though key has been installed.
 
 Check belows:
 
@@ -88,7 +88,7 @@ Check belows:
     * The former is **HIGHLY** recommended for security reason.
     * I'm planning to make `known-hosts` required in v2.
 
-### How do I use encrypted SSH key by passphrase?
+### How do I use encrypted SSH key?
 
 This action doesn't support encrypted key directly.
 Here are some methods:
@@ -98,7 +98,7 @@ Here are some methods:
 * `expect` command: please be careful not to expose passphrase to console
 * `SSH_ASKPASS` environment variable: it may be troublesome
 
-### Which one is the best way for transferring files, "SCP", "SCP via bastion", "SFTP", "SFTP via bastion", "rsync" or "rsync via bastion"?
+### Which one is the best way for transferring files, "direct SCP", "SCP via bastion", "direct SFTP", "SFTP via bastion", "direct rsync" or "rsync via bastion"?
 
 I recommend **rsync via bastion**.
 It has some advantages over other methods:
@@ -112,7 +112,7 @@ It has some advantages over other methods:
     * can remove files that don't exist in server.
 * SCP is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
 * Using bastion is more secure because:
-    * it is not necessarily to expose SSH port on server servers to public.
+    * it is not necessarily to expose SSH port on servers to public.
     * it requires to shutdown only bastion when security incident ―e.g., private key leaked, GitHub jacked― occurs.
 
 ## License
