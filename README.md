@@ -74,6 +74,24 @@ steps:
   run: scp ./foo/ target:bar/
 ```
 
+## FAQ
+
+### What is the best way for copying files to multiple servers; SCP, SCP via bastion, SFTP, SFTP via bastion, rsync, and rsync via bastion?
+
+I recommend **rsync via bastion**.
+It has some advantages over other methods:
+
+* You only need to use this action once in order to connect to bastion from VM. Other methods require to use it multiple times in order to connect to each targets.
+* `rsync`:
+    * is faster than others.
+    * can remove files that don't exist in target.
+* SCP:
+    * will break files when disconnected during sending.
+    * is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
+* Using bastion is more secure because:
+    * it is not necessarily to expose SSH port on target servers to public.
+    * it requires to shutdown only bastion when security incident ―e.g., private key leaked, GitHub jacked― occurs.
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
