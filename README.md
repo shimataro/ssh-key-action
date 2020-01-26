@@ -74,6 +74,49 @@ steps:
   run: scp ./foo/ target:bar/
 ```
 
+## Q&A
+
+### SSH failed even though key has been installed.
+
+Check belows:
+
+* `Load key "/HOME/.ssh/id_rsa": invalid format`:
+    * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
+    * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`).
+* `Host key verification failed.`:
+    * Set `known-hosts` option or use `ssh -o StrictHostKeyChecking=no`.
+    * The former is **HIGHLY** recommended for security reason.
+    * I'm planning to make `known-hosts` required in v2.
+
+### How do I use encrypted SSH key?
+
+This action doesn't support encrypted key directly.
+Here are some solutions:
+
+* decrypting key beforehand: best bet, and works on any VM
+* `sshpass` command: next best bet, but not supported on Windows
+* `expect` command: be careful not to expose passphrase to console
+* `SSH_ASKPASS` environment variable: might be troublesome
+
+### Which one is the best way for transferring files, "direct SCP/SFTP/rsync" or "SCP/SFTP/rsync via bastion"?
+
+I recommend **rsync via bastion**.
+It has some advantages over other methods:
+
+* "Rsync via bastion" doesn't require to update workflow files and `secrets` even if it is necessary to transfer files to multiple servers.
+    * Other methods require to update `known-hosts` if servers have changed.
+* Rsync:
+    * is fastest of all.
+    * does **NOT** break files even if disconnected during transferring.
+    * can remove files that don't exist on server.
+* SCP is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
+* Using bastion is more secure because:
+    * it is not necessarily to expose SSH port on servers to public.
+        * Address filtering is less effective.
+        * Because Azure address range is [very wide](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#ip-addresses-of-github-hosted-runners).
+        * And will be updated continuously.
+    * if security incident ―e.g., private key leaked― occurs, it's OK just to remove `authorized_keys` on bastion.
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
