@@ -115,7 +115,7 @@ It has some advantages over other methods:
         * Address filtering is less effective.
         * Because Azure address range is [very wide](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#ip-addresses-of-github-hosted-runners).
         * And will be updated continuously.
-    * it requires to shutdown only bastion when security incident ―e.g., private key leaked, GitHub jacked― occurs.
+    * if security incident ―e.g., private key leaked― occurs, it's OK just to remove `authorized_keys` on bastion.
 
 ## License
 
