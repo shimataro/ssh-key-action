@@ -91,12 +91,12 @@ Check belows:
 ### How do I use encrypted SSH key?
 
 This action doesn't support encrypted key directly.
-Here are some methods:
+Here are some solutions:
 
 * decrypting key beforehand: best bet, and works on any VM
 * `sshpass` command: next best bet, but not supported on Windows
-* `expect` command: please be careful not to expose passphrase to console
-* `SSH_ASKPASS` environment variable: it may be troublesome
+* `expect` command: be careful not to expose passphrase to console
+* `SSH_ASKPASS` environment variable: might be troublesome
 
 ### Which one is the best way for transferring files, "direct SCP/SFTP/rsync" or "SCP/SFTP/rsync via bastion"?
 
@@ -108,7 +108,7 @@ It has some advantages over other methods:
     * Of course, it is necessary to install bastion public key on servers, and server keys on bastion. But you don't have to update workflow files and `secrets` even if number of servers changed.
 * `rsync`:
     * is faster than others.
-    * will **NOT** break files even if disconnected during transferring.
+    * does **NOT** break files even if disconnected during transferring.
     * can remove files that don't exist in server.
 * SCP is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
 * Using bastion is more secure because:
