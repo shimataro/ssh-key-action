@@ -93,8 +93,8 @@ Check belows:
 This action doesn't support encrypted key directly.
 Here are some methods:
 
-* decrypting key beforehand: best bet, and works any VM
-* `sshpass` command: next best bet, but not supported in Windows
+* decrypting key beforehand: best bet, and works on any VM
+* `sshpass` command: next best bet, but not supported on Windows
 * `expect` command: please be careful not to expose passphrase to console
 * `SSH_ASKPASS` environment variable: it may be troublesome
 
