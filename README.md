@@ -86,8 +86,7 @@ It has some advantages over other methods:
     * is faster than others.
     * will **NOT** break files even if disconnected during sending.
     * can remove files that don't exist in target.
-* SCP:
-    * is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
+* SCP is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
 * Using bastion is more secure because:
     * it is not necessarily to expose SSH port on target servers to public.
     * it requires to shutdown only bastion when security incident ―e.g., private key leaked, GitHub jacked― occurs.
