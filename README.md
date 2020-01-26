@@ -76,6 +76,18 @@ steps:
 
 ## FAQ
 
+### SSH failed even though installed key.
+
+Check belows:
+
+* `Load key "/HOME/.ssh/id_rsa": invalid format`:
+    * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
+    * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`).
+* `Host key verification failed.`:
+    * Set `known-hosts` option or use `ssh -o StrictHostKeyChecking=no`.
+    * The former is **HIGHLY** recommended for security reason.
+    * I'm planning to make `known-hosts` required in v2.
+
 ### What is the best way for copying files; SCP / SCP via bastion / SFTP / SFTP via bastion / rsync / rsync via bastion
 
 I recommend **rsync via bastion**.
