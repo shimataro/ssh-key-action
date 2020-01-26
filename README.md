@@ -103,8 +103,8 @@ Here are some methods:
 I recommend **rsync via bastion**.
 It has some advantages over other methods:
 
-* You only need to use this action **only once** even if it is necessary to transfer to multiple servers.
-    * Other methods require to use it multiple times in order to connect to each servers.
+* This action is required **only once** even if it is necessary to transfer files to multiple servers.
+    * Other methods require to use this action multiple times in order to connect to each servers.
     * Of course, it is necessary to install bastion public key on servers, and server keys on bastion. But you don't have to update workflow files and `secrets` even if number of servers changed.
 * `rsync`:
     * is faster than others.
