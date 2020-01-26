@@ -93,16 +93,16 @@ Check belows:
 I recommend **rsync via bastion**.
 It has some advantages over other methods:
 
-* You only need to use this action **only once** even if it is necessary to transfer to multiple targets.
-    * Other methods require to use it multiple times in order to connect to each targets.
-    * Of course, it is necessary to install bastion public key on targets, and host keys on bastion. But you don't have to update workflow files and `secrets` even if number of targets changed.
+* You only need to use this action **only once** even if it is necessary to transfer to multiple servers.
+    * Other methods require to use it multiple times in order to connect to each servers.
+    * Of course, it is necessary to install bastion public key on servers, and server keys on bastion. But you don't have to update workflow files and `secrets` even if number of servers changed.
 * `rsync`:
     * is faster than others.
     * will **NOT** break files even if disconnected during sending.
-    * can remove files that don't exist in target.
+    * can remove files that don't exist in server.
 * SCP is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
 * Using bastion is more secure because:
-    * it is not necessarily to expose SSH port on target servers to public.
+    * it is not necessarily to expose SSH port on server servers to public.
     * it requires to shutdown only bastion when security incident ―e.g., private key leaked, GitHub jacked― occurs.
 
 ## License
