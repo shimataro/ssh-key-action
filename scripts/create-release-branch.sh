@@ -119,6 +119,7 @@ function update_package_version() {
 }
 
 function update_dependencies_version() {
+	rm -rf node_modules
 	npm ci
 	npm run check-updates -- -u
 }
