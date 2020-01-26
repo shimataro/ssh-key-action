@@ -84,9 +84,9 @@ It has some advantages over other methods:
 * You only need to use this action once in order to connect to bastion from VM. Other methods require to use it multiple times in order to connect to each targets.
 * `rsync`:
     * is faster than others.
+    * will **NOT** break files even if disconnected during sending.
     * can remove files that don't exist in target.
 * SCP:
-    * will break files when disconnected during sending.
     * is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
 * Using bastion is more secure because:
     * it is not necessarily to expose SSH port on target servers to public.
