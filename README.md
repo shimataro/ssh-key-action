@@ -84,9 +84,7 @@ Check belows:
     * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
     * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`).
 * `Host key verification failed.`:
-    * Set `known-hosts` option or use `ssh -o StrictHostKeyChecking=no`.
-    * The former is **HIGHLY** recommended for security reason.
-    * I'm planning to make `known-hosts` required in v2.
+    * Set `known-hosts` option.
 
 ### How do I use encrypted SSH key?
 
