@@ -42,7 +42,7 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 If you want to install multiple keys, call this action multiple times.
 It is useful for port forwarding.
 
-**NOTE:**  When this action is called multiple times, **the contents of `known-hosts` and `config` will be appended**. `private-key` must be saved as different name, by using `name` option.
+**NOTE:**  When this action is called multiple times, **the contents of `known_hosts` and `config` will be appended**. `private-key` must be saved as different name, by using `name` option.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -84,9 +84,9 @@ Check belows:
     * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
     * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`).
 * `Host key verification failed.`:
-    * Set `known-hosts` option or use `ssh -o StrictHostKeyChecking=no`.
+    * Set `known_hosts` option or use `ssh -o StrictHostKeyChecking=no`.
     * The former is **HIGHLY** recommended for security reason.
-    * I'm planning to make `known-hosts` required in v2.
+    * I'm planning to make `known_hosts` required in v2.
 
 ### How do I use encrypted SSH key?
 
@@ -104,7 +104,7 @@ I recommend **rsync via bastion**.
 It has some advantages over other methods:
 
 * "Rsync via bastion" doesn't require to update workflow files and `secrets` even if it is necessary to transfer files to multiple servers.
-    * Other methods require to update `known-hosts` if servers have changed.
+    * Other methods require to update `known_hosts` if servers have changed.
 * Rsync:
     * is fastest of all.
     * does **NOT** break files even if disconnected during transferring.
