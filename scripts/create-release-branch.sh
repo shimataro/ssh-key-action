@@ -119,12 +119,13 @@ function update_package_version() {
 }
 
 function update_dependencies_version() {
+	npm ci
 	npm run check-updates -- -u
 }
 
 function regenerate_package_lock() {
-	rm -rf package-lock.json node_modules &&
-		npm install
+	rm -rf package-lock.json node_modules
+	npm install
 }
 
 function build_package() {
@@ -135,9 +136,10 @@ function build_package() {
 function commit_changes() {
 	local VERSION=$1
 
-	npm ci --only=production &&
-		git add CHANGELOG.md package.json package-lock.json node_modules lib &&
-		git commit -m "version ${VERSION}"
+	rm -rf node_modules
+	npm ci --only=production
+	git add CHANGELOG.md package.json package-lock.json node_modules lib
+	git commit -m "version ${VERSION}"
 }
 
 function finish() {
