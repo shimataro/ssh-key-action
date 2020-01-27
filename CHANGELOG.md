@@ -11,6 +11,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * rename `known-hosts` to `known_hosts`
 
+## [1.6.4] - 2020-01-27
+
+### Fixed
+
+* `node_modules/.bin` error (thanks [@george3447](https://github.com/george3447))
+
+## [1.6.3] - 2020-01-27
+
+### Others
+
+* add Q&A
+
+## [1.6.2] - 2020-01-25
+
+### Others
+
+* some updates
+
 ## [1.6.1] - 2020-01-19
 
 ### Fixed
@@ -63,7 +81,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v1.6.1...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v1.6.4...HEAD
+[1.6.4]: https://github.com/shimataro/ssh-key-action/compare/v1.6.3...v1.6.4
+[1.6.3]: https://github.com/shimataro/ssh-key-action/compare/v1.6.2...v1.6.3
+[1.6.2]: https://github.com/shimataro/ssh-key-action/compare/v1.6.1...v1.6.2
 [1.6.1]: https://github.com/shimataro/ssh-key-action/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/shimataro/ssh-key-action/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/shimataro/ssh-key-action/compare/v1.4.0...v1.5.0
