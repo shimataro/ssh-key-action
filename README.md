@@ -25,7 +25,7 @@ Add your SSH key to your product secrets by clicking `Settings` - `Secrets` - `A
 runs-on: ubuntu-latest
 steps:
 - name: Install SSH key
-  uses: shimataro/ssh-key-action@v1
+  uses: shimataro/ssh-key-action@v2
   with:
     key: ${{ secrets.SSH_KEY }}
     name: id_rsa # optional
@@ -48,7 +48,7 @@ It is useful for port forwarding.
 runs-on: ubuntu-latest
 steps:
 - name: Install SSH key of bastion
-  uses: shimataro/ssh-key-action@v1
+  uses: shimataro/ssh-key-action@v2
   with:
     key: ${{ secrets.SSH_KEY_OF_BASTION }}
     name: id_rsa-bastion
@@ -59,7 +59,7 @@ steps:
         User user-of-bastion
         IdentityFile ~/.ssh/id_rsa-bastion
 - name: Install SSH key of target
-  uses: shimataro/ssh-key-action@v1
+  uses: shimataro/ssh-key-action@v2
   with:
     key: ${{ secrets.SSH_KEY_OF_TARGET }}
     name: id_rsa-target
@@ -123,15 +123,15 @@ The scripts and documentation in this project are released under the [MIT Licens
 
 See [CHANGELOG.md](CHANGELOG.md).
 
-[image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v1
+[image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v2
 [link-build]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3ABuild
-[image-verify-windows]: https://github.com/shimataro/ssh-key-action/workflows/Windows/badge.svg?event=push&branch=v1
+[image-verify-windows]: https://github.com/shimataro/ssh-key-action/workflows/Windows/badge.svg?event=push&branch=v2
 [link-verify-windows]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3AWindows
-[image-verify-macos]: https://github.com/shimataro/ssh-key-action/workflows/macOS/badge.svg?event=push&branch=v1
+[image-verify-macos]: https://github.com/shimataro/ssh-key-action/workflows/macOS/badge.svg?event=push&branch=v2
 [link-verify-macos]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3AmacOS
-[image-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu/badge.svg?event=push&branch=v1
+[image-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu/badge.svg?event=push&branch=v2
 [link-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3AUbuntu
-[image-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v1
+[image-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v2
 [link-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+16.04%22
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
