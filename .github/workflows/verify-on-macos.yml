@@ -12,7 +12,7 @@ jobs:
     - name: Install SSH key
       uses: ./.
       with:
-        private-key: ${{ secrets.SSH_KEY }}
+        key: ${{ secrets.SSH_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }} # optional
     - name: print created files
       run: ls -l ~/.ssh
@@ -27,7 +27,7 @@ jobs:
     - name: Install SSH key
       uses: ./.
       with:
-        private-key: ${{ secrets.SSH_KEY }}
+        key: ${{ secrets.SSH_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }} # optional
         name: ssh_key_name # optional
         config: | # optional
