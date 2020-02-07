@@ -13,7 +13,7 @@ inputs:
     description: "SSH key file name (default: id_rsa)"
     required: false
     default: "id_rsa"
-  known-hosts:
+  known_hosts:
     description: "public keys of SSH servers"
     required: false
     default: ""
