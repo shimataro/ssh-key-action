@@ -29,7 +29,7 @@ steps:
   with:
     key: ${{ secrets.SSH_KEY }}
     name: id_rsa # optional
-    known_hosts: ${{ secrets.KNOWN_HOSTS }} # optional
+    known_hosts: ${{ secrets.KNOWN_HOSTS }}
     config: ${{ secrets.CONFIG }} # ssh_config; optional
 - name: rsync over ssh
   run: rsync ./foo/ user@remote:bar/
@@ -84,9 +84,7 @@ Check belows:
     * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
     * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`).
 * `Host key verification failed.`:
-    * Set `known_hosts` option or use `ssh -o StrictHostKeyChecking=no`.
-    * The former is **HIGHLY** recommended for security reason.
-    * I'm planning to make `known_hosts` required in v2.
+    * Set `known_hosts` option correctly (use `ssh-keyscan` command).
 
 ### How do I use encrypted SSH key?
 

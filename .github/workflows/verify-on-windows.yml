@@ -13,7 +13,7 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }} # optional
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - name: print created files
       run: ls ~/.ssh
     - name: git clone through SSH
@@ -28,7 +28,7 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }} # optional
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
         name: ssh_key_name # optional
         config: | # optional
           Host github
