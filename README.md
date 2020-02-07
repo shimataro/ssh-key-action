@@ -19,6 +19,8 @@ Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
 Add your SSH key to your product secrets by clicking `Settings` - `Secrets` - `Add a new secret` beforehand.
 
+**NOTE:** OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work due to OpenSSH version on VM. Please use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`) instead.
+
 ```yaml
 runs-on: ubuntu-latest
 steps:
@@ -29,8 +31,6 @@ steps:
     name: id_rsa # optional
     known-hosts: ${{ secrets.KNOWN_HOSTS }} # known_hosts; optional
     config: ${{ secrets.CONFIG }} # ssh_config; optional
-- name: Install packages
-  run: apt install openssh-client rsync
 - name: rsync over ssh
   run: rsync ./foo/ user@remote:bar/
 ```
@@ -42,7 +42,7 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 If you want to install multiple keys, call this action multiple times.
 It is useful for port forwarding.
 
-**NOTE:**  When this action is called multiple times, **the contents of `known-hosts` and `config` will be appended**. But `key` must be saved as different name, by using `name` option.
+**NOTE:**  When this action is called multiple times, **the contents of `known-hosts` and `config` will be appended**. `key` must be saved as different name, by using `name` option.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -70,11 +70,52 @@ steps:
         User user-of-target
         IdentityFile ~/.ssh/id_rsa-target
         ProxyCommand ssh -W %h:%p bastion
-- name: Install packages
-  run: apt install openssh-client
 - name: SCP via port-forwarding
   run: scp ./foo/ target:bar/
 ```
+
+## Q&A
+
+### SSH failed even though key has been installed.
+
+Check belows:
+
+* `Load key "/HOME/.ssh/id_rsa": invalid format`:
+    * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
+    * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`).
+* `Host key verification failed.`:
+    * Set `known-hosts` option or use `ssh -o StrictHostKeyChecking=no`.
+    * The former is **HIGHLY** recommended for security reason.
+    * I'm planning to make `known-hosts` required in v2.
+
+### How do I use encrypted SSH key?
+
+This action doesn't support encrypted key directly.
+Here are some solutions:
+
+* decrypting key beforehand: best bet, and works on any VM
+* `sshpass` command: next best bet, but not supported on Windows
+* `expect` command: be careful not to expose passphrase to console
+* `SSH_ASKPASS` environment variable: might be troublesome
+
+### Which one is the best way for transferring files, "direct SCP/SFTP/rsync" or "SCP/SFTP/rsync via bastion"?
+
+I recommend **rsync via bastion**.
+It has some advantages over other methods:
+
+* "Rsync via bastion" doesn't require to update workflow files and `secrets` even if it is necessary to transfer files to multiple servers.
+    * Other methods require to update `known-hosts` if servers have changed.
+* Rsync:
+    * is fastest of all.
+    * does **NOT** break files even if disconnected during transferring.
+    * can remove files that don't exist on server.
+* SCP is [deprecated by OpenSSH](https://www.openssh.com/txt/release-8.0) due to outdated and inflexible protocol.
+* Using bastion is more secure because:
+    * it is not necessarily to expose SSH port on servers to public.
+        * Address filtering is less effective.
+        * Because Azure address range is [very wide](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#ip-addresses-of-github-hosted-runners).
+        * And will be updated continuously.
+    * if security incident ―e.g., private key leaked― occurs, it's OK just to remove `authorized_keys` on bastion.
 
 ## License
 
@@ -84,16 +125,16 @@ The scripts and documentation in this project are released under the [MIT Licens
 
 See [CHANGELOG.md](CHANGELOG.md).
 
-[image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg
-[link-build]: https://github.com/shimataro/ssh-key-action
-[image-verify-windows]: https://github.com/shimataro/ssh-key-action/workflows/Windows/badge.svg
-[image-verify-macos]: https://github.com/shimataro/ssh-key-action/workflows/macOS/badge.svg
-[image-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu/badge.svg
-[image-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg
-[link-verify-windows]: https://github.com/shimataro/ssh-key-action
-[link-verify-macos]: https://github.com/shimataro/ssh-key-action
-[link-verify-ubuntu]: https://github.com/shimataro/ssh-key-action
-[link-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action
+[image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v1
+[link-build]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3ABuild
+[image-verify-windows]: https://github.com/shimataro/ssh-key-action/workflows/Windows/badge.svg?event=push&branch=v1
+[link-verify-windows]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3AWindows
+[image-verify-macos]: https://github.com/shimataro/ssh-key-action/workflows/macOS/badge.svg?event=push&branch=v1
+[link-verify-macos]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3AmacOS
+[image-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu/badge.svg?event=push&branch=v1
+[link-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3AUbuntu
+[image-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v1
+[link-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+16.04%22
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
 [image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg
