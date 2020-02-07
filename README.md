@@ -122,7 +122,6 @@ The scripts and documentation in this project are released under the [MIT Licens
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md).
-[link-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+16.04%22
 
 [image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v2
 [link-build]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3ABuild
