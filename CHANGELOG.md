@@ -9,7 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-* Make `known-hosts` required
+* rename `private-key` to `key`
+* rename `known-hosts` to `known_hosts`
+* make `known_hosts` required
 
 ## [1.6.4] - 2020-01-27
 
