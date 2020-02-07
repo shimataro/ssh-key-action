@@ -6,8 +6,8 @@ branding:
   icon: "terminal"
   color: "gray-dark"
 inputs:
-  private-key:
-    description: "private SSH key"
+  key:
+    description: "SSH private key"
     required: true
   name:
     description: "SSH key file name (default: id_rsa)"
