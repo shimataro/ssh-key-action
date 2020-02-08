@@ -39,12 +39,7 @@ function main() {
 	check_current_branch
 
 	create_branch ${BRANCH}
-	update_changelog ${VERSION}
-	update_package_version ${VERSION}
-	update_dependencies_version
-	regenerate_package_lock
-	build_package
-	commit_changes ${VERSION}
+	./scripts/prepare-release.sh ${VERSION}
 	finish ${VERSION} ${BRANCH} ${TAG}
 }
 
@@ -52,19 +47,19 @@ function usage() {
 	local COMMAND=`basename ${0}`
 
 	echo -e "${COLOR_SECTION}NAME${COLOR_RESET}
-	${COMMAND} - Prepare for new release
+	${COMMAND} - Create a branch and prepare for new release
 
 ${COLOR_SECTION}SYNOPSIS${COLOR_RESET}
 	${COLOR_COMMAND_NAME}${COMMAND}${COLOR_RESET} <${COLOR_OPTION}new-version${COLOR_RESET}>
 
 ${COLOR_SECTION}DESCRIPTION${COLOR_RESET}
-	This command will...
-	- create a new branch for release
-	- update ${COLOR_FILE}CHANGELOG.md${COLOR_RESET}
-	- update package version in ${COLOR_FILE}package.json${COLOR_RESET}
-	- update dependencies version in ${COLOR_FILE}package.json${COLOR_RESET}
-	- verify
-	- ...and commit!
+	This command:
+	- creates a new branch for release
+	- updates ${COLOR_FILE}CHANGELOG.md${COLOR_RESET}
+	- updates package version in ${COLOR_FILE}package.json${COLOR_RESET}
+	- updates dependencies version in ${COLOR_FILE}package.json${COLOR_RESET}
+	- verifies
+	- ...and commits!
 
 	${COLOR_OPTION}new-version${COLOR_RESET} must follow \"Semantic Versioning\" <https://semver.org/>.
 "
@@ -97,49 +92,6 @@ function create_branch() {
 	local BRANCH=$1
 
 	git checkout -b ${BRANCH} ${BASE_BRANCH}
-}
-
-function update_changelog() {
-	local VERSION=$1
-	local DATE=`date "+%Y-%m-%d"`
-	local KEYWORD="Unreleased"
-
-	sed -i".bak" -r \
-		-e "s/^((##\s+)\[${KEYWORD}\])$/\1\n\n\2[${VERSION}] - ${DATE}/" \
-		-e "s/^(\[${KEYWORD}\](.*))(v.*)\.\.\.HEAD$/\1v${VERSION}...HEAD\n[${VERSION}]\2\3...v${VERSION}/" \
-		CHANGELOG.md
-}
-
-function update_package_version() {
-	local VERSION=$1
-
-	sed -i".bak" -r \
-		-e "s/(\"version\"\s*:\s*)\".*?\"/\1\"${VERSION}\"/" \
-		package.json
-}
-
-function update_dependencies_version() {
-	npm ci
-	npm run check-updates -- -u
-}
-
-function regenerate_package_lock() {
-	rm -rf package-lock.json node_modules
-	npm install
-}
-
-function build_package() {
-	npm run build
-	npm run verify
-}
-
-function commit_changes() {
-	local VERSION=$1
-
-	rm -rf node_modules
-	npm ci --only=production
-	git add CHANGELOG.md package.json package-lock.json node_modules lib
-	git commit -m "version ${VERSION}"
 }
 
 function finish() {
