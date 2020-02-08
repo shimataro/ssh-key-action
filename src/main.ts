@@ -20,7 +20,7 @@ function main(): void
 		const files: FileInfo[] = [
 			{
 				name: core.getInput("name"),
-				contents: core.getInput("private-key", {
+				contents: core.getInput("key", {
 					required: true,
 				}),
 				options: {
@@ -30,7 +30,9 @@ function main(): void
 			},
 			{
 				name: "known_hosts",
-				contents: prependLf(core.getInput("known-hosts")),
+				contents: prependLf(core.getInput("known_hosts", {
+					required: true,
+				})),
 				options: {
 					mode: 0o644,
 					flag: "a",
