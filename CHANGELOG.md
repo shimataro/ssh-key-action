@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0] - 2020-02-08
+
 ### Changed
 
 * rename `private-key` to `key`
@@ -89,7 +91,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v1.6.5...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/shimataro/ssh-key-action/compare/v1.6.4...v2.0.0
 [1.6.5]: https://github.com/shimataro/ssh-key-action/compare/v1.6.4...v1.6.5
 [1.6.4]: https://github.com/shimataro/ssh-key-action/compare/v1.6.3...v1.6.4
 [1.6.3]: https://github.com/shimataro/ssh-key-action/compare/v1.6.2...v1.6.3
