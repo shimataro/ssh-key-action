@@ -1,0 +1,41 @@
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+
+on: push
+name: macOS
+jobs:
+  ssh:
+    name: Connect to github.com
+    runs-on: macos-latest
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: print created files
+      run: ls -l ~/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  ssh-with-name:
+    name: Connect to github.com with name and config
+    runs-on: macos-latest
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        name: ssh_key_name # optional
+        config: | # optional
+          Host github
+            Hostname github.com
+            User git
+            IdentityFile ~/.ssh/ssh_key_name
+    - name: print created files
+      run: ls -l ~/.ssh
+    - name: git clone through SSH
+      run: git clone github:shimataro/ssh-key-action.git tmp

@@ -1,0 +1,26 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: "Install SSH Key"
+description: "Install SSH key in ~/.ssh"
+author: "shimataro"
+branding:
+  icon: "terminal"
+  color: "gray-dark"
+inputs:
+  key:
+    description: "SSH private key"
+    required: true
+  name:
+    description: "SSH key file name (default: id_rsa)"
+    required: false
+    default: "id_rsa"
+  known_hosts:
+    description: "public keys of SSH servers"
+    required: true
+    default: ""
+  config:
+    description: "SSH config"
+    required: false
+    default: ""
+runs:
+  using: "node12"
+  main: "lib/main.js"
