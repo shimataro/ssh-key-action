@@ -112,10 +112,10 @@ Remaining processes are...
 	${URL_COMPARE}/${BASE_BRANCH}...${BRANCH}?expand=1
 	select ${COLOR_SELECT}Squash and merge${COLOR_RESET}
 4. Create a pull-request: ${COLOR_BRANCH}${BASE_BRANCH}${COLOR_RESET} to ${COLOR_BRANCH}${TARGET_BRANCH}${COLOR_RESET}
-	${URL_COMPARE}/${TARGET_BRANCH}...${BASE_BRANCH}?expand=1
+	${URL_COMPARE}/${TARGET_BRANCH}...${BASE_BRANCH}?expand=1&title=version%20${VERSION}
 	select ${COLOR_SELECT}Create a merge commit${COLOR_RESET}
 5. Create a new release
-	${URL_RELEASE}
+	${URL_RELEASE}?tag=${TAG}&target=${TARGET_BRANCH}&title=${PACKAGE_NAME}%20${VERSION}%20released
 	Tag version: ${COLOR_INPUT}${TAG}${COLOR_RESET}
 	Target: ${COLOR_INPUT}${TARGET_BRANCH}${COLOR_RESET}
 	Release title: ${COLOR_INPUT}${PACKAGE_NAME} ${VERSION} released${COLOR_RESET}
