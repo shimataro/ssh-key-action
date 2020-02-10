@@ -99,6 +99,11 @@ Here are some solutions:
 ### Which one is the best way for transferring files, "direct SCP/SFTP/rsync" or "SCP/SFTP/rsync via bastion"?
 
 I recommend **rsync via bastion**.
+
+```bash
+rsync -e "ssh bastion ssh" ./foo/ target:bar/
+```
+
 It has some advantages over other methods:
 
 * "Rsync via bastion" doesn't require to update workflow files and `secrets` even if it is necessary to transfer files to multiple servers.
