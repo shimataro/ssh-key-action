@@ -59,7 +59,7 @@ rules: # https://eslint.org/docs/rules/
   - property
   dot-notation:
   - error
-  - allowKeywords: true
+  - allowPattern: "^_"
   eol-last: error
   eqeqeq: error
   for-direction: error
