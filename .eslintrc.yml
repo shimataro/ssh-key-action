@@ -95,13 +95,15 @@ rules: # https://eslint.org/docs/rules/
   keyword-spacing:
   - error
   - overrides:
-      if:
+      catch:
         after: false
       for:
         after: false
-      while:
+      if:
         after: false
-      catch:
+      switch:
+        after: false
+      while:
         after: false
       with:
         after: false
