@@ -280,8 +280,14 @@ rules: # https://eslint.org/docs/rules/
   - never
   valid-jsdoc:
   - error
-  - requireParamType: false
+  - prefer:
+      arg: param
+      argument: param
+      return: returns
+      yield: yields
+      exception: throws
     requireReturn: false
+    requireParamType: false
     requireReturnType: false
   vars-on-top: error
   wrap-iife: error
