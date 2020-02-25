@@ -71,7 +71,9 @@ rules: # https://eslint.org/docs/rules/
   func-style:
   - error
   - declaration
-  function-paren-newline: error
+  function-paren-newline:
+  - error
+  - multiline-arguments
   generator-star-spacing: error
   getter-return: error
   global-require: error
