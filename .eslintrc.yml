@@ -255,7 +255,10 @@ rules: # https://eslint.org/docs/rules/
   semi-style:
   - error
   - last
-  sort-imports: 'off'
+  sort-imports:
+  - error
+  - ignoreCase: false
+    ignoreDeclarationSort: true
   sort-keys: 'off'
   sort-vars: error
   space-before-blocks: error
