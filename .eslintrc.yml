@@ -112,6 +112,7 @@ rules: # https://eslint.org/docs/rules/
   lines-between-class-members:
   - error
   - always
+  - exceptAfterSingleLine: true
   max-depth: error
   max-len: 'off'
   max-lines: 'off'
