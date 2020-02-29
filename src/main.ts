@@ -10,6 +10,10 @@ interface FileInfo
 	options: fs.WriteFileOptions;
 }
 
+const KNOWN_HOSTS = [
+	"github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==",
+];
+
 /**
  * main function
  */
@@ -17,12 +21,17 @@ function main(): void
 {
 	try
 	{
+		const inputName = core.getInput("name");
+		const inputKey = core.getInput("key", {
+			required: true,
+		});
+		const inputKnownHosts = core.getInput("known_hosts");
+		const inputConfig = core.getInput("config");
+
 		const files: FileInfo[] = [
 			{
-				name: core.getInput("name"),
-				contents: core.getInput("key", {
-					required: true,
-				}),
+				name: inputName,
+				contents: inputKey,
 				options: {
 					mode: 0o400,
 					flag: "ax",
@@ -30,9 +39,7 @@ function main(): void
 			},
 			{
 				name: "known_hosts",
-				contents: prependLf(core.getInput("known_hosts", {
-					required: true,
-				})),
+				contents: prependLf(KNOWN_HOSTS.concat(inputKnownHosts).join("\n")),
 				options: {
 					mode: 0o644,
 					flag: "a",
@@ -40,7 +47,7 @@ function main(): void
 			},
 			{
 				name: "config",
-				contents: prependLf(core.getInput("config")),
+				contents: prependLf(inputConfig),
 				options: {
 					mode: 0o644,
 					flag: "a",

@@ -29,13 +29,15 @@ steps:
   with:
     key: ${{ secrets.SSH_KEY }}
     name: id_rsa # optional
-    known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    known_hosts: ${{ secrets.KNOWN_HOSTS }} # optional
     config: ${{ secrets.CONFIG }} # ssh_config; optional
 - name: rsync over ssh
   run: rsync ./foo/ user@remote:bar/
 ```
 
 See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) for details.
+
+**NOTE:** Server key of `github.com` will be always set to `known_hosts`. So you can omit this option if you just want to clone private repository from `github.com` via SSH.
 
 ### Install multiple keys
 

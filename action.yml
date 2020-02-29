@@ -14,8 +14,8 @@ inputs:
     required: false
     default: "id_rsa"
   known_hosts:
-    description: "public keys of SSH servers"
-    required: true
+    description: "public keys of SSH servers (key of github.com will be always appended)"
+    required: false
     default: ""
   config:
     description: "SSH config"
