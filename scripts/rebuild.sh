@@ -2,8 +2,7 @@
 
 set -e
 
-rm -rf node_modules package-lock.json
-npm i
+npm ci
 npm run build
 npm run verify
 
