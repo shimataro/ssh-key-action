@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.1] - 2020-03-14
+
 ### Security
 
 * update [acorn](https://www.npmjs.com/package/acorn) to 7.1.1 ([CVE-2020-7598](https://github.com/advisories/GHSA-7fhm-mqm4-2wp7))
@@ -95,7 +97,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/shimataro/ssh-key-action/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/shimataro/ssh-key-action/compare/v1.6.5...v2.0.0
 [1.6.5]: https://github.com/shimataro/ssh-key-action/compare/v1.6.4...v1.6.5
 [1.6.4]: https://github.com/shimataro/ssh-key-action/compare/v1.6.3...v1.6.4
