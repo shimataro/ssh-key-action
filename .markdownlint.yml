@@ -1,7 +1,9 @@
-MD007:
+MD007: # ul-indent
   indent: 4
-MD013:
+MD013: # line-length
   line_length: 255
-MD024:
+MD024: # no-duplicate-heading
   siblings_only: true
-MD026: false
+MD026: false # no-trailing-punctuation
+MD029: # ol-prefix
+  style: one
