@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Security
+
+* update [acorn](https://www.npmjs.com/package/acorn) to 7.1.1 ([CVE-2020-7598](https://github.com/advisories/GHSA-7fhm-mqm4-2wp7))
+
 ## [2.0.0] - 2020-02-08
 
 ### Changed

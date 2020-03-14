@@ -31,17 +31,17 @@
   "author": "shimataro",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "1.2.2"
+    "@actions/core": "1.2.3"
   },
   "devDependencies": {
-    "@types/node": "13.7.0",
-    "@typescript-eslint/eslint-plugin": "2.19.0",
-    "@typescript-eslint/parser": "2.19.0",
+    "@types/node": "13.9.1",
+    "@typescript-eslint/eslint-plugin": "2.23.0",
+    "@typescript-eslint/parser": "2.23.0",
     "eslint": "6.8.0",
-    "markdownlint-cli": "0.21.0",
-    "npm-check-updates": "4.0.1",
+    "markdownlint-cli": "0.22.0",
+    "npm-check-updates": "4.0.4",
     "npm-run-all": "4.1.5",
-    "typescript": "3.7.5",
+    "typescript": "3.8.3",
     "yaml-lint": "1.2.4"
   }
 }
