@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.2] - 2020-04-12
+
 ### Security
 
 * update [minimist](https://www.npmjs.com/package/minimist) to 1.2.5 ([CVE-2020-7598](https://github.com/advisories/GHSA-vh95-rmgr-6w4m))
@@ -101,7 +103,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/shimataro/ssh-key-action/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/shimataro/ssh-key-action/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/shimataro/ssh-key-action/compare/v1.6.5...v2.0.0
 [1.6.5]: https://github.com/shimataro/ssh-key-action/compare/v1.6.4...v1.6.5
