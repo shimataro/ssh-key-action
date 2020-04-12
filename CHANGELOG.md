@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.2] - 2020-04-12
+
+### Security
+
+* update [minimist](https://www.npmjs.com/package/minimist) to 1.2.5 ([CVE-2020-7598](https://github.com/advisories/GHSA-vh95-rmgr-6w4m))
+
 ## [2.0.1] - 2020-03-14
 
 ### Security
 
-* update [acorn](https://www.npmjs.com/package/acorn) to 7.1.1 ([CVE-2020-7598](https://github.com/advisories/GHSA-7fhm-mqm4-2wp7))
+* update [acorn](https://www.npmjs.com/package/acorn) to 7.1.1 ([GHSA-7fhm-mqm4-2wp7](https://github.com/advisories/GHSA-7fhm-mqm4-2wp7))
 
 ## [2.0.0] - 2020-02-08
 
@@ -97,7 +103,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/shimataro/ssh-key-action/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/shimataro/ssh-key-action/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/shimataro/ssh-key-action/compare/v1.6.5...v2.0.0
 [1.6.5]: https://github.com/shimataro/ssh-key-action/compare/v1.6.4...v1.6.5
