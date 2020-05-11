@@ -1,7 +1,11 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-on: push
 name: Build
+
+on:
+- push
+- pull_request
+
 jobs:
   build:
     name: Build on ${{ matrix.os }} / Node.js v${{ matrix.nodejs }}
