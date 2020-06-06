@@ -19,7 +19,9 @@ Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
 Add your SSH key to your product secrets by clicking `Settings` - `Secrets` - `Add a new secret` beforehand.
 
-**NOTE:** OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work due to OpenSSH version on VM. Please use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`) instead. In order to convert your key inline to PEM format simply use `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`.
+**NOTE:** OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work due to OpenSSH version on VM.
+Please use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`) instead.
+In order to convert your key inline to PEM format simply use `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`.
 
 ```yaml
 runs-on: ubuntu-latest
