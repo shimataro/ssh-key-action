@@ -1,11 +1,15 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-on: push
-name: Ubuntu
+name: Ubuntu 16.04
+
+on:
+- push
+- pull_request
+
 jobs:
   ssh:
     name: Connect to github.com
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -20,7 +24,7 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-with-name:
     name: Connect to github.com with name and config
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2

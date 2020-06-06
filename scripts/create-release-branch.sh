@@ -1,7 +1,8 @@
 #!/bin/bash
 # requires following packages:
-# - git; I believe it's already installed.
+# - git; I believe you have already installed.
 # - sed; GNU sed is preferred. POSIX sed may not work.
+# - perl; Already installed on most of unix system.
 
 set -e
 
@@ -99,6 +100,8 @@ function finish() {
 	local BRANCH=$2
 	local TAG=$3
 	local TARGET_BRANCH="v${VERSION%%[!0-9]*}"
+	local UPSTREAM="origin"
+	local CHANGELOG=$(git diff ${UPSTREAM}/${TARGET_BRANCH} ${BRANCH} CHANGELOG.md | sed -e "/^[^+]/d" -e "s/^\+\(.*\)$/\1/" -e "/^## /d" -e "/^\+/d" -e "/^\[/d" -e "s/\s/%20/g" -e "s/#/%23/g" -e 's/\n//g' | perl -pe "s/\n/%0A/g" | perl -pe "s/^(%0A)+//" | perl -pe "s/(%0A)+$//")
 
 	echo -e "
 Branch ${COLOR_BRANCH}${BRANCH}${COLOR_RESET} has been created.
@@ -106,16 +109,16 @@ Remaining processes are...
 
 1. Make sure all changes are correct
 	${COLOR_COMMAND}git diff ${BASE_BRANCH} ${BRANCH}${COLOR_RESET}
-2. Push to remote origin
-	${COLOR_COMMAND}git push --set-upstream origin ${BRANCH}${COLOR_RESET}
+2. Push to remote ${UPSTREAM}
+	${COLOR_COMMAND}git push --set-upstream ${UPSTREAM} ${BRANCH}${COLOR_RESET}
 3. Create a pull-request: ${COLOR_BRANCH}${BRANCH}${COLOR_RESET} to ${COLOR_BRANCH}${BASE_BRANCH}${COLOR_RESET}
 	${URL_COMPARE}/${BASE_BRANCH}...${BRANCH}?expand=1
 	select ${COLOR_SELECT}Squash and merge${COLOR_RESET}
 4. Create a pull-request: ${COLOR_BRANCH}${BASE_BRANCH}${COLOR_RESET} to ${COLOR_BRANCH}${TARGET_BRANCH}${COLOR_RESET}
-	${URL_COMPARE}/${TARGET_BRANCH}...${BASE_BRANCH}?expand=1&title=version%20${VERSION}
+	${URL_COMPARE}/${TARGET_BRANCH}...${BASE_BRANCH}?expand=1&title=version%20${VERSION}&body=${CHANGELOG}
 	select ${COLOR_SELECT}Create a merge commit${COLOR_RESET}
 5. Create a new release
-	${URL_RELEASE}?tag=${TAG}&target=${TARGET_BRANCH}&title=${PACKAGE_NAME}%20${VERSION}%20released
+	${URL_RELEASE}?tag=${TAG}&target=${TARGET_BRANCH}&title=${PACKAGE_NAME}%20${VERSION}%20released&body=${CHANGELOG}
 	Tag version: ${COLOR_INPUT}${TAG}${COLOR_RESET}
 	Target: ${COLOR_INPUT}${TARGET_BRANCH}${COLOR_RESET}
 	Release title: ${COLOR_INPUT}${PACKAGE_NAME} ${VERSION} released${COLOR_RESET}

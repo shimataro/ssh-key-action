@@ -1,10 +1,11 @@
 # Install SSH Key
 
 [![Build][image-build]][link-build]
-[![Windows][image-verify-windows]][link-verify-windows]
-[![macOS][image-verify-macos]][link-verify-macos]
-[![Ubuntu][image-verify-ubuntu]][link-verify-ubuntu]
-[![Ubuntu 16.04][image-verify-ubuntu1604]][link-verify-ubuntu1604]
+[![Windows Server 2019][image-verify-windows-2019]][link-verify-windows-2019]
+[![macOS Catalina][image-verify-macos-1015]][link-verify-macos-1015]
+[![Ubuntu 20.04][image-verify-ubuntu-2004]][link-verify-ubuntu-2004]
+[![Ubuntu 18.04][image-verify-ubuntu-1804]][link-verify-ubuntu-1804]
+[![Ubuntu 16.04][image-verify-ubuntu-1604]][link-verify-ubuntu-1604]
 [![Release][image-release]][link-release]
 [![License][image-license]][link-license]
 [![Stars][image-stars]][link-stars]
@@ -13,13 +14,16 @@ This action installs SSH key in `~/.ssh`.
 
 Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
-**Works on all [virtual environment](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) -- Windows, macOS, Ubuntu and Ubuntu 16.04.**
+**Works on all [virtual environments](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) --**
+**Windows Server 2019, macOS Catalina, Ubuntu 20.04, Ubuntu 18.04, and Ubuntu 16.04.**
 
 ## Usage
 
 Add your SSH key to your product secrets by clicking `Settings` - `Secrets` - `Add a new secret` beforehand.
 
-**NOTE:** OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work due to OpenSSH version on VM. Please use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`) instead.
+**NOTE:** OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work due to OpenSSH version on VM.
+Please use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`) instead.
+In order to convert your key inline to PEM format simply use `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -78,11 +82,11 @@ steps:
 
 ### SSH failed even though key has been installed.
 
-Check belows:
+Check below:
 
 * `Load key "/HOME/.ssh/id_rsa": invalid format`:
     * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
-    * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`).
+    * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`). Convert it from OPENSSH format using `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`
 * `Host key verification failed.`:
     * Set `known_hosts` option correctly (use `ssh-keyscan` command).
 
@@ -130,14 +134,16 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 [image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v2
 [link-build]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3ABuild
-[image-verify-windows]: https://github.com/shimataro/ssh-key-action/workflows/Windows/badge.svg?event=push&branch=v2
-[link-verify-windows]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3AWindows
-[image-verify-macos]: https://github.com/shimataro/ssh-key-action/workflows/macOS/badge.svg?event=push&branch=v2
-[link-verify-macos]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3AmacOS
-[image-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu/badge.svg?event=push&branch=v2
-[link-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3AUbuntu
-[image-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu1604]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+16.04%22
+[image-verify-windows-2019]: https://github.com/shimataro/ssh-key-action/workflows/Windows%20Server%202019/badge.svg?event=push&branch=v2
+[link-verify-windows-2019]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Windows+Server+2019%22
+[image-verify-macos-1015]: https://github.com/shimataro/ssh-key-action/workflows/macOS%20Catalina/badge.svg?event=push&branch=v2
+[link-verify-macos-1015]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22macOS+Catalina%22
+[image-verify-ubuntu-2004]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2020.04/badge.svg?event=push&branch=v2
+[link-verify-ubuntu-2004]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+20.04%22
+[image-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2018.04/badge.svg?event=push&branch=v2
+[link-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+18.04%22
+[image-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v2
+[link-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+16.04%22
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
 [image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg
