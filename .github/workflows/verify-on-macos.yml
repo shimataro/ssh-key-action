@@ -1,7 +1,11 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-on: push
 name: macOS
+
+on:
+- push
+- pull_request
+
 jobs:
   ssh:
     name: Connect to github.com
