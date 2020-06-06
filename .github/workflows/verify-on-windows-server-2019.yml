@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-name: Windows
+name: Windows Server 2019
 
 on:
 - push
@@ -9,7 +9,7 @@ on:
 jobs:
   ssh:
     name: Connect to github.com
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -24,7 +24,7 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-with-name:
     name: Connect to github.com with name and config
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
