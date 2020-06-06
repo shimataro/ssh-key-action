@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* Add short note on how to convert OPENSSH to PEM format by [@shadow1runner](https://github.com/shadow1runner)
+
 ## [2.0.2] - 2020-04-12
 
 ### Security
