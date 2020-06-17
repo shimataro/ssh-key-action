@@ -88,7 +88,7 @@ Check below:
     * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
     * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`). Convert it from OPENSSH format using `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`
 * `Host key verification failed.`:
-    * Set `known_hosts` option correctly (use `ssh-keyscan` command).
+    * Set `known_hosts` parameter correctly (use `ssh-keyscan` command).
 
 ### How do I use encrypted SSH key?
 
