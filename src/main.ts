@@ -30,7 +30,7 @@ function main(): void
 			},
 			{
 				name: "known_hosts",
-				contents: prependLf(core.getInput("known_hosts", {
+				contents: appendLf(core.getInput("known_hosts", {
 					required: true,
 				})),
 				options: {
@@ -101,6 +101,22 @@ function getHomeEnv(): string
 
 	// macOS / Linux
 	return "HOME";
+}
+
+/**
+ * append LF to value if not empty
+ * @param value the value to append LF
+ * @returns prepended value
+ */
+function appendLf(value: string): string
+{
+	if(value.length === 0)
+	{
+		// do nothing if empty
+		return "";
+	}
+
+	return `${value}\n`;
 }
 
 /**
