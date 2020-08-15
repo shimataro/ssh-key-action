@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* Append LF to `known_hosts` / `config`.
+
 ### Fixed
 
 * Typo (thanks [@psbss](https://github.com/psbss))

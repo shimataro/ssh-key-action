@@ -30,7 +30,7 @@ function main(): void
 			},
 			{
 				name: "known_hosts",
-				contents: prependLf(core.getInput("known_hosts", {
+				contents: insertLf(core.getInput("known_hosts", {
 					required: true,
 				})),
 				options: {
@@ -40,7 +40,7 @@ function main(): void
 			},
 			{
 				name: "config",
-				contents: prependLf(core.getInput("config")),
+				contents: insertLf(core.getInput("config")),
 				options: {
 					mode: 0o644,
 					flag: "a",
@@ -104,19 +104,29 @@ function getHomeEnv(): string
 }
 
 /**
- * prepend LF to value if not empty
+ * prepend/append LF to value if not empty
  * @param value the value to prepend LF
  * @returns prepended value
  */
-function prependLf(value: string): string
+function insertLf(value: string): string
 {
+	let affectedValue = value;
+
 	if(value.length === 0)
 	{
 		// do nothing if empty
 		return "";
 	}
+	if(!affectedValue.startsWith("\n"))
+	{
+		affectedValue = `\n${affectedValue}`;
+	}
+	if(!affectedValue.endsWith("\n"))
+	{
+		affectedValue = `${affectedValue}\n`;
+	}
 
-	return `\n${value}`;
+	return affectedValue;
 }
 
 main();
