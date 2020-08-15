@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.1.0] - 2020-08-15
+
 ### Changed
 
-* Append LF to `known_hosts` / `config`.
+* Append LF to `known_hosts` / `config` (thanks [@jacktuck](https://github.com/jacktuck))
 
 ### Fixed
 
@@ -121,7 +123,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.0.3...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/shimataro/ssh-key-action/compare/v2.0.3...v2.1.0
 [2.0.3]: https://github.com/shimataro/ssh-key-action/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/shimataro/ssh-key-action/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/shimataro/ssh-key-action/compare/v2.0.0...v2.0.1
