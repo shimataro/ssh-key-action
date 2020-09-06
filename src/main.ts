@@ -20,9 +20,9 @@ function main(): void
 		const files: FileInfo[] = [
 			{
 				name: core.getInput("name"),
-				contents: core.getInput("key", {
+				contents: insertLfToEnd(core.getInput("key", {
 					required: true,
-				}),
+				})),
 				options: {
 					mode: 0o400,
 					flag: "ax",
@@ -104,6 +104,28 @@ function getHomeEnv(): string
 }
 
 /**
+ * append LF to value to the end if not empty
+ * @param value the value to prepend LF
+ * @returns prepended value
+ */
+function insertLfToEnd(value: string): string
+{
+	let affectedValue = value;
+
+	if(value.length === 0)
+	{
+		// do nothing if empty
+		return "";
+	}
+	if(!affectedValue.endsWith("\n"))
+	{
+		affectedValue = `${affectedValue}\n`;
+	}
+
+	return affectedValue;
+}
+
+/**
  * prepend/append LF to value if not empty
  * @param value the value to prepend LF
  * @returns prepended value
@@ -121,10 +143,7 @@ function insertLf(value: string): string
 	{
 		affectedValue = `\n${affectedValue}`;
 	}
-	if(!affectedValue.endsWith("\n"))
-	{
-		affectedValue = `${affectedValue}\n`;
-	}
+	affectedValue = insertLfToEnd(affectedValue);
 
 	return affectedValue;
 }
