@@ -67,8 +67,8 @@ steps:
   with:
     key: ${{ secrets.SSH_KEY_OF_TARGET }}
     name: id_rsa-target
-    known_hosts: ${{ secrets.KNOWN_HOSTS_OF_TARGET }} # will be appended!
-    config: |                                         # will be appended!
+    known_hosts: ${{ secrets.KNOWN_HOSTS_OF_TARGET }} # supported >=v2.1.0
+    config: |                                         # supported >=v2.1.0
       Host target
         HostName yyy.yyy.yyy.yyy
         User user-of-target
