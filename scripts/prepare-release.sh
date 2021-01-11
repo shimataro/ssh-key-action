@@ -105,7 +105,7 @@ function commit_changes() {
 
 	rm -rf node_modules
 	npm ci --only=production
-	git add CHANGELOG.md package.json package-lock.json node_modules lib
+	git add CHANGELOG.md package.json package-lock.json lib
 	git commit -m "version ${VERSION}"
 }
 
