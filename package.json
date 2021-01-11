@@ -3,13 +3,14 @@
   "version": "2.1.0",
   "private": true,
   "description": "Install SSH key in .ssh",
-  "main": "lib/main.js",
+  "main": "dist/index.js",
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=5.7.0"
   },
   "scripts": {
     "build": "tsc",
+    "release": "ncc build src/main.ts",
     "check-updates": "ncu",
     "lint": "run-p lint:*",
     "lint:ts": "eslint ./src --ext .ts",

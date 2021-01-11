@@ -27,7 +27,8 @@ npm run verify
 # commit
 rm -rf node_modules
 npm ci --only=production
-git add package.json package-lock.json
+npm run release
+git add package.json package-lock.json dist
 git commit -m "update dependencies"
 
 # finished!
