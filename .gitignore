@@ -13,6 +13,10 @@ Thumbs.db
 *.orig
 *.rej
 
+# TypeScript intermediate
+
+lib/
+
 ### Node
 
 # Logs
@@ -99,7 +103,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# dist
 
 # Gatsby files
 .cache/
