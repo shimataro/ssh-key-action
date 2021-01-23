@@ -4,7 +4,6 @@ name: macOS Catalina
 
 on:
 - push
-- pull_request
 
 jobs:
   ssh:
