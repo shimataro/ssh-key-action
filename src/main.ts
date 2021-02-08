@@ -84,6 +84,12 @@ function getHomeDirectory(): string
 		throw Error(`${homeEnv} is not defined`);
 	}
 
+	if(home === "/github/home")
+	{
+		// Docker container
+		return "/root";
+	}
+
 	return home;
 }
 

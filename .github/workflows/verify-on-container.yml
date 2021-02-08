@@ -22,7 +22,7 @@ jobs:
       with:
         key: ${{ secrets.SSH_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
-    - name: move .ssh to /root
-      run: mv ~/.ssh /root
+    - name: print created files
+      run: ls -l ~/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
