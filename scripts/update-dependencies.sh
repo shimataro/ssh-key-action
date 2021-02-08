@@ -1,7 +1,6 @@
 #!/bin/bash
 # update dependencies
-
-set -e
+set -eu
 
 DATE=$(date +"%Y%m%d")
 BRANCH=feature/update-dependencies-${DATE}
@@ -25,10 +24,7 @@ npm run build
 npm run verify
 
 # commit
-rm -rf node_modules
-npm ci --only=production
-npm run release
-git add package.json package-lock.json dist
+git add package.json package-lock.json lib
 git commit -m "update dependencies"
 
 # finished!

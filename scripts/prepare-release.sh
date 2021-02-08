@@ -2,8 +2,7 @@
 # requires following packages:
 # - git; I believe it's already installed.
 # - sed; GNU sed is preferred. POSIX sed may not work.
-
-set -e
+set -eu
 
 COLOR_ERROR="\e[1;41m"
 COLOR_SECTION="\e[1;34m"
@@ -105,8 +104,7 @@ function commit_changes() {
 
 	rm -rf node_modules
 	npm ci --only=production
-	npm run release
-	git add CHANGELOG.md package.json package-lock.json dist
+	git add CHANGELOG.md package.json package-lock.json lib
 	git commit -m "version ${VERSION}"
 }
 

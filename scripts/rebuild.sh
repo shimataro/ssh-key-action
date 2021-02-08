@@ -1,6 +1,5 @@
 #!/bin/bash
-
-set -e
+set -eu
 
 npm ci
 npm run build
@@ -8,5 +7,4 @@ npm run verify
 
 rm -rf node_modules
 npm ci --only=production
-npm run release
-git add dist
+git add lib
