@@ -17,6 +17,8 @@ jobs:
         apt -y install openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
+    - name: print HOME
+      run: echo ${HOME}
     - name: Install SSH key
       uses: ./.
       with:
