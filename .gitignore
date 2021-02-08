@@ -12,3 +12,6 @@ Thumbs.db
 # patch/merge
 *.orig
 *.rej
+
+# Node.js modules
+/node_modules/

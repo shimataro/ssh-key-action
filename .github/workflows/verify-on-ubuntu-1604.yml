@@ -4,7 +4,6 @@ name: Ubuntu 16.04
 
 on:
 - push
-- pull_request
 
 jobs:
   ssh:

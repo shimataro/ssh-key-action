@@ -3,8 +3,7 @@
 # - git; I believe you have already installed.
 # - sed; GNU sed is preferred. POSIX sed may not work.
 # - perl; Already installed on most of unix system.
-
-set -e
+set -eu
 
 BASE_BRANCH="develop"
 
