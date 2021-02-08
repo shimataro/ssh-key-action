@@ -63,7 +63,7 @@ function main(): void
 			fs.writeFileSync(fileName, file.contents, file.options);
 		}
 
-		console.log(`SSH key has been stored to ${dirName} successfully. / ${home}`);
+		console.log(`SSH key has been stored to ${dirName} successfully.`);
 	}
 	catch(err)
 	{
@@ -82,6 +82,12 @@ function getHomeDirectory(): string
 	if(home === undefined)
 	{
 		throw Error(`${homeEnv} is not defined`);
+	}
+
+	if(home === "/github/home")
+	{
+		// Docker container
+		return "/root";
 	}
 
 	return home;
