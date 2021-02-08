@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * Bundle dependencies (thanks [@tats-u](https://github.com/tats-u))
 
+### Fixed
+
+* comments in README (thanks [@KimSoungRyoul](https://github.com/KimSoungRyoul))
+
 ## [2.1.0] - 2020-08-15
 
 ### Changed
