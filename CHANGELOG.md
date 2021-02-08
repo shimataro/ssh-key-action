@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* Bundle dependencies (thanks [@tats-u](https://github.com/tats-u))
+
 ## [2.1.0] - 2020-08-15
 
 ### Changed
