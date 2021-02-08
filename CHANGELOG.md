@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* Support Docker container (thanks [@kujaomega](https://github.com/kujaomega))
+
 ### Changed
 
 * Bundle dependencies (thanks [@tats-u](https://github.com/tats-u))
