@@ -10,6 +10,13 @@ interface FileInfo
 	options: fs.WriteFileOptions;
 }
 
+/** options for insertLf() */
+interface InsertLfOptions
+{
+	prepend?: boolean;
+	append?: boolean;
+}
+
 /**
  * main function
  */
@@ -20,8 +27,8 @@ function main(): void
 		const files: FileInfo[] = [
 			{
 				name: core.getInput("name"),
-				contents: core.getInput("key", {
-					required: true,
+				contents: insertLf(core.getInput("key", {required: true}), {
+					append: true,
 				}),
 				options: {
 					mode: 0o400,
@@ -30,9 +37,10 @@ function main(): void
 			},
 			{
 				name: "known_hosts",
-				contents: insertLf(core.getInput("known_hosts", {
-					required: true,
-				})),
+				contents: insertLf(core.getInput("known_hosts", {required: true}), {
+					prepend: true,
+					append: true,
+				}),
 				options: {
 					mode: 0o644,
 					flag: "a",
@@ -40,7 +48,10 @@ function main(): void
 			},
 			{
 				name: "config",
-				contents: insertLf(core.getInput("config")),
+				contents: insertLf(core.getInput("config"), {
+					prepend: true,
+					append: true,
+				}),
 				options: {
 					mode: 0o644,
 					flag: "a",
@@ -111,11 +122,17 @@ function getHomeEnv(): string
 
 /**
  * prepend/append LF to value if not empty
- * @param value the value to prepend LF
- * @returns prepended value
+ * @param value the value to insert LF
+ * @param options options
+ * @returns new value
  */
-function insertLf(value: string): string
+function insertLf(value: string, options: InsertLfOptions): string
 {
+	const normalizedOptions: Required<InsertLfOptions> = {
+		prepend: false,
+		append: false,
+		...options,
+	};
 	let affectedValue = value;
 
 	if(value.length === 0)
@@ -123,11 +140,11 @@ function insertLf(value: string): string
 		// do nothing if empty
 		return "";
 	}
-	if(!affectedValue.startsWith("\n"))
+	if(normalizedOptions.prepend && !affectedValue.startsWith("\n"))
 	{
 		affectedValue = `\n${affectedValue}`;
 	}
-	if(!affectedValue.endsWith("\n"))
+	if(normalizedOptions.append && !affectedValue.endsWith("\n"))
 	{
 		affectedValue = `${affectedValue}\n`;
 	}

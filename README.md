@@ -22,9 +22,7 @@ Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
 Add your SSH key to your product secrets by clicking `Settings` - `Secrets` - `Add a new secret` beforehand.
 
-**NOTE:** OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work due to OpenSSH version on VM.
-Please use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`) instead.
-In order to convert your key inline to PEM format simply use `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`.
+PEM(RSA), PKCS8, and RFC4716(OpenSSH) formats are OK.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -85,9 +83,6 @@ steps:
 
 Check below:
 
-* `Load key "/HOME/.ssh/id_rsa": invalid format`:
-    * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
-    * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`). Convert it from OPENSSH format using `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`
 * `Host key verification failed.`:
     * Set `known_hosts` parameter correctly (use `ssh-keyscan` command).
 
