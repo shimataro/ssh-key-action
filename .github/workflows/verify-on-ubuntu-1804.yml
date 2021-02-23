@@ -6,8 +6,8 @@ on:
 - push
 
 jobs:
-  ssh:
-    name: Connect to github.com
+  ssh-pem:
+    name: Connect to github.com (PEM format)
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout source codes
@@ -15,7 +15,37 @@ jobs:
     - name: Install SSH key
       uses: ./.
       with:
-        key: ${{ secrets.SSH_KEY }}
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: print created files
+      run: ls -l ~/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  ssh-pkcs8:
+    name: Connect to github.com (PKCS8 format)
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PKCS8 }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: print created files
+      run: ls -l ~/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  ssh-rfc4716:
+    name: Connect to github.com (RFC4716 format)
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_RFC4716 }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - name: print created files
       run: ls -l ~/.ssh
@@ -30,7 +60,7 @@ jobs:
     - name: Install SSH key
       uses: ./.
       with:
-        key: ${{ secrets.SSH_KEY }}
+        key: ${{ secrets.SSH_KEY_PEM }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
         name: ssh_key_name # optional
         config: | # optional
