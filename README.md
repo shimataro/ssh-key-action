@@ -15,8 +15,10 @@ This action installs SSH key in `~/.ssh`.
 
 Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
-**Works on all [virtual environments](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) --**
-**Windows Server 2019, macOS Catalina, Ubuntu 20.04, Ubuntu 18.04, and Ubuntu 16.04.**
+works on:
+
+* all [virtual machines](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) (Windows Server 2019, macOS Catalina, and Ubuntu 20.04/18.04/16.04)
+* [Docker container](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idcontainer) (needs `openssh-client` package)
 
 ## Usage
 
