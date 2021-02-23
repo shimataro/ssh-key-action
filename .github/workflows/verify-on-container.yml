@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-name: Docker container on Ubuntu 20.04
+name: Docker container
 
 on:
 - push
@@ -8,8 +8,19 @@ on:
 jobs:
   ssh-pem:
     name: Connect to github.com (PEM format)
-    runs-on: ubuntu-20.04
-    container: ubuntu:20.04
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+      fail-fast: false
     steps:
     - name: Install packages
       run: |
@@ -28,8 +39,19 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-pkcs8:
     name: Connect to github.com (PKCS8 format)
-    runs-on: ubuntu-20.04
-    container: ubuntu:20.04
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+      fail-fast: false
     steps:
     - name: Install packages
       run: |
@@ -48,8 +70,19 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-rfc4716:
     name: Connect to github.com (RFC4716 format)
-    runs-on: ubuntu-20.04
-    container: ubuntu:20.04
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+      fail-fast: false
     steps:
     - name: Install packages
       run: |
