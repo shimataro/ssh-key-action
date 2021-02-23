@@ -6,7 +6,7 @@ on:
 - push
 
 jobs:
-  ssh:
+  ssh-pem:
     name: Connect to github.com
     runs-on: ubuntu-20.04
     steps:
@@ -16,6 +16,21 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: print created files
+      run: ls -l ~/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  ssh-rfc4716:
+    name: Connect to github.com (RFC4716 format)
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_RFC4716 }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - name: print created files
       run: ls -l ~/.ssh
