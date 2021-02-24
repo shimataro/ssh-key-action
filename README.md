@@ -6,7 +6,8 @@
 [![Ubuntu 20.04][image-verify-ubuntu-2004]][link-verify-ubuntu-2004]
 [![Ubuntu 18.04][image-verify-ubuntu-1804]][link-verify-ubuntu-1804]
 [![Ubuntu 16.04][image-verify-ubuntu-1604]][link-verify-ubuntu-1604]
-[![Docker container][image-verify-docker-container]][link-verify-docker-container]
+[![Docker container (Ubuntu)][image-verify-docker-container-ubuntu]][link-verify-docker-container-ubuntu]
+[![Docker container (CentOS)][image-verify-docker-container-centos]][link-verify-docker-container-centos]
 [![Release][image-release]][link-release]
 [![License][image-license]][link-license]
 [![Stars][image-stars]][link-stars]
@@ -15,10 +16,11 @@ This action installs SSH key in `~/.ssh`.
 
 Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
-works on:
+tested on:
 
-* all [virtual machines](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) (Windows Server 2019, macOS Catalina, and Ubuntu 20.04/18.04/16.04)
-* [Docker container](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idcontainer) (needs `openssh-client` package)
+* [all available virtual machines](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) (Windows Server 2019, macOS Catalina, and Ubuntu 20.04/18.04/16.04)
+* [Docker container (Ubuntu)](https://hub.docker.com/_/ubuntu) / requires `openssh-client` package
+* [Docker container (CentOS)](https://hub.docker.com/_/centos) / requires `openssh-clients` package
 
 ## Usage
 
@@ -142,8 +144,10 @@ See [CHANGELOG.md](CHANGELOG.md).
 [link-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+18.04%22
 [image-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v2
 [link-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+16.04%22
-[image-verify-docker-container]: https://github.com/shimataro/ssh-key-action/workflows/Docker%20container/badge.svg?event=push&branch=v2
-[link-verify-docker-container]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Docker+container%22
+[image-verify-docker-container-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-ubuntu.yml/badge.svg?branch=v2&event=push
+[link-verify-docker-container-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-ubuntu.yml
+[image-verify-docker-container-centos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-centos.yml/badge.svg?branch=v2&event=push
+[link-verify-docker-container-centos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-centos.yml
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
 [image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg
