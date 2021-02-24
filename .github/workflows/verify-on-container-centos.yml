@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-name: Docker container
+name: Docker container (CentOS)
 
 on:
 - push
@@ -17,15 +17,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - centos:7
+        - centos:8
       fail-fast: false
     steps:
     - name: Install packages
       run: |
-        apt update
-        apt -y install openssh-client git
+        yum install -y git openssh-clients
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -48,15 +46,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - centos:7
+        - centos:8
       fail-fast: false
     steps:
     - name: Install packages
       run: |
-        apt update
-        apt -y install openssh-client git
+        yum install -y git openssh-clients
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -79,15 +75,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - centos:7
+        - centos:8
       fail-fast: false
     steps:
     - name: Install packages
       run: |
-        apt update
-        apt -y install openssh-client git
+        yum install -y git openssh-clients
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
