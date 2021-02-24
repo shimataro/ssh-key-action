@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-* Support Docker container (thanks [@kujaomega](https://github.com/kujaomega))
+* Support Ubuntu/CentOS Docker container (thanks [@kujaomega](https://github.com/kujaomega))
 * Support PKCS8/RFC4716 formats (thanks [@tats-u](https://github.com/tats-u))
 
 ### Changed
