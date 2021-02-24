@@ -10,13 +10,6 @@ interface FileInfo
 	options: fs.WriteFileOptions;
 }
 
-/** options for insertLf() */
-interface InsertLfOptions
-{
-	prepend?: boolean;
-	append?: boolean;
-}
-
 /**
  * main function
  */
@@ -27,9 +20,9 @@ function main(): void
 		const files: FileInfo[] = [
 			{
 				name: core.getInput("name"),
-				contents: insertLf(core.getInput("key", {required: true}), {
-					append: true,
-				}),
+				contents: insertLf(core.getInput("key", {
+					required: true,
+				}), false, true),
 				options: {
 					mode: 0o400,
 					flag: "ax",
@@ -37,10 +30,9 @@ function main(): void
 			},
 			{
 				name: "known_hosts",
-				contents: insertLf(core.getInput("known_hosts", {required: true}), {
-					prepend: true,
-					append: true,
-				}),
+				contents: insertLf(core.getInput("known_hosts", {
+					required: true,
+				}), true, true),
 				options: {
 					mode: 0o644,
 					flag: "a",
@@ -48,10 +40,7 @@ function main(): void
 			},
 			{
 				name: "config",
-				contents: insertLf(core.getInput("config"), {
-					prepend: true,
-					append: true,
-				}),
+				contents: insertLf(core.getInput("config"), true, true),
 				options: {
 					mode: 0o644,
 					flag: "a",
@@ -123,16 +112,12 @@ function getHomeEnv(): string
 /**
  * prepend/append LF to value if not empty
  * @param value the value to insert LF
- * @param options options
+ * @param prepend true to prepend
+ * @param append true to append
  * @returns new value
  */
-function insertLf(value: string, options: InsertLfOptions): string
+function insertLf(value: string, prepend: boolean, append: boolean): string
 {
-	const normalizedOptions: Required<InsertLfOptions> = {
-		prepend: false,
-		append: false,
-		...options,
-	};
 	let affectedValue = value;
 
 	if(value.length === 0)
@@ -140,11 +125,11 @@ function insertLf(value: string, options: InsertLfOptions): string
 		// do nothing if empty
 		return "";
 	}
-	if(normalizedOptions.prepend && !affectedValue.startsWith("\n"))
+	if(prepend && !affectedValue.startsWith("\n"))
 	{
 		affectedValue = `\n${affectedValue}`;
 	}
-	if(normalizedOptions.append && !affectedValue.endsWith("\n"))
+	if(append && !affectedValue.endsWith("\n"))
 	{
 		affectedValue = `${affectedValue}\n`;
 	}
