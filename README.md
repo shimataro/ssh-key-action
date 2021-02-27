@@ -6,6 +6,8 @@
 [![Ubuntu 20.04][image-verify-ubuntu-2004]][link-verify-ubuntu-2004]
 [![Ubuntu 18.04][image-verify-ubuntu-1804]][link-verify-ubuntu-1804]
 [![Ubuntu 16.04][image-verify-ubuntu-1604]][link-verify-ubuntu-1604]
+[![Docker container (Ubuntu)][image-verify-docker-container-ubuntu]][link-verify-docker-container-ubuntu]
+[![Docker container (CentOS)][image-verify-docker-container-centos]][link-verify-docker-container-centos]
 [![Release][image-release]][link-release]
 [![License][image-license]][link-license]
 [![Stars][image-stars]][link-stars]
@@ -14,16 +16,17 @@ This action installs SSH key in `~/.ssh`.
 
 Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
-**Works on all [virtual environments](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) --**
-**Windows Server 2019, macOS Catalina, Ubuntu 20.04, Ubuntu 18.04, and Ubuntu 16.04.**
+tested on:
+
+* [all available virtual machines](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) (Windows Server 2019, macOS Catalina, and Ubuntu 20.04/18.04/16.04)
+* [Docker container (Ubuntu)](https://hub.docker.com/_/ubuntu) / requires `openssh-client` package
+* [Docker container (CentOS)](https://hub.docker.com/_/centos) / requires `openssh-clients` package
 
 ## Usage
 
 Add your SSH key to your product secrets by clicking `Settings` - `Secrets` - `Add a new secret` beforehand.
 
-**NOTE:** OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work due to OpenSSH version on VM.
-Please use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`) instead.
-In order to convert your key inline to PEM format simply use `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`.
+PEM(RSA), PKCS8, and RFC4716(OpenSSH) formats are OK.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -67,8 +70,8 @@ steps:
   with:
     key: ${{ secrets.SSH_KEY_OF_TARGET }}
     name: id_rsa-target
-    known_hosts: ${{ secrets.KNOWN_HOSTS_OF_TARGET }} # will be appended!
-    config: |                                         # will be appended!
+    known_hosts: ${{ secrets.KNOWN_HOSTS_OF_TARGET }} # will be appended to existing .ssh/known_hosts
+    config: |                                         # will be appended to existing .ssh/config
       Host target
         HostName yyy.yyy.yyy.yyy
         User user-of-target
@@ -84,9 +87,6 @@ steps:
 
 Check below:
 
-* `Load key "/HOME/.ssh/id_rsa": invalid format`:
-    * OPENSSH format (key begins with `-----BEGIN OPENSSH PRIVATE KEY-----`) may not work.
-    * Use PEM format (begins with `-----BEGIN RSA PRIVATE KEY-----`). Convert it from OPENSSH format using `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`
 * `Host key verification failed.`:
     * Set `known_hosts` parameter correctly (use `ssh-keyscan` command).
 
@@ -133,17 +133,21 @@ The scripts and documentation in this project are released under the [MIT Licens
 See [CHANGELOG.md](CHANGELOG.md).
 
 [image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v2
-[link-build]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3ABuild
+[link-build]: https://github.com/shimataro/ssh-key-action/actions/workflows/build.yml
 [image-verify-windows-2019]: https://github.com/shimataro/ssh-key-action/workflows/Windows%20Server%202019/badge.svg?event=push&branch=v2
-[link-verify-windows-2019]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Windows+Server+2019%22
+[link-verify-windows-2019]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-windows-server-2019.yml
 [image-verify-macos-1015]: https://github.com/shimataro/ssh-key-action/workflows/macOS%20Catalina/badge.svg?event=push&branch=v2
-[link-verify-macos-1015]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22macOS+Catalina%22
+[link-verify-macos-1015]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-macos-1015.yml
 [image-verify-ubuntu-2004]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2020.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu-2004]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+20.04%22
+[link-verify-ubuntu-2004]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu-2004.yml
 [image-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2018.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+18.04%22
+[link-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu-1804.yml
 [image-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/actions?query=workflow%3A%22Ubuntu+16.04%22
+[link-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu-1604.yml
+[image-verify-docker-container-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-ubuntu.yml/badge.svg?event=push&branch=v2
+[link-verify-docker-container-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-ubuntu.yml
+[image-verify-docker-container-centos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-centos.yml/badge.svg?event=push&branch=v2
+[link-verify-docker-container-centos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-centos.yml
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
 [image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg

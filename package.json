@@ -1,15 +1,15 @@
 {
   "name": "install-ssh-key",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "description": "Install SSH key in .ssh",
-  "main": "lib/main.js",
+  "main": "lib/index.js",
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=5.7.0"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "ncc build src/main.ts -o lib",
     "check-updates": "ncu",
     "lint": "run-p lint:*",
     "lint:ts": "eslint ./src --ext .ts",
@@ -30,18 +30,17 @@
   ],
   "author": "shimataro",
   "license": "MIT",
-  "dependencies": {
-    "@actions/core": "1.2.4"
-  },
   "devDependencies": {
-    "@types/node": "14.0.27",
-    "@typescript-eslint/eslint-plugin": "3.9.0",
-    "@typescript-eslint/parser": "3.9.0",
-    "eslint": "7.7.0",
-    "markdownlint-cli": "0.23.2",
-    "npm-check-updates": "7.1.1",
+    "@actions/core": "1.2.6",
+    "@types/node": "14.14.31",
+    "@typescript-eslint/eslint-plugin": "4.15.2",
+    "@typescript-eslint/parser": "4.15.2",
+    "@vercel/ncc": "0.27.0",
+    "eslint": "7.20.0",
+    "markdownlint-cli": "0.26.0",
+    "npm-check-updates": "11.1.9",
     "npm-run-all": "4.1.5",
-    "typescript": "3.9.7",
+    "typescript": "4.2.2",
     "yaml-lint": "1.2.4"
   }
 }

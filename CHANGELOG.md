@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.2.0] - 2021-02-27
+
+### Added
+
+* Support Ubuntu/CentOS Docker container (thanks [@kujaomega](https://github.com/kujaomega))
+* Support PKCS8/RFC4716 formats (thanks [@tats-u](https://github.com/tats-u))
+
+### Changed
+
+* Bundle dependencies (thanks [@tats-u](https://github.com/tats-u))
+
+### Fixed
+
+* comments in README (thanks [@KimSoungRyoul](https://github.com/KimSoungRyoul))
+
 ## [2.1.0] - 2020-08-15
 
 ### Changed
@@ -123,7 +138,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/shimataro/ssh-key-action/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/shimataro/ssh-key-action/compare/v2.0.3...v2.1.0
 [2.0.3]: https://github.com/shimataro/ssh-key-action/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/shimataro/ssh-key-action/compare/v2.0.1...v2.0.2

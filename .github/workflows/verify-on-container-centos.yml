@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-name: Ubuntu 16.04
+name: Docker container (CentOS)
 
 on:
 - push
@@ -8,8 +8,22 @@ on:
 jobs:
   ssh-pem:
     name: Connect to github.com (PEM format)
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+      fail-fast: false
     steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -18,13 +32,27 @@ jobs:
         key: ${{ secrets.SSH_KEY_PEM }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - name: print created files
-      run: ls -l ~/.ssh
+      run: ls -l /root/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-pkcs8:
     name: Connect to github.com (PKCS8 format)
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+      fail-fast: false
     steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -33,13 +61,27 @@ jobs:
         key: ${{ secrets.SSH_KEY_PKCS8 }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - name: print created files
-      run: ls -l ~/.ssh
+      run: ls -l /root/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-rfc4716:
     name: Connect to github.com (RFC4716 format)
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+      fail-fast: false
     steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -48,27 +90,6 @@ jobs:
         key: ${{ secrets.SSH_KEY_RFC4716 }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - name: print created files
-      run: ls -l ~/.ssh
+      run: ls -l /root/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
-  ssh-with-name:
-    name: Connect to github.com with name and config
-    runs-on: ubuntu-16.04
-    steps:
-    - name: Checkout source codes
-      uses: actions/checkout@v2
-    - name: Install SSH key
-      uses: ./.
-      with:
-        key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
-        name: ssh_key_name # optional
-        config: | # optional
-          Host github
-            Hostname github.com
-            User git
-            IdentityFile ~/.ssh/ssh_key_name
-    - name: print created files
-      run: ls -l ~/.ssh
-    - name: git clone through SSH
-      run: git clone github:shimataro/ssh-key-action.git tmp
