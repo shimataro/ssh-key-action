@@ -62,7 +62,7 @@ function main(): void
 				contents: insertLf(key, false, true),
 				options: {
 					mode: 0o400,
-					flag: "ax",
+					flag: "wx",
 				},
 			});
 		}
