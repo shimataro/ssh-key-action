@@ -89,7 +89,7 @@ Check below:
 * `Host key verification failed.`:
     * Set `known_hosts` parameter correctly (use `ssh-keyscan` command).
 
-### I want to replace/ignore if key exists.
+### I want to replace/ignore key if exists.
 
 Use `if_key_exists` parameter.
 
