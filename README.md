@@ -94,7 +94,7 @@ Check below:
 Use `if_key_exists` parameter.
 
 * `replace`: replaces key
-* `ignore`: do nothing
+* `ignore`: does nothing
 * `fail`: fails (default)
 
 ### How do I use encrypted SSH key?
