@@ -72,8 +72,9 @@ jobs:
       run: ls -l ~/.ssh
     - name: git clone through SSH
       run: git clone github:shimataro/ssh-key-action.git tmp
-  replace_key_if_exists:
-    name: Replace key if exists
+
+  key_if_exists_replace-key_exists:
+    name: if_key_exists=replace / key exists
     runs-on: ubuntu-16.04
     steps:
     - name: Checkout source codes
@@ -81,7 +82,7 @@ jobs:
     - name: Install SSH key (dummy)
       uses: ./.
       with:
-        key: "dummy"
+        key: "dummy" # replaced
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - name: Install SSH key (replace)
       uses: ./.
@@ -93,8 +94,8 @@ jobs:
       run: ls -l ~/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
-  replace_key_if_exists_created:
-    name: Create key if not exist (if_key_exists=replace)
+  key_if_exists_replace-key_doesnt_exist:
+    name: if_key_exists=replace / key doesn't exist
     runs-on: ubuntu-16.04
     steps:
     - name: Checkout source codes
@@ -105,6 +106,44 @@ jobs:
         key: ${{ secrets.SSH_KEY_PEM }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
         if_key_exists: replace
+    - name: print created files
+      run: ls -l ~/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+
+  key_if_exists_ignore-key_exists:
+    name: if_key_exists=ignore / key exists
+    runs-on: ubuntu-16.04
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (dummy)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: "dummy" # ignored
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: ignore
+    - name: print created files
+      run: ls -l ~/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  key_if_exists_ignore-key_doesnt_exist:
+    name: if_key_exists=ignore / key doesn't exist
+    runs-on: ubuntu-16.04
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: ignore
     - name: print created files
       run: ls -l ~/.ssh
     - name: git clone through SSH
