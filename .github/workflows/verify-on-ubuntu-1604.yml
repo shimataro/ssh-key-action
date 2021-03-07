@@ -72,3 +72,40 @@ jobs:
       run: ls -l ~/.ssh
     - name: git clone through SSH
       run: git clone github:shimataro/ssh-key-action.git tmp
+  replace_key_if_exists:
+    name: Replace key if exists
+    runs-on: ubuntu-16.04
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (dummy)
+      uses: ./.
+      with:
+        key: "dummy"
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: replace
+    - name: print created files
+      run: ls -l ~/.ssh
+    - name: git clone through SSH
+      run: git clone github:shimataro/ssh-key-action.git tmp
+  replace_key_if_exists_created:
+    name: Create key if not exist (if_key_exists=replace)
+    runs-on: ubuntu-16.04
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: replace
+    - name: print created files
+      run: ls -l ~/.ssh
+    - name: git clone through SSH
+      run: git clone github:shimataro/ssh-key-action.git tmp
