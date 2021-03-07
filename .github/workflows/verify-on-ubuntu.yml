@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-name: Ubuntu 16.04
+name: Ubuntu
 
 on:
 - push
@@ -8,7 +8,14 @@ on:
 jobs:
   ssh-pem:
     name: Connect to github.com (PEM format)
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -23,7 +30,14 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-pkcs8:
     name: Connect to github.com (PKCS8 format)
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -38,7 +52,14 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-rfc4716:
     name: Connect to github.com (RFC4716 format)
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -53,7 +74,14 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   ssh-with-name:
     name: Connect to github.com with name and config
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -75,7 +103,14 @@ jobs:
 
   key_if_exists_replace-key_exists:
     name: if_key_exists=replace / key exists
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -96,7 +131,14 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   key_if_exists_replace-key_doesnt_exist:
     name: if_key_exists=replace / key doesn't exist
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -113,7 +155,14 @@ jobs:
 
   key_if_exists_ignore-key_exists:
     name: if_key_exists=ignore / key exists
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -134,7 +183,14 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   key_if_exists_ignore-key_doesnt_exist:
     name: if_key_exists=ignore / key doesn't exist
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -151,7 +207,14 @@ jobs:
 
   key_if_exists_fail-key_exists:
     name: if_key_exists=fail / key exists
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -173,7 +236,14 @@ jobs:
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
   key_if_exists_fail-key_doesnt_exist:
     name: if_key_exists=fail / key doesn't exist
-    runs-on: ubuntu-16.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
