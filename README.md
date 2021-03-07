@@ -36,6 +36,7 @@ steps:
     name: id_rsa # optional
     known_hosts: ${{ secrets.KNOWN_HOSTS }}
     config: ${{ secrets.CONFIG }} # ssh_config; optional
+    if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 - name: rsync over ssh
   run: rsync ./foo/ user@remote:bar/
 ```
@@ -87,6 +88,14 @@ Check below:
 
 * `Host key verification failed.`:
     * Set `known_hosts` parameter correctly (use `ssh-keyscan` command).
+
+### I want to replace/ignore if key exists.
+
+Use `if_key_exists` parameter.
+
+* `replace`: replaces key
+* `ignore`: do nothing
+* `fail`: fails (default)
 
 ### How do I use encrypted SSH key?
 
