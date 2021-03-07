@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* `if_key_exists` parameter
+
 ## [2.2.0] - 2021-02-27
 
 ### Added
