@@ -38,16 +38,7 @@ function main(): void
 		});
 
 		// files to be created
-		const files: FileInfo[] = [
-			{
-				name: "config",
-				contents: insertLf(config, true, true),
-				options: {
-					mode: 0o644,
-					flag: "a",
-				},
-			},
-		];
+		const files: FileInfo[] = [];
 		if(shouldCreateKeyFile(path.join(dirName, name), ifKeyExists))
 		{
 			files.push({
@@ -59,11 +50,22 @@ function main(): void
 				},
 			});
 		}
-		if(!noKnownHosts)
+		if(knownHosts !== "")
 		{
 			files.push({
 				name: "known_hosts",
 				contents: insertLf(knownHosts, true, true),
+				options: {
+					mode: 0o644,
+					flag: "a",
+				},
+			});
+		}
+		if(config !== "")
+		{
+			files.push({
+				name: "config",
+				contents: insertLf(config, true, true),
 				options: {
 					mode: 0o644,
 					flag: "a",
