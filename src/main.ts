@@ -18,13 +18,12 @@ function main(): void
 	try
 	{
 		// parameters
-		const noKnownHosts = string2boolean(core.getInput("no_known_hosts"));
 		const key = core.getInput("key", {
 			required: true,
 		});
 		const name = core.getInput("name");
 		const knownHosts = core.getInput("known_hosts", {
-			required: !noKnownHosts, // optional if no_known_hosts is true
+			required: true,
 		});
 		const config = core.getInput("config");
 		const ifKeyExists = core.getInput("if_key_exists");
@@ -50,7 +49,7 @@ function main(): void
 				},
 			});
 		}
-		if(knownHosts !== "")
+		if(knownHosts !== "no")
 		{
 			files.push({
 				name: "known_hosts",
@@ -86,33 +85,6 @@ function main(): void
 	{
 		core.setFailed(err.message);
 	}
-}
-
-/**
- * convert string to boolean
- * @param value string value
- * @returns boolean value
- */
-function string2boolean(value: string): boolean
-{
-	// true if "true" / "yes" / "on"
-	switch(value.trim().toLowerCase())
-	{
-	case "true":
-	case "yes":
-	case "on":
-		return true;
-	}
-
-	// true if number and non-zero
-	const numberValue = Number(value);
-	if(!isNaN(numberValue) && numberValue !== 0)
-	{
-		return true;
-	}
-
-	// false otherwise
-	return false;
 }
 
 /**

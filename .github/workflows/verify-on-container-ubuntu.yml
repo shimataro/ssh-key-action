@@ -337,6 +337,6 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
-        no_known_hosts: true
+        known_hosts: no
     - name: print created files
       run: ls -l /root/.ssh

@@ -14,7 +14,7 @@ inputs:
     required: false
     default: "id_rsa"
   known_hosts:
-    description: "public keys of SSH servers"
+    description: "public keys of SSH servers, or set to 'no' in order to omit it"
     required: true
     default: ""
   config:
@@ -25,10 +25,6 @@ inputs:
     description: "replace / ignore / fail"
     required: false
     default: "fail"
-  no_known_hosts:
-    description: "enables not providing known_hosts file"
-    required: false
-    default: "0"
 runs:
   using: "node12"
   main: "lib/index.js"
