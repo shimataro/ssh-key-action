@@ -93,3 +93,230 @@ jobs:
       run: ls -l /root/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+
+  key_if_exists_replace-key_exists:
+    name: if_key_exists=replace / key exists
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (dummy)
+      uses: ./.
+      with:
+        key: "dummy" # replaced
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: replace
+    - name: print created files
+      run: ls -l /root/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  key_if_exists_replace-key_doesnt_exist:
+    name: if_key_exists=replace / key doesn't exist
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: replace
+    - name: print created files
+      run: ls -l /root/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+
+  key_if_exists_ignore-key_exists:
+    name: if_key_exists=ignore / key exists
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (dummy)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: "dummy" # ignored
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: ignore
+    - name: print created files
+      run: ls -l /root/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  key_if_exists_ignore-key_doesnt_exist:
+    name: if_key_exists=ignore / key doesn't exist
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: ignore
+    - name: print created files
+      run: ls -l /root/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+
+  key_if_exists_fail-key_exists:
+    name: if_key_exists=fail / key exists
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (dummy)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: "dummy" # ignored
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: fail
+      continue-on-error: true
+    - name: print created files
+      run: ls -l /root/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  key_if_exists_fail-key_doesnt_exist:
+    name: if_key_exists=fail / key doesn't exist
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key (replace)
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        if_key_exists: fail
+    - name: print created files
+      run: ls -l /root/.ssh
+    - name: git clone through SSH
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+
+  no_known_hosts:
+    name: no known_hosts file
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu-16.04
+        - ubuntu-18.04
+        - ubuntu-20.04
+        container:
+        - centos:7
+        - centos:8
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        no_known_hosts: true
+    - name: print created files
+      run: ls -l /root/.ssh
