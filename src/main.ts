@@ -28,6 +28,10 @@ function main(): void
 		const config = core.getInput("config");
 		const ifKeyExists = core.getInput("if_key_exists");
 
+		// test
+		const noKnownHosts = core.getInput("no_known_hosts");
+		console.log(noKnownHosts);
+
 		// create ".ssh" directory
 		const home = getHomeDirectory();
 		const dirName = path.resolve(home, ".ssh");

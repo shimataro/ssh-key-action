@@ -25,6 +25,10 @@ inputs:
     description: "replace / ignore / fail"
     required: false
     default: "fail"
+  no_known_hosts:
+    description: "enables not providing known_hosts file"
+    required: false
+    default: "0"
 runs:
   using: "node12"
   main: "lib/index.js"
