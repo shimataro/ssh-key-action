@@ -40,14 +40,6 @@ function main(): void
 		// files to be created
 		const files: FileInfo[] = [
 			{
-				name: "known_hosts",
-				contents: insertLf(knownHosts, true, true),
-				options: {
-					mode: 0o644,
-					flag: "a",
-				},
-			},
-			{
 				name: "config",
 				contents: insertLf(config, true, true),
 				options: {
@@ -64,6 +56,17 @@ function main(): void
 				options: {
 					mode: 0o400,
 					flag: "wx",
+				},
+			});
+		}
+		if(!noKnownHosts)
+		{
+			files.push({
+				name: "known_hosts",
+				contents: insertLf(knownHosts, true, true),
+				options: {
+					mode: 0o644,
+					flag: "a",
 				},
 			});
 		}
