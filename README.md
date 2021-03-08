@@ -34,7 +34,7 @@ steps:
   with:
     key: ${{ secrets.SSH_KEY }}
     name: id_rsa # optional
-    known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    known_hosts: ${{ secrets.KNOWN_HOSTS }} # known_hosts; set to "no" in order to omit
     config: ${{ secrets.CONFIG }} # ssh_config; optional
     if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 - name: rsync over ssh
@@ -96,6 +96,13 @@ Use `if_key_exists` parameter.
 * `replace`: replaces key
 * `ignore`: does nothing
 * `fail`: fails (default)
+
+### Why is it required to set `known_hosts` to `no`? Isn't it better to make `known_hosts` just omitable?
+
+It's for a heads up, in order not to omit without thinking.
+
+You should understand that it is not secure to SSH with no `known_hosts` file and using `StrictHostKeyChecking=no` option.
+And should set `known_hosts` to `no` ONLY IF you are using secure methods, such as SSHFP and signed server key.
 
 ### How do I use encrypted SSH key?
 
