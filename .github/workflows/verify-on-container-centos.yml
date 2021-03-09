@@ -293,8 +293,8 @@ jobs:
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
 
-  no_known_hosts:
-    name: no known_hosts file
+  known_hosts-unnecessary:
+    name: without known_hosts file
     runs-on: ${{ matrix.os }}
     container: ${{ matrix.container }}
     strategy:
@@ -317,6 +317,6 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: no
+        known_hosts: unnecessary
     - name: print created files
       run: ls -l /root/.ssh

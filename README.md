@@ -34,7 +34,7 @@ steps:
   with:
     key: ${{ secrets.SSH_KEY }}
     name: id_rsa # optional
-    known_hosts: ${{ secrets.KNOWN_HOSTS }} # known_hosts; set to "no" in order to omit
+    known_hosts: ${{ secrets.KNOWN_HOSTS }}
     config: ${{ secrets.CONFIG }} # ssh_config; optional
     if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 - name: rsync over ssh
@@ -42,8 +42,6 @@ steps:
 ```
 
 See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) for details.
-
-**NOTE:** `known_hosts: no` with `StrictHostKeyChecking=no` is not secure. Use it ONLY IF you are using secure methods, such as SSHFP and signed server key.
 
 ### Install multiple keys
 
@@ -110,7 +108,7 @@ If **"It is hard to prefetch server key because the server will be created dynam
 By the way, there are some secure methods to SSH without `known_hosts`, such as SSHFP and signed server key.
 And here is a special value to omit `known_hosts`. You should use it ONLY IF you are sure that it is secure enough.
 You should use it ONLY IF you are using secure methods...
-It is `known_hosts: no`.
+It is `known_hosts: unnecessary`.
 
 ### How do I use encrypted SSH key?
 

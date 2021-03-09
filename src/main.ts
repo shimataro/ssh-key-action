@@ -49,7 +49,7 @@ function main(): void
 				},
 			});
 		}
-		if(knownHosts !== "no")
+		if(knownHosts !== "unnecessary")
 		{
 			files.push({
 				name: "known_hosts",
