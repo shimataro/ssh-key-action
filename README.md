@@ -43,12 +43,14 @@ steps:
 
 See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) for details.
 
+**NOTE:** `known_hosts: no` with `StrictHostKeyChecking=no` is not secure. Use it ONLY IF you are using secure methods, such as SSHFP and signed server key.
+
 ### Install multiple keys
 
 If you want to install multiple keys, call this action multiple times.
 It is useful for port forwarding.
 
-**NOTE:**  When this action is called multiple times, **the contents of `known_hosts` and `config` will be appended**. `key` must be saved as different name, by using `name` option.
+**NOTE:** When this action is called multiple times, **the contents of `known_hosts` and `config` will be appended**. `key` must be saved as different name, by using `name` option.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -97,12 +99,18 @@ Use `if_key_exists` parameter.
 * `ignore`: does nothing
 * `fail`: fails (default)
 
-### Why is it required to set `known_hosts` to `no`? Isn't it better to make `known_hosts` just omitable?
+### I want to omit `known_hosts`.
 
-It's for a heads up, in order not to omit without thinking.
+First of all, you have to understand that it is NOT secure to SSH with no `known_hosts` and using `StrictHostKeyChecking=no` option.
 
-You should understand that it is not secure to SSH with no `known_hosts` file and using `StrictHostKeyChecking=no` option.
-And should set `known_hosts` to `no` ONLY IF you are using secure methods, such as SSHFP and signed server key.
+Why do you want to omit it?
+If the reason is **"I'm not understanding about the function of `known_hosts`"** or **"It's bother to fetch server key"**, you should not omit.
+If **"It is hard to prefetch server key because the server will be created dynamically"**, you can use bastion server.
+
+By the way, there are some secure methods to SSH without `known_hosts`, such as SSHFP and signed server key.
+And here is a special value to omit `known_hosts`. You should use it ONLY IF you are sure that it is secure enough.
+You should use it ONLY IF you are using secure methods...
+It is `known_hosts: no`.
 
 ### How do I use encrypted SSH key?
 

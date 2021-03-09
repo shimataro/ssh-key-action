@@ -14,7 +14,7 @@ inputs:
     required: false
     default: "id_rsa"
   known_hosts:
-    description: "public keys of SSH servers, or set to 'no' in order to omit it"
+    description: "public keys of SSH servers"
     required: true
     default: ""
   config:
