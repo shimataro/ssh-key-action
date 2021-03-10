@@ -97,19 +97,6 @@ Use `if_key_exists` parameter.
 * `ignore`: does nothing
 * `fail`: fails (default)
 
-### I want to omit `known_hosts`.
-
-First of all, you have to understand that it is NOT secure to SSH with no `known_hosts` and using `StrictHostKeyChecking=no` option.
-
-Why do you want to omit it?
-If the reason is **"I'm not understanding about the function of `known_hosts`"** or **"It's bother to fetch server key"**, you should not omit.
-If **"It is hard to prefetch server key because the server will be created dynamically"**, you can use bastion server.
-
-By the way, there are some secure methods to SSH without `known_hosts`, such as SSHFP and signed server key.
-And here is a special value to omit `known_hosts`. You should use it ONLY IF you are sure that it is secure enough.
-You should use it ONLY IF you are using secure methods...
-It is `known_hosts: unnecessary`.
-
 ### How do I use encrypted SSH key?
 
 This action doesn't support encrypted key directly.
@@ -143,6 +130,18 @@ It has some advantages over other methods:
         * Because Azure address range is [very wide](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#ip-addresses-of-github-hosted-runners).
         * And will be updated continuously.
     * if security incident ―e.g., private key leaked― occurs, it's OK just to remove `authorized_keys` on bastion.
+
+### I want to omit `known_hosts`.
+
+First of all, you have to understand that it is NOT secure to SSH with no `known_hosts` and using `StrictHostKeyChecking=no` option.
+
+Why do you want to omit it?
+If the reason is **"I'm not understanding about the function of `known_hosts`"** or **"It's bother to fetch server key"**, you should not omit.
+If **"It is hard to prefetch server key because the server will be created dynamically"**, you can use bastion server.
+
+By the way, there are some secure methods to SSH without `known_hosts`, such as SSHFP and signed server key.
+And here is a special value to omit `known_hosts`. You should use it ONLY IF you are using secure methods...
+It is `known_hosts: unnecessary`.
 
 ## License
 
