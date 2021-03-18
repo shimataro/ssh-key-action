@@ -1,11 +1,9 @@
 # Install SSH Key
 
 [![Build][image-build]][link-build]
-[![Windows Server 2019][image-verify-windows-2019]][link-verify-windows-2019]
-[![macOS Catalina][image-verify-macos-1015]][link-verify-macos-1015]
-[![Ubuntu 20.04][image-verify-ubuntu-2004]][link-verify-ubuntu-2004]
-[![Ubuntu 18.04][image-verify-ubuntu-1804]][link-verify-ubuntu-1804]
-[![Ubuntu 16.04][image-verify-ubuntu-1604]][link-verify-ubuntu-1604]
+[![Windows][image-verify-windows]][link-verify-windows]
+[![macOS][image-verify-macos]][link-verify-macos]
+[![Ubuntu][image-verify-ubuntu]][link-verify-ubuntu]
 [![Docker container (Ubuntu)][image-verify-docker-container-ubuntu]][link-verify-docker-container-ubuntu]
 [![Docker container (CentOS)][image-verify-docker-container-centos]][link-verify-docker-container-centos]
 [![Release][image-release]][link-release]
@@ -38,6 +36,7 @@ steps:
     name: id_rsa # optional
     known_hosts: ${{ secrets.KNOWN_HOSTS }}
     config: ${{ secrets.CONFIG }} # ssh_config; optional
+    if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 - name: rsync over ssh
   run: rsync ./foo/ user@remote:bar/
 ```
@@ -90,6 +89,14 @@ Check below:
 * `Host key verification failed.`:
     * Set `known_hosts` parameter correctly (use `ssh-keyscan` command).
 
+### I want to replace/ignore key if exists.
+
+Use `if_key_exists` parameter.
+
+* `replace`: replaces key
+* `ignore`: does nothing
+* `fail`: fails (default)
+
 ### How do I use encrypted SSH key?
 
 This action doesn't support encrypted key directly.
@@ -134,16 +141,12 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 [image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v2
 [link-build]: https://github.com/shimataro/ssh-key-action/actions/workflows/build.yml
-[image-verify-windows-2019]: https://github.com/shimataro/ssh-key-action/workflows/Windows%20Server%202019/badge.svg?event=push&branch=v2
-[link-verify-windows-2019]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-windows-server-2019.yml
-[image-verify-macos-1015]: https://github.com/shimataro/ssh-key-action/workflows/macOS%20Catalina/badge.svg?event=push&branch=v2
-[link-verify-macos-1015]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-macos-1015.yml
-[image-verify-ubuntu-2004]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2020.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu-2004]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu-2004.yml
-[image-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2018.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu-1804.yml
-[image-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu-1604.yml
+[image-verify-windows]: https://github.com/shimataro/ssh-key-action/workflows/Windows/badge.svg?event=push&branch=v2
+[link-verify-windows]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-windows.yml
+[image-verify-macos]: https://github.com/shimataro/ssh-key-action/workflows/macOS/badge.svg?event=push&branch=v2
+[link-verify-macos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-macos.yml
+[image-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu/badge.svg?event=push&branch=v2
+[link-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu.yml
 [image-verify-docker-container-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-ubuntu.yml/badge.svg?event=push&branch=v2
 [link-verify-docker-container-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-ubuntu.yml
 [image-verify-docker-container-centos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-centos.yml/badge.svg?event=push&branch=v2

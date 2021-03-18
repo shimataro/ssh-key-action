@@ -21,6 +21,10 @@ inputs:
     description: "SSH config"
     required: false
     default: ""
+  if_key_exists:
+    description: "replace / ignore / fail"
+    required: false
+    default: "fail"
 runs:
   using: "node12"
   main: "lib/index.js"

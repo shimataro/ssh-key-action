@@ -17,36 +17,16 @@ function main(): void
 {
 	try
 	{
-		const files: FileInfo[] = [
-			{
-				name: core.getInput("name"),
-				contents: insertLf(core.getInput("key", {
-					required: true,
-				}), false, true),
-				options: {
-					mode: 0o400,
-					flag: "ax",
-				},
-			},
-			{
-				name: "known_hosts",
-				contents: insertLf(core.getInput("known_hosts", {
-					required: true,
-				}), true, true),
-				options: {
-					mode: 0o644,
-					flag: "a",
-				},
-			},
-			{
-				name: "config",
-				contents: insertLf(core.getInput("config"), true, true),
-				options: {
-					mode: 0o644,
-					flag: "a",
-				},
-			},
-		];
+		// parameters
+		const key = core.getInput("key", {
+			required: true,
+		});
+		const name = core.getInput("name");
+		const knownHosts = core.getInput("known_hosts", {
+			required: true,
+		});
+		const config = core.getInput("config");
+		const ifKeyExists = core.getInput("if_key_exists");
 
 		// create ".ssh" directory
 		const home = getHomeDirectory();
@@ -55,6 +35,37 @@ function main(): void
 			recursive: true,
 			mode: 0o700,
 		});
+
+		// files to be created
+		const files: FileInfo[] = [
+			{
+				name: "known_hosts",
+				contents: insertLf(knownHosts, true, true),
+				options: {
+					mode: 0o644,
+					flag: "a",
+				},
+			},
+			{
+				name: "config",
+				contents: insertLf(config, true, true),
+				options: {
+					mode: 0o644,
+					flag: "a",
+				},
+			},
+		];
+		if(shouldCreateKeyFile(path.join(dirName, name), ifKeyExists))
+		{
+			files.push({
+				name: name,
+				contents: insertLf(key, false, true),
+				options: {
+					mode: 0o400,
+					flag: "wx",
+				},
+			});
+		}
 
 		// create files
 		for(const file of files)
@@ -135,6 +146,37 @@ function insertLf(value: string, prepend: boolean, append: boolean): string
 	}
 
 	return affectedValue;
+}
+
+/**
+ * should create SSH key file?
+ * @param keyFilePath path of key file
+ * @param ifKeyExists action if SSH key exists
+ * @returns Yes/No
+ */
+function shouldCreateKeyFile(keyFilePath: string, ifKeyExists: string): boolean
+{
+	if(!fs.existsSync(keyFilePath))
+	{
+		// should create if file does not exist
+		return true;
+	}
+
+	switch(ifKeyExists)
+	{
+	case "replace":
+		// remove file and should create if replace
+		fs.unlinkSync(keyFilePath);
+		return true;
+
+	case "ignore":
+		// should NOT create if ignore
+		return false;
+
+	default:
+		// error otherwise
+		throw new Error(`SSH key is already installed. Set "if_key_exists" to "replace" or "ignore" in order to avoid this error.`);
+	}
 }
 
 main();
