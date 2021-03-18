@@ -139,8 +139,8 @@ Why do you want to omit it?
 If the reason is **"I'm not understanding about the function of `known_hosts`"** or **"It's bother to fetch server key"**, you should not omit.
 If **"It is hard to prefetch server key because the server will be created dynamically"**, you can use bastion server.
 
-By the way, there are some secure methods to SSH without `known_hosts`, such as SSHFP and signed server key.
-And here is a special value to omit `known_hosts`. You should use it ONLY IF you are using secure methods...
+**"`known_hosts` is unnecessary because I'm using secure method for SSH, such as SSHFP and signed server key."** — OK, here is a special value to omit `known_hosts`.
+You should use it ONLY IF you are using secure methods...
 It is `known_hosts: unnecessary`.
 
 ## License
