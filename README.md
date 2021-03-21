@@ -1,13 +1,12 @@
 # Install SSH Key
 
 [![Build][image-build]][link-build]
-[![Windows Server 2019][image-verify-windows-2019]][link-verify-windows-2019]
-[![macOS Catalina][image-verify-macos-1015]][link-verify-macos-1015]
-[![Ubuntu 20.04][image-verify-ubuntu-2004]][link-verify-ubuntu-2004]
-[![Ubuntu 18.04][image-verify-ubuntu-1804]][link-verify-ubuntu-1804]
-[![Ubuntu 16.04][image-verify-ubuntu-1604]][link-verify-ubuntu-1604]
+[![Windows][image-verify-windows]][link-verify-windows]
+[![macOS][image-verify-macos]][link-verify-macos]
+[![Ubuntu][image-verify-ubuntu]][link-verify-ubuntu]
 [![Docker container (Ubuntu)][image-verify-docker-container-ubuntu]][link-verify-docker-container-ubuntu]
 [![Docker container (CentOS)][image-verify-docker-container-centos]][link-verify-docker-container-centos]
+[![Docker container (Alpine Linux)][image-verify-docker-container-alpine]][link-verify-docker-container-alpine]
 [![Release][image-release]][link-release]
 [![License][image-license]][link-license]
 [![Stars][image-stars]][link-stars]
@@ -19,8 +18,9 @@ Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 tested on:
 
 * [all available virtual machines](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) (Windows Server 2019, macOS Catalina, and Ubuntu 20.04/18.04/16.04)
-* [Docker container (Ubuntu)](https://hub.docker.com/_/ubuntu) / requires `openssh-client` package
-* [Docker container (CentOS)](https://hub.docker.com/_/centos) / requires `openssh-clients` package
+* [Docker container (Ubuntu)](https://hub.docker.com/_/ubuntu) / requires `openssh-client` package; `apt install -y openssh-client`
+* [Docker container (CentOS)](https://hub.docker.com/_/centos) / requires `openssh-clients` package; `yum install -y openssh-clients`
+* [Docker container (Alpine Linux)](https://hub.docker.com/_/alpine) / requires `openssh-client` package; `apk add openssh-client`
 
 ## Usage
 
@@ -38,6 +38,7 @@ steps:
     name: id_rsa # optional
     known_hosts: ${{ secrets.KNOWN_HOSTS }}
     config: ${{ secrets.CONFIG }} # ssh_config; optional
+    if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 - name: rsync over ssh
   run: rsync ./foo/ user@remote:bar/
 ```
@@ -49,7 +50,7 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 If you want to install multiple keys, call this action multiple times.
 It is useful for port forwarding.
 
-**NOTE:**  When this action is called multiple times, **the contents of `known_hosts` and `config` will be appended**. `key` must be saved as different name, by using `name` option.
+**NOTE:** When this action is called multiple times, **the contents of `known_hosts` and `config` will be appended**. `key` must be saved as different name, by using `name` option.
 
 ```yaml
 runs-on: ubuntu-latest
@@ -90,6 +91,14 @@ Check below:
 * `Host key verification failed.`:
     * Set `known_hosts` parameter correctly (use `ssh-keyscan` command).
 
+### I want to replace/ignore key if exists.
+
+Use `if_key_exists` parameter.
+
+* `replace`: replaces key
+* `ignore`: does nothing
+* `fail`: fails (default)
+
 ### How do I use encrypted SSH key?
 
 This action doesn't support encrypted key directly.
@@ -124,6 +133,18 @@ It has some advantages over other methods:
         * And will be updated continuously.
     * if security incident ―e.g., private key leaked― occurs, it's OK just to remove `authorized_keys` on bastion.
 
+### I want to omit `known_hosts`.
+
+First of all, you have to understand that it is NOT secure to SSH with no `known_hosts` and using `StrictHostKeyChecking=no` option.
+
+Why do you want to omit it?
+If the reason is **"I'm not understanding about the function of `known_hosts`"** or **"It's bother to fetch server key"**, you should not omit.
+If **"It is hard to prefetch server key because the server will be created dynamically"**, you can use bastion server.
+
+**"`known_hosts` is unnecessary because I'm using secure method for SSH, such as SSHFP and signed server key."** — OK, here is a special value to omit `known_hosts`.
+You should use it ONLY IF you are using secure methods...
+It is `known_hosts: unnecessary`.
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
@@ -134,20 +155,18 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 [image-build]: https://github.com/shimataro/ssh-key-action/workflows/Build/badge.svg?event=push&branch=v2
 [link-build]: https://github.com/shimataro/ssh-key-action/actions/workflows/build.yml
-[image-verify-windows-2019]: https://github.com/shimataro/ssh-key-action/workflows/Windows%20Server%202019/badge.svg?event=push&branch=v2
-[link-verify-windows-2019]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-windows-server-2019.yml
-[image-verify-macos-1015]: https://github.com/shimataro/ssh-key-action/workflows/macOS%20Catalina/badge.svg?event=push&branch=v2
-[link-verify-macos-1015]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-macos-1015.yml
-[image-verify-ubuntu-2004]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2020.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu-2004]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu-2004.yml
-[image-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2018.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu-1804]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu-1804.yml
-[image-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu%2016.04/badge.svg?event=push&branch=v2
-[link-verify-ubuntu-1604]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu-1604.yml
+[image-verify-windows]: https://github.com/shimataro/ssh-key-action/workflows/Windows/badge.svg?event=push&branch=v2
+[link-verify-windows]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-windows.yml
+[image-verify-macos]: https://github.com/shimataro/ssh-key-action/workflows/macOS/badge.svg?event=push&branch=v2
+[link-verify-macos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-macos.yml
+[image-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/workflows/Ubuntu/badge.svg?event=push&branch=v2
+[link-verify-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-ubuntu.yml
 [image-verify-docker-container-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-ubuntu.yml/badge.svg?event=push&branch=v2
 [link-verify-docker-container-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-ubuntu.yml
 [image-verify-docker-container-centos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-centos.yml/badge.svg?event=push&branch=v2
 [link-verify-docker-container-centos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-centos.yml
+[image-verify-docker-container-alpine]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-alpine.yml/badge.svg?event=push&branch=v2
+[link-verify-docker-container-alpine]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-alpine.yml
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
 [image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg
