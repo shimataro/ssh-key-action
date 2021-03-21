@@ -6,7 +6,7 @@
 [![Ubuntu][image-verify-ubuntu]][link-verify-ubuntu]
 [![Docker container (Ubuntu)][image-verify-docker-container-ubuntu]][link-verify-docker-container-ubuntu]
 [![Docker container (CentOS)][image-verify-docker-container-centos]][link-verify-docker-container-centos]
-[![Docker container (Alpine Linux)][image-verify-docker-container-apline]][link-verify-docker-container-alpine]
+[![Docker container (Alpine Linux)][image-verify-docker-container-alpine]][link-verify-docker-container-alpine]
 [![Release][image-release]][link-release]
 [![License][image-license]][link-license]
 [![Stars][image-stars]][link-stars]
