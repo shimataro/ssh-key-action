@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-name: Docker container (Ubuntu)
+name: Docker container (Alpine Linux)
 
 on:
 - push
@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
     steps:
     - name: Install packages
-      run: apk add openssh-client
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -54,7 +54,7 @@ jobs:
       fail-fast: false
     steps:
     - name: Install packages
-      run: apk add openssh-client
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -84,7 +84,7 @@ jobs:
       fail-fast: false
     steps:
     - name: Install packages
-      run: apk add openssh-client
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -115,7 +115,7 @@ jobs:
         - alpine:3.13
     steps:
     - name: Install packages
-      run: apk add openssh-client
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (dummy)
@@ -151,7 +151,7 @@ jobs:
         - alpine:3.13
     steps:
     - name: Install packages
-      run: apk add openssh-client
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (replace)
@@ -183,7 +183,7 @@ jobs:
         - alpine:3.13
     steps:
     - name: Install packages
-      run: apk add openssh-client
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (dummy)
@@ -219,7 +219,7 @@ jobs:
         - alpine:3.13
     steps:
     - name: Install packages
-      run: apk add openssh-client
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (replace)
@@ -251,7 +251,7 @@ jobs:
         - alpine:3.13
     steps:
     - name: Install packages
-      run: apk add openssh-client
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (dummy)
@@ -288,7 +288,7 @@ jobs:
         - alpine:3.13
     steps:
     - name: Install packages
-      run: apk add openssh-client
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (replace)
