@@ -6,6 +6,7 @@
 [![Ubuntu][image-verify-ubuntu]][link-verify-ubuntu]
 [![Docker container (Ubuntu)][image-verify-docker-container-ubuntu]][link-verify-docker-container-ubuntu]
 [![Docker container (CentOS)][image-verify-docker-container-centos]][link-verify-docker-container-centos]
+[![Docker container (Alpine Linux)][image-verify-docker-container-apline]][link-verify-docker-container-alpine]
 [![Release][image-release]][link-release]
 [![License][image-license]][link-license]
 [![Stars][image-stars]][link-stars]
@@ -19,6 +20,7 @@ tested on:
 * [all available virtual machines](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) (Windows Server 2019, macOS Catalina, and Ubuntu 20.04/18.04/16.04)
 * [Docker container (Ubuntu)](https://hub.docker.com/_/ubuntu) / requires `openssh-client` package
 * [Docker container (CentOS)](https://hub.docker.com/_/centos) / requires `openssh-clients` package
+* [Docker container (Alpine Linux)](https://hub.docker.com/_/alpine) / requires `openssh-client` package
 
 ## Usage
 
@@ -151,6 +153,8 @@ See [CHANGELOG.md](CHANGELOG.md).
 [link-verify-docker-container-ubuntu]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-ubuntu.yml
 [image-verify-docker-container-centos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-centos.yml/badge.svg?event=push&branch=v2
 [link-verify-docker-container-centos]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-centos.yml
+[image-verify-docker-container-alpine]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-alpine.yml/badge.svg?event=push&branch=v2
+[link-verify-docker-container-alpine]: https://github.com/shimataro/ssh-key-action/actions/workflows/verify-on-container-alpine.yml
 [image-release]: https://img.shields.io/github/release/shimataro/ssh-key-action.svg
 [link-release]: https://github.com/shimataro/ssh-key-action/releases
 [image-license]: https://img.shields.io/github/license/shimataro/ssh-key-action.svg
