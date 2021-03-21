@@ -18,9 +18,9 @@ Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 tested on:
 
 * [all available virtual machines](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) (Windows Server 2019, macOS Catalina, and Ubuntu 20.04/18.04/16.04)
-* [Docker container (Ubuntu)](https://hub.docker.com/_/ubuntu) / requires `openssh-client` package
-* [Docker container (CentOS)](https://hub.docker.com/_/centos) / requires `openssh-clients` package
-* [Docker container (Alpine Linux)](https://hub.docker.com/_/alpine) / requires `openssh-client` package
+* [Docker container (Ubuntu)](https://hub.docker.com/_/ubuntu) / requires `openssh-client` package; `apt install -y openssh-client`
+* [Docker container (CentOS)](https://hub.docker.com/_/centos) / requires `openssh-clients` package; `yum install -y openssh-clients`
+* [Docker container (Alpine Linux)](https://hub.docker.com/_/alpine) / requires `openssh-client` package; `apk add openssh-client`
 
 ## Usage
 
