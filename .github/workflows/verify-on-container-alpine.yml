@@ -1,6 +1,6 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 
-name: Docker container (Ubuntu)
+name: Docker container (Alpine Linux)
 
 on:
 - push
@@ -17,15 +17,14 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
       fail-fast: false
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt install -y openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -48,15 +47,14 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
       fail-fast: false
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt install -y openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -79,15 +77,14 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
       fail-fast: false
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt install -y openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
@@ -112,14 +109,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt install -y openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (dummy)
@@ -149,14 +145,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt install -y openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (replace)
@@ -182,14 +177,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt install -y openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (dummy)
@@ -219,14 +213,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt install -y openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (replace)
@@ -252,14 +245,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt install -y openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (dummy)
@@ -290,14 +282,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt install -y openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key (replace)
@@ -323,14 +314,13 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         container:
-        - ubuntu:16.04
-        - ubuntu:18.04
-        - ubuntu:20.04
+        - alpine:3.10
+        - alpine:3.11
+        - alpine:3.12
+        - alpine:3.13
     steps:
     - name: Install packages
-      run: |
-        apt update
-        apt -y install openssh-client git
+      run: apk add openssh-client git
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name: Install SSH key
