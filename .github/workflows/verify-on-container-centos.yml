@@ -13,7 +13,6 @@ jobs:
     strategy:
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
@@ -42,7 +41,6 @@ jobs:
     strategy:
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
@@ -71,7 +69,6 @@ jobs:
     strategy:
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
@@ -102,7 +99,6 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
@@ -137,7 +133,6 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
@@ -168,7 +163,6 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
@@ -203,7 +197,6 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
@@ -234,7 +227,6 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
@@ -270,7 +262,6 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
@@ -301,7 +292,6 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - ubuntu-16.04
         - ubuntu-18.04
         - ubuntu-20.04
         container:
