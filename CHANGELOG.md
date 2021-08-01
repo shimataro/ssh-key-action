@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Security
+
+* Fix [CVE-2021-33502](https://github.com/advisories/GHSA-px4h-xg32-q955)
+
 ## [2.3.0] - 2021-03-21
 
 ### Added
