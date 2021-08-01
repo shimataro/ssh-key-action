@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.3.1] - 2021-08-01
+
+### Security
+
+* Fix [CVE-2021-33502](https://github.com/advisories/GHSA-px4h-xg32-q955)
+
+### Others
+
+* add `windows-2016` virtual environment
+* [remove `ubuntu-16.04` virtual environment](https://github.blog/changelog/2021-04-29-github-actions-ubuntu-16-04-lts-virtual-environment-will-be-removed-on-september-20-2021/)
+
 ## [2.3.0] - 2021-03-21
 
 ### Added
@@ -146,7 +157,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.3.0...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.3.1...HEAD
+[2.3.1]: https://github.com/shimataro/ssh-key-action/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/shimataro/ssh-key-action/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/shimataro/ssh-key-action/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/shimataro/ssh-key-action/compare/v2.0.3...v2.1.0
