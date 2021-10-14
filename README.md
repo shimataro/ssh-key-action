@@ -40,7 +40,7 @@ steps:
     config: ${{ secrets.CONFIG }} # ssh_config; optional
     if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 - name: rsync over ssh
-  run: rsync ./foo/ user@remote:bar/
+  run: rsync -av ./foo/ user@remote:bar/
 ```
 
 See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) for details.
