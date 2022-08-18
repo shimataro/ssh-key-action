@@ -31,7 +31,7 @@
   "author": "shimataro",
   "license": "MIT",
   "devDependencies": {
-    "@actions/core": "1.4.0",
+    "@actions/core": "1.9.1",
     "@types/node": "16.4.10",
     "@typescript-eslint/eslint-plugin": "4.28.5",
     "@typescript-eslint/parser": "4.28.5",
