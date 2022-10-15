@@ -18,7 +18,7 @@ jobs:
         - Ubuntu-18.04
         - Ubuntu-20.04
         nodejs:
-        - 12
+        - 16
       fail-fast: false
     steps:
     - name: Turn off auto-crlf
