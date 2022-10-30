@@ -18,6 +18,7 @@ npm run check-updates -- -u
 # re-install packages
 rm -rf package-lock.json node_modules
 npm i
+npm dedupe
 
 # check
 npm run build
