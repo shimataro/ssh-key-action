@@ -15,10 +15,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
       fail-fast: false
     steps:
     - name: Install packages
@@ -45,10 +47,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
       fail-fast: false
     steps:
     - name: Install packages
@@ -75,10 +79,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
       fail-fast: false
     steps:
     - name: Install packages
@@ -107,10 +113,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -143,10 +151,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -175,10 +185,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -211,10 +223,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -243,10 +257,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -280,10 +296,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -312,10 +330,12 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |

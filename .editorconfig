@@ -25,6 +25,13 @@ spaces_around_brackets = none
 indent_brace_style = allman
 
 
+# JavaScript/TypeScript
+[*.{js,ts}]
+indent_style = space
+curly_bracket_next_line = false
+indent_brace_style = K&R
+
+
 # JSON/YAML
 [*.{json,babelrc,code-workspace,yml,yaml}]
 indent_style = space

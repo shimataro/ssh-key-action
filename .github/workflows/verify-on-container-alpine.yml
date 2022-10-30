@@ -15,6 +15,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
@@ -44,6 +45,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
@@ -73,6 +75,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
@@ -104,6 +107,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
@@ -139,6 +143,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
@@ -170,6 +175,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
@@ -205,6 +211,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
@@ -236,6 +243,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
@@ -272,6 +280,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
@@ -303,6 +312,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - alpine:3.10
         - alpine:3.11
