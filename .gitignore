@@ -13,5 +13,8 @@ Thumbs.db
 *.orig
 *.rej
 
+# IDE
+/.idea/
+
 # Node.js modules
 /node_modules/

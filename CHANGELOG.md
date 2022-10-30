@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Others
 
-* add `windows-2022`, `macos-11`, `macos-12`, `ubuntu-22.04`, and `CentOS 8 Stream (Docker container)`
+* add `windows-2022`, and `macos-11` (thanks [@ViacheslavKudinov](https://github.com/ViacheslavKudinov))
+* add `macos-12`, `ubuntu-22.04`, and `CentOS 8 Stream (Docker container)`
 * drop `ubuntu-16.04`, and `CentOS 8 (Docker container)`
 * [update Node.js version to 16](https://github.blog/changelog/2022-09-22-github-actions-all-actions-will-begin-running-on-node16-instead-of-node12/) (thanks [@duddu](https://github.com/duddu))
 
