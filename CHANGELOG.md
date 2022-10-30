@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Others
 
-* add `windows-2022`, `macos-11`, `macos-12`, `ubuntu-22.04`
-* drop `ubuntu-16.04`, `centos:8 (Docker container)`
+* add `windows-2022`, `macos-11`, `macos-12`, `ubuntu-22.04`, and `CentOS 8 Stream (Docker container)`
+* drop `ubuntu-16.04`, and `CentOS 8 (Docker container)`
 
 ## [2.3.1] - 2021-08-01
 

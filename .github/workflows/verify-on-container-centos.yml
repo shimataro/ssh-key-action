@@ -17,7 +17,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
       fail-fast: false
     steps:
     - name: Install packages
@@ -45,7 +46,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
       fail-fast: false
     steps:
     - name: Install packages
@@ -73,7 +75,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
       fail-fast: false
     steps:
     - name: Install packages
@@ -103,7 +106,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -137,7 +141,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -167,7 +172,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -201,7 +207,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -231,7 +238,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -266,7 +274,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -296,7 +305,8 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         container:
-        - centos:7
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
