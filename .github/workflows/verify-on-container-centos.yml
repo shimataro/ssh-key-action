@@ -12,11 +12,11 @@ jobs:
     container: ${{ matrix.container }}
     strategy:
       matrix:
-        os:
+        os: &os
         - ubuntu-18.04
         - ubuntu-20.04
         - ubuntu-22.04
-        container:
+        container: &container
         - quay.io/centos/centos:centos7
         - quay.io/centos/centos:stream8
       fail-fast: false
@@ -41,13 +41,8 @@ jobs:
     container: ${{ matrix.container }}
     strategy:
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - quay.io/centos/centos:centos7
-        - quay.io/centos/centos:stream8
+        os: *os
+        container: *container
       fail-fast: false
     steps:
     - name: Install packages
@@ -70,13 +65,8 @@ jobs:
     container: ${{ matrix.container }}
     strategy:
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - quay.io/centos/centos:centos7
-        - quay.io/centos/centos:stream8
+        os: *os
+        container: *container
       fail-fast: false
     steps:
     - name: Install packages
@@ -101,13 +91,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - quay.io/centos/centos:centos7
-        - quay.io/centos/centos:stream8
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: |
@@ -136,13 +121,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - quay.io/centos/centos:centos7
-        - quay.io/centos/centos:stream8
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: |
@@ -167,13 +147,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - quay.io/centos/centos:centos7
-        - quay.io/centos/centos:stream8
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: |
@@ -202,13 +177,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - quay.io/centos/centos:centos7
-        - quay.io/centos/centos:stream8
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: |
@@ -233,13 +203,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - quay.io/centos/centos:centos7
-        - quay.io/centos/centos:stream8
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: |
@@ -269,13 +234,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - quay.io/centos/centos:centos7
-        - quay.io/centos/centos:stream8
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: |
@@ -300,13 +260,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - quay.io/centos/centos:centos7
-        - quay.io/centos/centos:stream8
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: |

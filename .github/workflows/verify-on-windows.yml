@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
+        os: &os
         - windows-2019
         - windows-2022
     steps:
@@ -33,9 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -54,9 +52,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -75,9 +71,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -103,9 +97,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -130,9 +122,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -153,9 +143,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -180,9 +168,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -203,9 +189,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -231,9 +215,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -254,9 +236,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - windows-2019
-        - windows-2022
+        os: *os
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2

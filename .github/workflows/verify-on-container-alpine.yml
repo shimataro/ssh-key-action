@@ -12,11 +12,11 @@ jobs:
     container: ${{ matrix.container }}
     strategy:
       matrix:
-        os:
+        os: &os
         - ubuntu-18.04
         - ubuntu-20.04
         - ubuntu-22.04
-        container:
+        container: &container
         - alpine:3.10
         - alpine:3.11
         - alpine:3.12
@@ -42,15 +42,8 @@ jobs:
     container: ${{ matrix.container }}
     strategy:
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        os: *os
+        container: *container
       fail-fast: false
     steps:
     - name: Install packages
@@ -72,15 +65,8 @@ jobs:
     container: ${{ matrix.container }}
     strategy:
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        os: *os
+        container: *container
       fail-fast: false
     steps:
     - name: Install packages
@@ -104,15 +90,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: apk add openssh-client git
@@ -140,15 +119,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: apk add openssh-client git
@@ -172,15 +144,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: apk add openssh-client git
@@ -208,15 +173,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: apk add openssh-client git
@@ -240,15 +198,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: apk add openssh-client git
@@ -277,15 +228,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: apk add openssh-client git
@@ -309,15 +253,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        - ubuntu-22.04
-        container:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        os: *os
+        container: *container
     steps:
     - name: Install packages
       run: apk add openssh-client git
