@@ -26,5 +26,5 @@ inputs:
     required: false
     default: "fail"
 runs:
-  using: "node12"
+  using: "node16"
   main: "lib/index.js"
