@@ -39,8 +39,8 @@ steps:
     known_hosts: ${{ secrets.KNOWN_HOSTS }}
     config: ${{ secrets.CONFIG }} # ssh_config; optional
     if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
-- name: rsync over ssh
-  run: rsync ./foo/ user@remote:bar/
+- name: rsync over SSH
+  run: rsync -r ./foo/ user@remote:bar/
 ```
 
 See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) for details.
@@ -114,7 +114,7 @@ Here are some solutions:
 I recommend **rsync via bastion**.
 
 ```bash
-rsync -e "ssh bastion ssh" ./foo/ target:bar/
+rsync -r -e "ssh bastion ssh" ./foo/ target:bar/
 ```
 
 It has some advantages over other methods:
