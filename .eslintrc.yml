@@ -31,7 +31,7 @@ rules: # https://eslint.org/docs/rules/
   block-spacing: error
   brace-style:
   - error
-  - allman
+  - 1tbs
   callback-return: error
   capitalized-comments: 'off'
   class-methods-use-this: error
@@ -87,26 +87,14 @@ rules: # https://eslint.org/docs/rules/
   - below
   indent:
   - error
-  - tab
+  - 4
+  - SwitchCase: 1
   indent-legacy: 'off'
   init-declarations: error
   jsx-quotes: error
   key-spacing: error
   keyword-spacing:
   - error
-  - overrides:
-      catch:
-        after: false
-      for:
-        after: false
-      if:
-        after: false
-      switch:
-        after: false
-      while:
-        after: false
-      with:
-        after: false
   line-comment-position: 'off'
   linebreak-style:
   - error
@@ -309,6 +297,7 @@ rules: # https://eslint.org/docs/rules/
   # @typescript-eslint plugin
   "@typescript-eslint/ban-ts-ignore": 'off'
   "@typescript-eslint/no-empty-interface": 'off'
+  "@typescript-eslint/no-floating-promises": error
   "@typescript-eslint/no-use-before-define":
   - error
   - functions: false
