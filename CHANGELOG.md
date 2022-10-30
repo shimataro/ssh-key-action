@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * add `windows-2022`, `macos-11`, `macos-12`, `ubuntu-22.04`, and `CentOS 8 Stream (Docker container)`
 * drop `ubuntu-16.04`, and `CentOS 8 (Docker container)`
+* [update Node.js version to 16](https://github.blog/changelog/2022-09-22-github-actions-all-actions-will-begin-running-on-node16-instead-of-node12/) (thanks [@duddu](https://github.com/duddu))
 
 ## [2.3.1] - 2021-08-01
 
