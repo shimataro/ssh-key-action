@@ -25,16 +25,11 @@ function main(): void {
     const ifKeyExists = core.getInput("if_key_exists");
 
     // create ".ssh" directory
-    const home = getHomeDirectory();
-    const dirName = path.resolve(home, ".ssh");
-    fs.mkdirSync(dirName, {
-        recursive: true,
-        mode: 0o700,
-    });
+    const sshDirName = createSshDirectory();
 
     // files to be created
     const files: FileInfo[] = [];
-    if (shouldCreateKeyFile(path.join(dirName, name), ifKeyExists)) {
+    if (shouldCreateKeyFile(path.join(sshDirName, name), ifKeyExists)) {
         files.push({
             name: name,
             contents: insertLf(key, false, true),
@@ -67,16 +62,30 @@ function main(): void {
 
     // create files
     for (const file of files) {
-        const fileName = path.join(dirName, file.name);
+        const fileName = path.join(sshDirName, file.name);
         fs.writeFileSync(fileName, file.contents, file.options);
     }
 
-    console.log(`SSH key has been stored to ${dirName} successfully.`);
+    console.log(`SSH key has been stored to ${sshDirName} successfully.`);
+}
+
+/**
+ * create ".ssh" directory
+ * @returns directory name
+ */
+function createSshDirectory(): string {
+    const home = getHomeDirectory();
+    const dirName = path.resolve(home, ".ssh");
+    fs.mkdirSync(dirName, {
+        recursive: true,
+        mode: 0o700,
+    });
+    return dirName;
 }
 
 /**
  * get home directory
- * @returns home directory
+ * @returns home directory name
  */
 function getHomeDirectory(): string {
     const homeEnv = getHomeEnv();
