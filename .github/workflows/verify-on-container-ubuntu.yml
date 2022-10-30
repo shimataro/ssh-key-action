@@ -12,11 +12,11 @@ jobs:
     container: ${{ matrix.container }}
     strategy:
       matrix:
-        os: &os
+        os:
         - ubuntu-18.04
         - ubuntu-20.04
         - ubuntu-22.04
-        container: &container
+        container:
         - ubuntu:16.04
         - ubuntu:18.04
         - ubuntu:20.04
@@ -44,8 +44,15 @@ jobs:
     container: ${{ matrix.container }}
     strategy:
       matrix:
-        os: *os
-        container: *container
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+        - ubuntu:22.04
       fail-fast: false
     steps:
     - name: Install packages
@@ -69,8 +76,15 @@ jobs:
     container: ${{ matrix.container }}
     strategy:
       matrix:
-        os: *os
-        container: *container
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+        - ubuntu:22.04
       fail-fast: false
     steps:
     - name: Install packages
@@ -96,8 +110,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
-        container: *container
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -127,8 +148,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
-        container: *container
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -154,8 +182,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
-        container: *container
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -185,8 +220,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
-        container: *container
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -212,8 +254,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
-        container: *container
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -244,8 +293,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
-        container: *container
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |
@@ -271,8 +327,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
-        container: *container
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - ubuntu:16.04
+        - ubuntu:18.04
+        - ubuntu:20.04
+        - ubuntu:22.04
     steps:
     - name: Install packages
       run: |

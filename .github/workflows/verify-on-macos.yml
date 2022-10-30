@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: &os
+        os:
         - macos-10.15
         - macos-11
         - macos-12
@@ -34,7 +34,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -53,7 +56,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -72,7 +78,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -98,7 +107,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -123,7 +135,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -144,7 +159,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -169,7 +187,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -190,7 +211,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -216,7 +240,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
@@ -237,7 +264,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: *os
+        os:
+        - macos-10.15
+        - macos-11
+        - macos-12
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
