@@ -15,6 +15,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
@@ -43,6 +44,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
@@ -71,6 +73,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
@@ -101,6 +104,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
@@ -135,6 +139,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
@@ -165,6 +170,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
@@ -199,6 +205,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
@@ -229,6 +236,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
@@ -264,6 +272,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
@@ -294,6 +303,7 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
         - centos:7
         - centos:8
