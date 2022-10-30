@@ -92,6 +92,7 @@ function update_dependencies_version() {
 function regenerate_package_lock() {
 	rm -rf package-lock.json node_modules
 	npm install
+	npm dedupe
 }
 
 function build_package() {
