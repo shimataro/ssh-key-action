@@ -9,6 +9,14 @@ interface FileInfo {
     options: fs.WriteFileOptions;
 }
 
+try {
+    main();
+} catch (err) {
+    if (err instanceof Error) {
+        core.setFailed(err);
+    }
+}
+
 /**
  * main function
  */
@@ -165,13 +173,5 @@ function shouldCreateKeyFile(keyFilePath: string, ifKeyExists: string): boolean 
         default:
             // error otherwise
             throw new Error(`SSH key is already installed. Set "if_key_exists" to "replace" or "ignore" in order to avoid this error.`);
-    }
-}
-
-try {
-    main();
-} catch (err) {
-    if (err instanceof Error) {
-        core.setFailed(err);
     }
 }
