@@ -29,9 +29,7 @@ rules: # https://eslint.org/docs/rules/
     before: true
   block-scoped-var: error
   block-spacing: error
-  brace-style:
-  - error
-  - 1tbs
+  brace-style: 'off' # see "@typescript-eslint/brace-style"
   callback-return: error
   capitalized-comments: 'off'
   class-methods-use-this: error
@@ -244,7 +242,7 @@ rules: # https://eslint.org/docs/rules/
   rest-spread-spacing:
   - error
   - never
-  semi: error
+  semi: 'off' # see "@typescript-eslint/semi"
   semi-spacing: error
   semi-style:
   - error
@@ -296,9 +294,21 @@ rules: # https://eslint.org/docs/rules/
 
   # @typescript-eslint plugin
   "@typescript-eslint/ban-ts-ignore": 'off'
+  "@typescript-eslint/brace-style":
+  - error
+  - 1tbs
+  "@typescript-eslint/member-delimiter-style":
+  - error
+  - multiline:
+      delimiter: semi
+      requireLast: true
+    singleline:
+      delimiter: semi
+      requireLast: true
   "@typescript-eslint/no-empty-interface": 'off'
   "@typescript-eslint/no-floating-promises": error
   "@typescript-eslint/no-use-before-define":
   - error
   - functions: false
+  "@typescript-eslint/semi": error
   "@typescript-eslint/strict-boolean-expressions": error
