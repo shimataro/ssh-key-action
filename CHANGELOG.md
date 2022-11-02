@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.4.0] - 2022-11-03
+
+### Added
+
+* always set server key of `github.com` to `known_hosts`
+
+### Fixed
+
+* usage of `rsync` in README
+
+### Others
+
+* add `windows-2022`, and `macos-11` (thanks [@ViacheslavKudinov](https://github.com/ViacheslavKudinov))
+* add `macos-12`, `ubuntu-22.04`, and `CentOS 8 Stream (Docker container)`
+* drop `ubuntu-16.04`, and `CentOS 8 (Docker container)`
+* [update Node.js version to 16](https://github.blog/changelog/2022-09-22-github-actions-all-actions-will-begin-running-on-node16-instead-of-node12/) (thanks [@duddu](https://github.com/duddu))
+
 ## [2.3.1] - 2021-08-01
 
 ### Security
@@ -157,7 +174,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.3.1...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/shimataro/ssh-key-action/compare/v2.3.1...v2.4.0
 [2.3.1]: https://github.com/shimataro/ssh-key-action/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/shimataro/ssh-key-action/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/shimataro/ssh-key-action/compare/v2.1.0...v2.2.0

@@ -15,9 +15,10 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
-        - centos:7
-        - centos:8
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
       fail-fast: false
     steps:
     - name: Install packages
@@ -29,11 +30,41 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
     - name: print created files
       run: ls -l /root/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  ssh-pem-bitbucket:
+    name: Connect to bitbucket.org (PEM format)
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
+      fail-fast: false
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PEM }}
+        known_hosts: |
+          bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAubiN81eDcafrgMeLzaFPsw2kNvEcqTKl/VqLat/MaB33pZy0y3rJZtnqwR2qOOvbwKZYKiEO1O6VqNEBxKvJJelCq0dTXWT5pbO2gDXC6h6QDXCaHo6pOHGPUy+YBaGQRGuSusMEASYiWunYN0vCAI8QaXnWMXNMdFP3jHAJH0eDsoiGnLPBlBp4TNm6rYI74nMzgz3B9IikW4WVK+dc8KZJZWYjAuORU3jc1c/NPskD2ASinf8v3xnfXeukU0sJ5N6m5E8VLjObPEO+mN2t/FZTMZLiFqPWc/ALSqnMnnhwrNi2rbfg/rd/IpL8Le3pSBne8+seeFVBoGqzHM9yXw==
+    - name: print created files
+      run: ls -l /root/.ssh
+    - name: git clone through SSH
+      run: git clone git@bitbucket.org:shimataro999/ssh-test.git tmp
   ssh-pkcs8:
     name: Connect to github.com (PKCS8 format)
     runs-on: ${{ matrix.os }}
@@ -43,9 +74,10 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
-        - centos:7
-        - centos:8
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
       fail-fast: false
     steps:
     - name: Install packages
@@ -57,11 +89,41 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PKCS8 }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
     - name: print created files
       run: ls -l /root/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  ssh-pkcs8-bitbucket:
+    name: Connect to bitbucket.org (PKCS8 format)
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
+      fail-fast: false
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_PKCS8 }}
+        known_hosts: |
+          bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAubiN81eDcafrgMeLzaFPsw2kNvEcqTKl/VqLat/MaB33pZy0y3rJZtnqwR2qOOvbwKZYKiEO1O6VqNEBxKvJJelCq0dTXWT5pbO2gDXC6h6QDXCaHo6pOHGPUy+YBaGQRGuSusMEASYiWunYN0vCAI8QaXnWMXNMdFP3jHAJH0eDsoiGnLPBlBp4TNm6rYI74nMzgz3B9IikW4WVK+dc8KZJZWYjAuORU3jc1c/NPskD2ASinf8v3xnfXeukU0sJ5N6m5E8VLjObPEO+mN2t/FZTMZLiFqPWc/ALSqnMnnhwrNi2rbfg/rd/IpL8Le3pSBne8+seeFVBoGqzHM9yXw==
+    - name: print created files
+      run: ls -l /root/.ssh
+    - name: git clone through SSH
+      run: git clone git@bitbucket.org:shimataro999/ssh-test.git tmp
   ssh-rfc4716:
     name: Connect to github.com (RFC4716 format)
     runs-on: ${{ matrix.os }}
@@ -71,9 +133,10 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
-        - centos:7
-        - centos:8
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
       fail-fast: false
     steps:
     - name: Install packages
@@ -85,11 +148,41 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_RFC4716 }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
     - name: print created files
       run: ls -l /root/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
+  ssh-rfc4716-bitbucket:
+    name: Connect to bitbucket.org (RFC4716 format)
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-18.04
+        - ubuntu-20.04
+        - ubuntu-22.04
+        container:
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
+      fail-fast: false
+    steps:
+    - name: Install packages
+      run: |
+        yum install -y git openssh-clients
+    - name: Checkout source codes
+      uses: actions/checkout@v2
+    - name: Install SSH key
+      uses: ./.
+      with:
+        key: ${{ secrets.SSH_KEY_RFC4716 }}
+        known_hosts: |
+          bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAubiN81eDcafrgMeLzaFPsw2kNvEcqTKl/VqLat/MaB33pZy0y3rJZtnqwR2qOOvbwKZYKiEO1O6VqNEBxKvJJelCq0dTXWT5pbO2gDXC6h6QDXCaHo6pOHGPUy+YBaGQRGuSusMEASYiWunYN0vCAI8QaXnWMXNMdFP3jHAJH0eDsoiGnLPBlBp4TNm6rYI74nMzgz3B9IikW4WVK+dc8KZJZWYjAuORU3jc1c/NPskD2ASinf8v3xnfXeukU0sJ5N6m5E8VLjObPEO+mN2t/FZTMZLiFqPWc/ALSqnMnnhwrNi2rbfg/rd/IpL8Le3pSBne8+seeFVBoGqzHM9yXw==
+    - name: print created files
+      run: ls -l /root/.ssh
+    - name: git clone through SSH
+      run: git clone git@bitbucket.org:shimataro999/ssh-test.git tmp
 
   key_if_exists_replace-key_exists:
     name: if_key_exists=replace / key exists
@@ -101,9 +194,10 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
-        - centos:7
-        - centos:8
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -114,12 +208,12 @@ jobs:
       uses: ./.
       with:
         key: "dummy" # replaced
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
     - name: Install SSH key (replace)
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
         if_key_exists: replace
     - name: print created files
       run: ls -l /root/.ssh
@@ -135,9 +229,10 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
-        - centos:7
-        - centos:8
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -148,7 +243,7 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
         if_key_exists: replace
     - name: print created files
       run: ls -l /root/.ssh
@@ -165,9 +260,10 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
-        - centos:7
-        - centos:8
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -178,12 +274,12 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
     - name: Install SSH key (replace)
       uses: ./.
       with:
         key: "dummy" # ignored
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
         if_key_exists: ignore
     - name: print created files
       run: ls -l /root/.ssh
@@ -199,9 +295,10 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
-        - centos:7
-        - centos:8
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -212,7 +309,7 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
         if_key_exists: ignore
     - name: print created files
       run: ls -l /root/.ssh
@@ -229,9 +326,10 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
-        - centos:7
-        - centos:8
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -242,12 +340,12 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
     - name: Install SSH key (replace)
       uses: ./.
       with:
         key: "dummy" # ignored
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
         if_key_exists: fail
       continue-on-error: true
     - name: print created files
@@ -264,9 +362,10 @@ jobs:
         os:
         - ubuntu-18.04
         - ubuntu-20.04
+        - ubuntu-22.04
         container:
-        - centos:7
-        - centos:8
+        - quay.io/centos/centos:centos7
+        - quay.io/centos/centos:stream8
     steps:
     - name: Install packages
       run: |
@@ -277,36 +376,9 @@ jobs:
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        known_hosts: unnecessary
         if_key_exists: fail
     - name: print created files
       run: ls -l /root/.ssh
     - name: git clone through SSH
       run: git clone git@github.com:shimataro/ssh-key-action.git tmp
-
-  known_hosts-unnecessary:
-    name: without known_hosts file
-    runs-on: ${{ matrix.os }}
-    container: ${{ matrix.container }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-        - ubuntu-18.04
-        - ubuntu-20.04
-        container:
-        - centos:7
-        - centos:8
-    steps:
-    - name: Install packages
-      run: |
-        yum install -y git openssh-clients
-    - name: Checkout source codes
-      uses: actions/checkout@v2
-    - name: Install SSH key
-      uses: ./.
-      with:
-        key: ${{ secrets.SSH_KEY_PEM }}
-        known_hosts: unnecessary
-    - name: print created files
-      run: ls -l /root/.ssh

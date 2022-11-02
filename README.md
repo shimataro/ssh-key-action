@@ -17,9 +17,9 @@ Useful for SCP, SFTP, and `rsync` over SSH in deployment script.
 
 tested on:
 
-* [all available virtual machines](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) (Windows Server 2019/2016, macOS Catalina, and Ubuntu 20.04/18.04)
+* [all available virtual machines](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) (Windows Server 2022/2019, macOS Monterey/Big Sur/Catalina, and Ubuntu 22.04/20.04/18.04)
 * [Docker container (Ubuntu)](https://hub.docker.com/_/ubuntu) / requires `openssh-client` package; `apt install -y openssh-client`
-* [Docker container (CentOS)](https://hub.docker.com/_/centos) / requires `openssh-clients` package; `yum install -y openssh-clients`
+* [Docker container (CentOS)](https://quay.io/repository/centos/centos) / requires `openssh-clients` package; `yum install -y openssh-clients`
 * [Docker container (Alpine Linux)](https://hub.docker.com/_/alpine) / requires `openssh-client` package; `apk add openssh-client`
 
 ## Usage
@@ -39,11 +39,13 @@ steps:
     known_hosts: ${{ secrets.KNOWN_HOSTS }}
     config: ${{ secrets.CONFIG }} # ssh_config; optional
     if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
-- name: rsync over ssh
-  run: rsync ./foo/ user@remote:bar/
+- name: rsync over SSH
+  run: rsync -r ./foo/ user@remote:bar/
 ```
 
 See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) for details.
+
+**NOTE:** Server key of `github.com` will be always set to `known_hosts`.
 
 ### Install multiple keys
 
@@ -114,7 +116,7 @@ Here are some solutions:
 I recommend **rsync via bastion**.
 
 ```bash
-rsync -e "ssh bastion ssh" ./foo/ target:bar/
+rsync -r -e "ssh bastion ssh" ./foo/ target:bar/
 ```
 
 It has some advantages over other methods:
