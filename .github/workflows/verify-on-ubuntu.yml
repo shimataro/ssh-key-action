@@ -268,3 +268,5 @@ jobs:
         known_hosts: unnecessary
     - name: print created files
       run: ls -l ~/.ssh
+    - name: git clone through SSH # can clone because key of "github.com" always set to "known_hosts"
+      run: git clone git@github.com:shimataro/ssh-key-action.git tmp
