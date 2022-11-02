@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.4.0] - 2022-11-03
+
 ### Added
 
 * always set server key of `github.com` to `known_hosts`
@@ -172,7 +174,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.3.1...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/shimataro/ssh-key-action/compare/v2.3.1...v2.4.0
 [2.3.1]: https://github.com/shimataro/ssh-key-action/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/shimataro/ssh-key-action/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/shimataro/ssh-key-action/compare/v2.1.0...v2.2.0
