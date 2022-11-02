@@ -9,6 +9,10 @@ interface FileInfo {
     options: fs.WriteFileOptions;
 }
 
+const KNOWN_HOSTS = [
+    "github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==",
+];
+
 try {
     main();
 } catch (err) {
@@ -36,7 +40,16 @@ function main(): void {
     const sshDirName = createSshDirectory();
 
     // files to be created
-    const files: FileInfo[] = [];
+    const files: FileInfo[] = [
+        {
+            name: "known_hosts",
+            contents: insertLf(buildKnownHostsArray(knownHosts).join("\n"), true, true),
+            options: {
+                mode: 0o644,
+                flag: "a",
+            },
+        },
+    ];
     if (shouldCreateKeyFile(path.join(sshDirName, name), ifKeyExists)) {
         files.push({
             name: name,
@@ -44,16 +57,6 @@ function main(): void {
             options: {
                 mode: 0o400,
                 flag: "wx",
-            },
-        });
-    }
-    if (knownHosts !== "unnecessary") {
-        files.push({
-            name: "known_hosts",
-            contents: insertLf(knownHosts, true, true),
-            options: {
-                mode: 0o644,
-                flag: "a",
             },
         });
     }
@@ -174,4 +177,16 @@ function shouldCreateKeyFile(keyFilePath: string, ifKeyExists: string): boolean 
             // error otherwise
             throw new Error(`SSH key is already installed. Set "if_key_exists" to "replace" or "ignore" in order to avoid this error.`);
     }
+}
+
+/**
+ * build array of known_hosts
+ * @param knownHosts known_hosts
+ * @returns array of known_hosts
+ */
+function buildKnownHostsArray(knownHosts: string): string[] {
+    if (knownHosts === "unnecessary") {
+        return KNOWN_HOSTS;
+    }
+    return KNOWN_HOSTS.concat(knownHosts);
 }
