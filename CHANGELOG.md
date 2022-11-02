@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* always set server key of `github.com` to `known_hosts`
+
 ### Fixed
 
 * usage of `rsync` in README

@@ -14,7 +14,9 @@ parserOptions:
   project: ./tsconfig.json
 rules: # https://eslint.org/docs/rules/
   accessor-pairs: error
-  array-bracket-newline: error
+  array-bracket-newline:
+  - error
+  - consistent
   array-bracket-spacing:
   - error
   - never
@@ -311,4 +313,8 @@ rules: # https://eslint.org/docs/rules/
   - error
   - functions: false
   "@typescript-eslint/semi": error
-  "@typescript-eslint/strict-boolean-expressions": error
+  "@typescript-eslint/strict-boolean-expressions":
+  - error
+  - allowString: false
+    allowNumber: false
+    allowNullableObject: false

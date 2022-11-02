@@ -45,6 +45,8 @@ steps:
 
 See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/workflow-syntax-for-github-actions) for details.
 
+**NOTE:** Server key of `github.com` will be always set to `known_hosts`.
+
 ### Install multiple keys
 
 If you want to install multiple keys, call this action multiple times.
