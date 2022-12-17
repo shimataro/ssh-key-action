@@ -27,6 +27,7 @@ try {
 function main(): void {
     if (!isPost()) {
         setup();
+        setPost();
     } else {
         cleanup();
     }
@@ -38,6 +39,13 @@ function main(): void {
  */
 function isPost(): boolean {
     return Boolean(core.getState("isPost"));
+}
+
+/**
+ * update post state
+ */
+function setPost(): void {
+    core.saveState("isPost", "true");
 }
 
 /**
