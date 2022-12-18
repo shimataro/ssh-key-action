@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* reomve SSH directory at the end of workflow
+
 ## [2.4.0] - 2022-11-03
 
 ### Added
