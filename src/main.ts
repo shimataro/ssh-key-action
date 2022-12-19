@@ -147,7 +147,7 @@ function removeSshDirectory(): string {
  * get SSH directory
  * @returns SSH directory name
  */
-export function getSshDirectory(): string {
+function getSshDirectory(): string {
     return path.resolve(getHomeDirectory(), ".ssh");
 }
 
