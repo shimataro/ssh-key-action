@@ -114,7 +114,7 @@ function cleanup(): void {
     // remove ".ssh" directory
     const sshDirName = removeSshDirectory();
 
-    console.log(`SSH keys in ${sshDirName} has been removed successfully.`);
+    console.log(`SSH key in ${sshDirName} has been removed successfully.`);
 }
 
 /**
