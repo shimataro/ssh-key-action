@@ -25,6 +25,33 @@ try {
  * main function
  */
 function main(): void {
+    if (!isPost()) {
+        setup();
+        setPost();
+    } else {
+        cleanup();
+    }
+}
+
+/**
+ * is post process?
+ * @returns Yes/No
+ */
+function isPost(): boolean {
+    return Boolean(core.getState("isPost"));
+}
+
+/**
+ * update post state
+ */
+function setPost(): void {
+    core.saveState("isPost", "true");
+}
+
+/**
+ * setup function
+ */
+function setup(): void {
     // parameters
     const key = core.getInput("key", {
         required: true,
@@ -81,17 +108,47 @@ function main(): void {
 }
 
 /**
+ * cleanup function
+ */
+function cleanup(): void {
+    // remove ".ssh" directory
+    const sshDirName = removeSshDirectory();
+
+    console.log(`SSH key in ${sshDirName} has been removed successfully.`);
+}
+
+/**
  * create ".ssh" directory
  * @returns directory name
  */
 function createSshDirectory(): string {
-    const home = getHomeDirectory();
-    const dirName = path.resolve(home, ".ssh");
+    const dirName = getSshDirectory();
     fs.mkdirSync(dirName, {
         recursive: true,
         mode: 0o700,
     });
     return dirName;
+}
+
+/**
+ * remove ".ssh" directory
+ * @returns removed directory name
+ */
+function removeSshDirectory(): string {
+    const dirName = getSshDirectory();
+    fs.rmSync(dirName, {
+        recursive: true,
+        force: true,
+    });
+    return dirName;
+}
+
+/**
+ * get SSH directory
+ * @returns SSH directory name
+ */
+function getSshDirectory(): string {
+    return path.resolve(getHomeDirectory(), ".ssh");
 }
 
 /**
