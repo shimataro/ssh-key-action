@@ -1,5 +1,4 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
-
 name: Docker container (Alpine Linux)
 
 on:
