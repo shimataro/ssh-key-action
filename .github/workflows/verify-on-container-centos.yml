@@ -15,12 +15,12 @@ jobs:
         - ubuntu-18.04
         - ubuntu-20.04
         - ubuntu-22.04
-        container:
+        docker_image:
         - quay.io/centos/centos:centos7
         - quay.io/centos/centos:stream8
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}
-      container: ${{ matrix.container }}
+      docker_image: ${{ matrix.docker_image }}
       package_installation_command: yum install -y git openssh-clients
     secrets: inherit
