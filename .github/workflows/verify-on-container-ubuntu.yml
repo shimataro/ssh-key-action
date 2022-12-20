@@ -20,7 +20,7 @@ jobs:
         - ubuntu:18.04
         - ubuntu:20.04
         - ubuntu:22.04
-    uses: "./.github/workflows/reusable-verify-container.yml"
+    uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}
       container: ${{ matrix.container }}

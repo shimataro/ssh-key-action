@@ -20,7 +20,7 @@ jobs:
         - alpine:3.11
         - alpine:3.12
         - alpine:3.13
-    uses: "./.github/workflows/reusable-verify-container.yml"
+    uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}
       container: ${{ matrix.container }}

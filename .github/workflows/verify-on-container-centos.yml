@@ -18,7 +18,7 @@ jobs:
         container:
         - quay.io/centos/centos:centos7
         - quay.io/centos/centos:stream8
-    uses: "./.github/workflows/reusable-verify-container.yml"
+    uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}
       container: ${{ matrix.container }}
