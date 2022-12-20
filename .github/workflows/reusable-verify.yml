@@ -6,7 +6,7 @@ on:
       os:
         required: true
         type: string
-        description: "'runs-on'"
+        description: host OS that CI 'runs-on'
       docker_image:
         required: false
         type: string
