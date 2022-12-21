@@ -39,7 +39,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key
       uses: ./.
       with:
@@ -57,7 +57,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key
       uses: ./.
       with:
@@ -76,7 +76,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key
       uses: ./.
       with:
@@ -94,7 +94,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key
       uses: ./.
       with:
@@ -113,7 +113,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key
       uses: ./.
       with:
@@ -131,7 +131,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key
       uses: ./.
       with:
@@ -150,7 +150,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key (dummy)
       uses: ./.
       with:
@@ -174,7 +174,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key (replace)
       uses: ./.
       with:
@@ -193,7 +193,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key (dummy)
       uses: ./.
       with:
@@ -217,7 +217,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key (replace)
       uses: ./.
       with:
@@ -236,7 +236,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key (dummy)
       uses: ./.
       with:
@@ -261,7 +261,7 @@ jobs:
       run: ${{ inputs.package_installation_command }}
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install SSH key (replace)
       uses: ./.
       with:
