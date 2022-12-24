@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.0] - 2022-12-24
+
 ### Added
 
-* reomve SSH directory at the end of workflow
+* remove SSH directory at the end of workflow
 
 ## [2.4.0] - 2022-11-03
 
@@ -178,7 +180,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.4.0...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.5.0...HEAD
+[2.5.0]: https://github.com/shimataro/ssh-key-action/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/shimataro/ssh-key-action/compare/v2.3.1...v2.4.0
 [2.3.1]: https://github.com/shimataro/ssh-key-action/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/shimataro/ssh-key-action/compare/v2.2.0...v2.3.0
