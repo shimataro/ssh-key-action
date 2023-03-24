@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Hotfix
 
-* update github.com key: <https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/>
+* update github.com key: <https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/> (thanks [@phlax](https://github.com/phlax))
 
 ## [2.5.0] - 2022-12-24
 
