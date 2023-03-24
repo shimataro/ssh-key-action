@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.1] - 2023-03-25
+
 ### Hotfix
 
 * update github.com key: <https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/> (thanks [@phlax](https://github.com/phlax))
@@ -184,7 +186,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.5.0...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.5.1...HEAD
+[2.5.1]: https://github.com/shimataro/ssh-key-action/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/shimataro/ssh-key-action/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/shimataro/ssh-key-action/compare/v2.3.1...v2.4.0
 [2.3.1]: https://github.com/shimataro/ssh-key-action/compare/v2.3.0...v2.3.1
