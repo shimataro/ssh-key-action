@@ -67,16 +67,31 @@ function setup(): void {
     const sshDirName = createSshDirectory();
 
     // files to be created
-    const files: FileInfo[] = [
-        {
-            name: "known_hosts",
-            contents: insertLf(buildKnownHostsArray(knownHosts).join("\n"), true, true),
+    const files: FileInfo[] = [];
+
+    const knownHostsPath = path.join(sshDirName, "known_hosts")
+    if (fs.existsSync(knownHostsPath)) {
+        if (fs.existsSync(knownHostsPath + ".backup")) {
+            fs.unlinkSync(knownHostsPath + ".backup");
+        }
+
+        files.push({
+            name: "known_hosts.backup",
+            contents: fs.readFileSync(knownHostsPath, "utf8"),
             options: {
                 mode: 0o644,
-                flag: "a",
+                flag: "w"
             },
+        })
+    }
+    files.push({
+        name: "known_hosts",
+        contents: insertLf(buildKnownHostsArray(knownHosts).join("\n"), true, true),
+        options: {
+            mode: 0o644,
+            flag: "a",
         },
-    ];
+    });
     if (shouldCreateKeyFile(path.join(sshDirName, name), ifKeyExists)) {
         files.push({
             name: name,
@@ -88,6 +103,19 @@ function setup(): void {
         });
     }
     if (config !== "") {
+        const configPath = path.join(sshDirName, "config")
+        if (fs.existsSync(configPath + ".backup")) {
+            fs.unlinkSync(configPath + ".backup");
+        }
+
+        files.push({
+            name: "config.backup",
+            contents: fs.readFileSync(configPath, "utf8"),
+            options: {
+                mode: 0o644,
+                flag: "w"
+            },
+        })
         files.push({
             name: "config",
             contents: insertLf(config, true, true),
@@ -111,10 +139,15 @@ function setup(): void {
  * cleanup function
  */
 function cleanup(): void {
-    // remove ".ssh" directory
-    const sshDirName = removeSshDirectory();
+    restoreFileFromBackup("known_hosts")
+    restoreFileFromBackup("config")
 
-    console.log(`SSH key in ${sshDirName} has been removed successfully.`);
+    const sshDirName = getSshDirectory()
+    const sshKeyName = core.getInput("name");
+    const sshKeyFilePath = path.join(sshDirName, sshKeyName);
+    if (fs.existsSync(sshKeyFilePath)) {
+        fs.unlinkSync(sshKeyFilePath);
+    }
 }
 
 /**
@@ -131,16 +164,20 @@ function createSshDirectory(): string {
 }
 
 /**
- * remove ".ssh" directory
- * @returns removed directory name
+ * restore file from ".backup" file
+ * @returns void
  */
-function removeSshDirectory(): string {
-    const dirName = getSshDirectory();
-    fs.rmSync(dirName, {
-        recursive: true,
-        force: true,
-    });
-    return dirName;
+function restoreFileFromBackup(fileName: string): void {
+    const sshDirName = getSshDirectory();
+
+    const backupFilePath = path.join(sshDirName, `${fileName}.backup`);
+    const filePath = path.join(sshDirName, fileName);
+
+    if (fs.existsSync(backupFilePath)) {
+        fs.unlinkSync(filePath);
+        fs.renameSync(backupFilePath, filePath);
+        console.log(`${backupFilePath} file restored from ${filePath} file`);
+    }
 }
 
 /**
