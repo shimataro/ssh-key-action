@@ -111,10 +111,14 @@ function setup(): void {
  * cleanup function
  */
 function cleanup(): void {
-    // remove ".ssh" directory
-    const sshDirName = removeSshDirectory();
+    if (shouldRemoveSshDirectory()) {
+        // remove ".ssh" directory
+        const sshDirName = removeSshDirectory();
 
-    console.log(`SSH key in ${sshDirName} has been removed successfully.`);
+        console.log(`SSH key in ${sshDirName} has been removed successfully.`);
+    } else {
+        console.log(`Skip directory deletion.`);
+    }
 }
 
 /**
@@ -233,6 +237,28 @@ function shouldCreateKeyFile(keyFilePath: string, ifKeyExists: string): boolean 
         default:
             // error otherwise
             throw new Error(`SSH key is already installed. Set "if_key_exists" to "replace" or "ignore" in order to avoid this error.`);
+    }
+}
+
+/**
+ * should remove SSH directory?
+ * @returns Yes/No
+ */
+function shouldRemoveSshDirectory(): boolean {
+    const keepsSshDir = core.getInput("keep_ssh_dir", {
+        required: true,
+    });
+
+    // empty string or falsy value in YAML
+    switch (keepsSshDir.toLowerCase()) {
+        case "":
+        case "false":
+        case "no":
+        case "off":
+            return true;
+
+        default:
+            return false;
     }
 }
 

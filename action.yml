@@ -25,6 +25,10 @@ inputs:
     description: "replace / ignore / fail"
     required: false
     default: "fail"
+  keep_ssh_dir:
+    description: "Set true if you DO NOT want to remove .ssh directory"
+    required: false
+    default: ""
 runs:
   using: "node16"
   main: "lib/index.js"
