@@ -246,7 +246,7 @@ function shouldCreateKeyFile(keyFilePath: string, ifKeyExists: string): boolean 
  */
 function shouldRemoveSshDirectory(): boolean {
     const keepsSshDir = core.getInput("keep_ssh_dir", {
-        required: true,
+        required: false,
     });
 
     // empty string or falsy value in YAML
