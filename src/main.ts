@@ -28,7 +28,6 @@ try {
  */
 function main(): void {
     if (!isPost()) {
-        backup();
         setup();
         setPost();
     } else {
@@ -55,6 +54,8 @@ function setPost(): void {
  * setup function
  */
 function setup(): void {
+    const backupSuffix = generateBackupSuffix();
+
     // parameters
     const key = core.getInput("key", {
         required: true,
@@ -102,12 +103,20 @@ function setup(): void {
     }
 
     // create files
+    const backedUpFileNames: string[] = [];
     for (const file of files) {
         const fileName = path.join(sshDirName, file.name);
+        if (backup(fileName, backupSuffix)) {
+            backedUpFileNames.push(file.name);
+        }
+
         fs.writeFileSync(fileName, file.contents, file.options);
     }
 
     console.log(`SSH key has been stored to ${sshDirName} successfully.`);
+    if (backedUpFileNames.length > 0) {
+        console.log(`Following files are backed up in suffix "${backupSuffix}; ${backedUpFileNames.join(", ")}.`);
+    }
 }
 
 /**
@@ -128,44 +137,41 @@ function cleanup(): void {
 }
 
 /**
- * get file names to back up
- * @returns file names to back up
+ * generate backup suffix name
+ * @returns backup suffix
  */
-function getFileNamesForBackup(): string[] {
-    const keyFileName = core.getInput("name");
-    return ["known_hosts", "config", keyFileName];
-}
-
-/**
- * back up files
- */
-function backup(): void {
+function generateBackupSuffix(): string {
     const dirName = getSshDirectory();
     if (!fs.existsSync(dirName)) {
-        // do noting if .ssh does not exist
-        return;
+        // do nothing if .ssh does not exist
+        return "";
     }
 
     const backupSuffix = `.bak-${Date.now()}`;
     core.saveState(STATE_BACKUP_SUFFIX, backupSuffix);
+    return backupSuffix;
+}
 
-    const backedUpFileNames: string[] = [];
-    for (const fileName of getFileNamesForBackup()) {
-        const pathNameOrg = path.join(dirName, fileName);
-        const pathNameBak = `${pathNameOrg}${backupSuffix}`;
-
-        if (!fs.existsSync(pathNameOrg)) {
-            continue;
-        }
-
-        // move -> copy (in order to keep permissions when restore)
-        fs.renameSync(pathNameOrg, pathNameBak);
-        fs.copyFileSync(pathNameBak, pathNameOrg);
-
-        backedUpFileNames.push(fileName);
+/**
+ * back up file
+ * @param fileName file to back up
+ * @param backupSuffix suffix
+ * @returns is file backed up?
+ */
+function backup(fileName: string, backupSuffix: string): boolean {
+    if (backupSuffix === "") {
+        return false;
+    }
+    if (!fs.existsSync(fileName)) {
+        return false;
     }
 
-    console.log(`Following files are backed up in suffix "${backupSuffix}"; ${backedUpFileNames.join(",")}`);
+    // move -> copy (in order to keep permissions when restore)
+    const fileNameBak = `${fileName}${backupSuffix}`;
+    fs.renameSync(fileName, fileNameBak);
+    fs.copyFileSync(fileNameBak, fileName);
+
+    return true;
 }
 
 /**
@@ -174,9 +180,10 @@ function backup(): void {
  */
 function restore(backupSuffix: string): void {
     const dirName = getSshDirectory();
+    const keyFileName = core.getInput("name");
 
     const restoredFileNames: string[] = [];
-    for (const fileName of getFileNamesForBackup()) {
+    for (const fileName of ["known_hosts", "config", keyFileName]) {
         const pathNameOrg = path.join(dirName, fileName);
         const pathNameBak = `${pathNameOrg}${backupSuffix}`;
 
