@@ -39,6 +39,7 @@ steps:
     known_hosts: ${{ secrets.KNOWN_HOSTS }}
     config: ${{ secrets.CONFIG }} # ssh_config; optional
     if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
+    keep_ssh_dir: true # true / false; optional (defaults to false)
 - name: rsync over SSH
   run: rsync -r ./foo/ user@remote:bar/
 ```
@@ -103,6 +104,10 @@ Use `if_key_exists` parameter.
 * `replace`: replaces key
 * `ignore`: does nothing
 * `fail`: fails (default)
+
+### I don't want to remove `.ssh` directory on exit.
+
+Set `keep_ssh_dir` to true.
 
 ### How do I use encrypted SSH key?
 
