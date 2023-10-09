@@ -7,6 +7,7 @@ interface FileInfo {
     name: string;
     contents: string;
     options: fs.WriteFileOptions;
+    mustNotExist: boolean; // file must not exist when creating
 }
 
 const STATE_BACKUP_SUFFIX = "backup-suffix";
@@ -79,6 +80,7 @@ function setup(): void {
                 mode: 0o644,
                 flag: "a",
             },
+            mustNotExist: false,
         },
     ];
     if (shouldCreateKeyFile(path.join(sshDirName, name), ifKeyExists)) {
@@ -89,6 +91,7 @@ function setup(): void {
                 mode: 0o400,
                 flag: "wx",
             },
+            mustNotExist: true,
         });
     }
     if (config !== "") {
@@ -99,6 +102,7 @@ function setup(): void {
                 mode: 0o644,
                 flag: "a",
             },
+            mustNotExist: false,
         });
     }
 
@@ -106,7 +110,7 @@ function setup(): void {
     const backedUpFileNames: string[] = [];
     for (const file of files) {
         const fileName = path.join(sshDirName, file.name);
-        if (backup(fileName, backupSuffix)) {
+        if (backup(fileName, backupSuffix, file.mustNotExist)) {
             backedUpFileNames.push(file.name);
         }
 
@@ -156,9 +160,10 @@ function generateBackupSuffix(): string {
  * back up file
  * @param fileName file to back up
  * @param backupSuffix suffix
+ * @param removeOrig remove original file
  * @returns is file backed up?
  */
-function backup(fileName: string, backupSuffix: string): boolean {
+function backup(fileName: string, backupSuffix: string, removeOrig: boolean): boolean {
     if (backupSuffix === "") {
         return false;
     }
@@ -169,7 +174,9 @@ function backup(fileName: string, backupSuffix: string): boolean {
     // move -> copy (in order to keep permissions when restore)
     const fileNameBak = `${fileName}${backupSuffix}`;
     fs.renameSync(fileName, fileNameBak);
-    fs.copyFileSync(fileNameBak, fileName);
+    if (!removeOrig) {
+        fs.copyFileSync(fileNameBak, fileName);
+    }
 
     return true;
 }
@@ -303,8 +310,7 @@ function shouldCreateKeyFile(keyFilePath: string, ifKeyExists: string): boolean 
 
     switch (ifKeyExists) {
         case "replace":
-            // remove file and should create if replace
-            fs.unlinkSync(keyFilePath);
+            // should create if replace (existing file will be backed up when creating)
             return true;
 
         case "ignore":
