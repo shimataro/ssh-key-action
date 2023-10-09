@@ -119,7 +119,7 @@ function setup(): void {
 
     console.log(`SSH key has been stored to ${sshDirName} successfully.`);
     if (backedUpFileNames.length > 0) {
-        console.log(`Following files are backed up in suffix "${backupSuffix}; ${backedUpFileNames.join(", ")}.`);
+        console.log(`Following files are backed up in suffix "${backupSuffix}"; ${backedUpFileNames.join(", ")}.`);
     }
 }
 
@@ -135,8 +135,6 @@ function cleanup(): void {
         console.log(`SSH key in ${sshDirName} has been removed successfully.`);
     } else {
         restore(backupSuffix);
-
-        console.log(`Files that have suffix "${backupSuffix} has been restored successfully.`);
     }
 }
 
@@ -202,7 +200,7 @@ function restore(backupSuffix: string): void {
         fs.renameSync(pathNameBak, pathNameOrg);
         restoredFileNames.push(fileName);
     }
-    console.log(`Following files are restored; ${restoredFileNames.join(",")}`);
+    console.log(`Following files in suffix "${backupSuffix}" are restored; ${restoredFileNames.join(", ")}`);
 }
 
 /**
