@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* `keep_ssh_dir` parameter
+
 ### Others
 
 * remove `macos-10.15` and `ubuntu-18.04` virtual environment
