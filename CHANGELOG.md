@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Others
 
+* back up and restore files when exist
 * remove `macos-10.15` and `ubuntu-18.04` virtual environment
 
 ## [2.5.1] - 2023-03-25
