@@ -3,24 +3,8 @@ import * as path from "path";
 
 import * as core from "@actions/core";
 
-const STATE_PHASE = "phase";
+/** state name of backup suffix */
 const STATE_BACKUP_SUFFIX = "backup-suffix";
-
-/**
- * current phase
- * @returns phase
- */
-export function getPhase(): string {
-    const phase = core.getState(STATE_PHASE);
-
-    // next: post
-    core.saveState(STATE_PHASE, "post");
-
-    if (phase === "") {
-        return "main";
-    }
-    return phase;
-}
 
 /**
  * generate backup suffix name
