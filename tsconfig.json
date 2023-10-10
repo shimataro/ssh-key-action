@@ -7,7 +7,7 @@
       "es6"
     ],
     "sourceMap": true,
-    "outDir": "./lib",
+    "outDir": "./dist",
     "rootDir": "./src",
 
     "strict": true,

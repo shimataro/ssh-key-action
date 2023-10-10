@@ -25,7 +25,7 @@ npm run build
 npm run verify
 
 # commit
-git add package.json package-lock.json lib
+git add package.json package-lock.json dist
 git commit -m "update dependencies"
 
 # finished!
