@@ -7,13 +7,13 @@ import * as core from "@actions/core";
 const STATE_BACKUP_SUFFIX = "backup-suffix";
 
 /**
- * generate backup suffix name
+ * create backup suffix name
+ * @param dirName directory to back up
  * @returns backup suffix
  */
-export function generateBackupSuffix(): string {
-    const dirName = getSshDirectory();
+export function createBackupSuffix(dirName: string): string {
     if (!fs.existsSync(dirName)) {
-        // do nothing if .ssh does not exist
+        // do nothing if directory does not exist
         return "";
     }
 

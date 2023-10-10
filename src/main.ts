@@ -34,8 +34,6 @@ try {
  * main function
  */
 export function main(): void {
-    const backupSuffix = common.generateBackupSuffix();
-
     // parameters
     const key = core.getInput("key", {
         required: true,
@@ -48,7 +46,12 @@ export function main(): void {
     const ifKeyExists = core.getInput("if_key_exists");
 
     // create ".ssh" directory
-    const sshDirName = createSshDirectory();
+    const sshDirName = common.getSshDirectory();
+    const backupSuffix = common.createBackupSuffix(sshDirName);
+    fs.mkdirSync(sshDirName, {
+        recursive: true,
+        mode: 0o700,
+    });
 
     // files to be created
     const files: FileInfo[] = [
@@ -125,19 +128,6 @@ function backup(fileName: string, backupSuffix: string, removeOrig: boolean): bo
     }
 
     return true;
-}
-
-/**
- * create ".ssh" directory
- * @returns directory name
- */
-function createSshDirectory(): string {
-    const dirName = common.getSshDirectory();
-    fs.mkdirSync(dirName, {
-        recursive: true,
-        mode: 0o700,
-    });
-    return dirName;
 }
 
 /**
