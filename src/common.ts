@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as os from "os";
 import * as path from "path";
 
 import * as core from "@actions/core";
@@ -43,30 +44,11 @@ export function getSshDirectory(): string {
  * @returns home directory name
  */
 function getHomeDirectory(): string {
-    const homeEnv = getHomeEnv();
-    const home = process.env[homeEnv];
-    if (home === undefined) {
-        throw Error(`${homeEnv} is not defined`);
-    }
-
-    if (home === "/github/home") {
+    const homedir = os.homedir();
+    if (homedir === "/github/home") {
         // Docker container
         return "/root";
     }
 
-    return home;
-}
-
-/**
- * get HOME environment name
- * @returns HOME environment name
- */
-function getHomeEnv(): string {
-    if (process.platform === "win32") {
-        // Windows
-        return "USERPROFILE";
-    }
-
-    // macOS / Linux
-    return "HOME";
+    return homedir;
 }
