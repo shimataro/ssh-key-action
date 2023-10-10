@@ -27,5 +27,5 @@ inputs:
     default: "fail"
 runs:
   using: "node16"
-  main: "lib/index.js"
-  post: "lib/index.js"
+  main: "./dist/main.js"
+  post: "./dist/post.js"

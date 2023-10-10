@@ -1,7 +1,17 @@
-import fs from "fs";
-import path from "path";
+import * as fs from "fs";
+import * as path from "path";
+
+import * as core from "@actions/core";
 
 import * as common from "./common";
+
+try {
+    post();
+} catch (err) {
+    if (err instanceof Error) {
+        core.setFailed(err);
+    }
+}
 
 /**
  * cleanup function

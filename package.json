@@ -3,16 +3,17 @@
   "version": "2.5.1",
   "private": true,
   "description": "Install SSH key in .ssh",
-  "main": "lib/index.js",
+  "main": "./dist/main.js",
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=5.7.0"
   },
   "scripts": {
-    "build": "ncc build src/index.ts -o lib",
+    "build": "esbuild ./src/main.ts ./src/post.ts --bundle --platform=node --minify --sourcemap --outdir=./dist",
     "check-updates": "ncu",
     "lint": "run-p lint:*",
-    "lint:ts": "eslint ./src --ext .ts",
+    "lint:es": "eslint ./src --ext .ts",
+    "lint:ts": "tsc --noEmit ./src/main.ts ./src/post.ts",
     "lint:md": "markdownlint . --ignore node_modules --ignore examples",
     "lint:yaml": "yamllint **/{,.}*.{yml,yaml} --ignore=node_modules/**",
     "verify": "run-p lint"
@@ -36,6 +37,7 @@
     "@typescript-eslint/eslint-plugin": "5.56.0",
     "@typescript-eslint/parser": "5.56.0",
     "@vercel/ncc": "0.36.1",
+    "esbuild": "0.19.4",
     "eslint": "8.36.0",
     "markdownlint-cli": "0.33.0",
     "npm-check-updates": "16.8.0",
