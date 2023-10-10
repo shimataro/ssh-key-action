@@ -1,8 +1,6 @@
 import fs from "fs";
 import path from "path";
 
-import * as core from "@actions/core";
-
 import * as common from "./common";
 
 /**
@@ -33,25 +31,26 @@ function removeSshDirectory(): void {
 }
 
 /**
- * restore files
+ * restore files from backups
  * @param backupSuffix suffix of backup directory
  */
 function restore(backupSuffix: string): void {
     const dirName = common.getSshDirectory();
-    const keyFileName = core.getInput("name");
-
     const restoredFileNames: string[] = [];
-    for (const fileName of ["known_hosts", "config", keyFileName]) {
-        const pathNameOrg = path.join(dirName, fileName);
-        const pathNameBak = `${pathNameOrg}${backupSuffix}`;
+    const entries = fs.readdirSync(dirName)
+        .filter((entry) => {
+            // skip if not a backed-up file
+            return entry.endsWith(backupSuffix);
+        });
 
-        if (!fs.existsSync(pathNameBak)) {
-            continue;
-        }
+    for (const entry of entries) {
+        const entryOrg = entry.substring(0, entry.length - backupSuffix.length);
+        const pathNameOrg = path.join(dirName, entryOrg);
+        const pathNameBak = path.join(dirName, entry);
 
         fs.rmSync(pathNameOrg);
         fs.renameSync(pathNameBak, pathNameOrg);
-        restoredFileNames.push(fileName);
+        restoredFileNames.push(entryOrg);
     }
     console.log(`Following files in suffix "${backupSuffix}" are restored; ${restoredFileNames.join(", ")}`);
 }
