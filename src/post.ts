@@ -26,10 +26,10 @@ export function post(): void {
     } else {
         // remove created files and restore from backup
         const removedFileNames = removeCreatedFiles(sshDirName);
-        console.log(`✅Following files has been removed successfully; ${removedFileNames.join(", ")}`);
+        console.log(`✅Following files have been removed successfully; ${removedFileNames.join(", ")}`);
 
         const restoredFileNames = restoreFiles(sshDirName, backupSuffix);
-        console.log(`✅Following files in suffix "${backupSuffix}" has been restored successfully; ${restoredFileNames.join(", ")}`);
+        console.log(`✅Following files in suffix "${backupSuffix}" have been restored successfully; ${restoredFileNames.join(", ")}`);
     }
 }
 

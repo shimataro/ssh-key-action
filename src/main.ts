@@ -48,10 +48,10 @@ export function main(): void {
     // create ".ssh" directory
     const sshDirName = common.getSshDirectory();
     const backupSuffix = common.createBackupSuffix(sshDirName);
-    fs.mkdirSync(sshDirName, {
-        recursive: true,
-        mode: 0o700,
-    });
+    if (backupSuffix === "") {
+        createDirectory(sshDirName);
+        console.log(`✅SSH directory "${sshDirName}" has been created successfully.`);
+    }
 
     // files to be created
     const files: FileInfo[] = [
@@ -102,13 +102,21 @@ export function main(): void {
     }
     common.saveCreatedFileNames(createdFileNames);
 
-    if (backupSuffix !== "") {
-        console.log(`✅SSH directory "${sshDirName}" has been created successfully.`);
-    }
-    console.log(`✅Following files has been created in "${sshDirName}" successfully; ${createdFileNames.join(", ")}`);
+    console.log(`✅Following files have been created in "${sshDirName}" successfully; ${createdFileNames.join(", ")}`);
     if (backedUpFileNames.length > 0) {
-        console.log(`✅Following files has been backed up in suffix "${backupSuffix}" successfully; ${backedUpFileNames.join(", ")}`);
+        console.log(`✅Following files have been backed up in suffix "${backupSuffix}" successfully; ${backedUpFileNames.join(", ")}`);
     }
+}
+
+/**
+ * create directory
+ * @param dirName directory name to remove
+ */
+function createDirectory(dirName: string): void {
+    fs.mkdirSync(dirName, {
+        recursive: true,
+        mode: 0o700,
+    });
 }
 
 /**
