@@ -36,15 +36,15 @@ try {
 export function main(): void {
     const sshDirName = common.getSshDirectory();
 
-    // files to be created
-    const files = buildFilesToCreate(sshDirName);
-
     // create ".ssh" directory
     const backupSuffix = common.createBackupSuffix(sshDirName);
     if (backupSuffix === "") {
         createDirectory(sshDirName);
         console.log(`✅SSH directory "${sshDirName}" has been created successfully.`);
     }
+
+    // files to be created
+    const files = buildFilesToCreate(sshDirName);
 
     // back up & create files
     const createdFileNames: string[] = [];
