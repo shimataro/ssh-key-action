@@ -89,6 +89,7 @@ export function main(): void {
     }
 
     // create files
+    const createdFileNames: string[] = [];
     const backedUpFileNames: string[] = [];
     for (const file of files) {
         const fileName = path.join(sshDirName, file.name);
@@ -97,7 +98,9 @@ export function main(): void {
         }
 
         fs.writeFileSync(fileName, file.contents, file.options);
+        createdFileNames.push(file.name);
     }
+    common.saveCreatedFileNames(createdFileNames);
 
     console.log(`SSH key has been stored to ${sshDirName} successfully.`);
     if (backedUpFileNames.length > 0) {

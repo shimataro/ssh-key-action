@@ -17,35 +17,51 @@ try {
  * cleanup function
  */
 export function post(): void {
+    const sshDirName = common.getSshDirectory();
     const backupSuffix = common.getBackupSuffix();
     if (backupSuffix === "") {
         // remove ".ssh" directory if suffix is not set
-        removeSshDirectory();
+        removeDirectory(sshDirName);
+        console.log(`SSH key in ${sshDirName} has been removed successfully.`);
     } else {
-        // restore files from backup suffix
-        restore(backupSuffix);
+        // remove created files and restore from backup
+        removeCreatedFiles(sshDirName);
+        const restoredFileNames = restoreFiles(sshDirName, backupSuffix);
+        console.log(`Following files in suffix "${backupSuffix}" are restored; ${restoredFileNames.join(", ")}`);
     }
 }
 
 /**
- * remove ".ssh" directory
+ * remove directory
+ * @param dirName directory name to remove
  */
-function removeSshDirectory(): void {
-    const dirName = common.getSshDirectory();
+function removeDirectory(dirName: string): void {
     fs.rmSync(dirName, {
         recursive: true,
         force: true,
     });
+}
 
-    console.log(`SSH key in ${dirName} has been removed successfully.`);
+/**
+ * remove created files in main phase
+ * @param dirName directory name
+ */
+function removeCreatedFiles(dirName: string): void {
+    const createdFileNames = common.loadCreatedFileNames();
+    for (const fileName of createdFileNames) {
+        const pathName = path.join(dirName, fileName);
+
+        fs.rmSync(pathName);
+    }
 }
 
 /**
  * restore files from backups
+ * @param dirName directory name
  * @param backupSuffix suffix of backup directory
+ * @returns restored file names
  */
-function restore(backupSuffix: string): void {
-    const dirName = common.getSshDirectory();
+function restoreFiles(dirName: string, backupSuffix: string): string[] {
     const restoredFileNames: string[] = [];
     const entries = fs.readdirSync(dirName)
         .filter((entry) => {
@@ -58,9 +74,8 @@ function restore(backupSuffix: string): void {
         const pathNameOrg = path.join(dirName, entryOrg);
         const pathNameBak = path.join(dirName, entry);
 
-        fs.rmSync(pathNameOrg);
         fs.renameSync(pathNameBak, pathNameOrg);
         restoredFileNames.push(entryOrg);
     }
-    console.log(`Following files in suffix "${backupSuffix}" are restored; ${restoredFileNames.join(", ")}`);
+    return restoredFileNames;
 }

@@ -6,6 +6,7 @@ import * as core from "@actions/core";
 
 /** state name of backup suffix */
 const STATE_BACKUP_SUFFIX = "backup-suffix";
+const STATE_CREATED_FILES = "created-files";
 
 /**
  * create backup suffix name
@@ -29,6 +30,24 @@ export function createBackupSuffix(dirName: string): string {
  */
 export function getBackupSuffix(): string {
     return core.getState(STATE_BACKUP_SUFFIX);
+}
+
+/**
+ * save created file names
+ * @param fileNames array of file names
+ */
+export function saveCreatedFileNames(fileNames: string[]): void {
+    const json = JSON.stringify(fileNames);
+    core.saveState(STATE_CREATED_FILES, json);
+}
+
+/**
+ * save created file names
+ * @returns saved array of file names
+ */
+export function loadCreatedFileNames(): string[] {
+    const json = core.getState(STATE_CREATED_FILES);
+    return JSON.parse(json) as string[];
 }
 
 /**
