@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.0] - 2023-10-11
+
 ### Others
 
 * back up and restore files when exist (thanks [@bambeusz](https://github.com/bambeusz))
@@ -191,7 +193,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.5.1...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.6.0...HEAD
+[2.6.0]: https://github.com/shimataro/ssh-key-action/compare/v2.5.1...v2.6.0
 [2.5.1]: https://github.com/shimataro/ssh-key-action/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/shimataro/ssh-key-action/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/shimataro/ssh-key-action/compare/v2.3.1...v2.4.0

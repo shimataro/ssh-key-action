@@ -13,16 +13,16 @@ URL_REPOSITORY="${URL_PRODUCT}.git"
 URL_COMPARE="${URL_PRODUCT}/compare"
 URL_RELEASE="${URL_PRODUCT}/releases/new"
 
-COLOR_ERROR="\e[1;41m"
-COLOR_SECTION="\e[1;34m"
-COLOR_COMMAND_NAME="\e[1;34m"
-COLOR_OPTION="\e[4;36m"
-COLOR_COMMAND="\e[4m"
-COLOR_FILE="\e[1;34m"
-COLOR_BRANCH="\e[1;31m"
-COLOR_INPUT="\e[1;31m"
-COLOR_SELECT="\e[1;32m"
-COLOR_RESET="\e[m"
+COLOR_ERROR="\033[1;41m"
+COLOR_SECTION="\033[1;34m"
+COLOR_COMMAND_NAME="\033[1;34m"
+COLOR_OPTION="\033[4;36m"
+COLOR_COMMAND="\033[4m"
+COLOR_FILE="\033[1;34m"
+COLOR_BRANCH="\033[1;31m"
+COLOR_INPUT="\033[1;31m"
+COLOR_SELECT="\033[1;32m"
+COLOR_RESET="\033[m"
 
 function main() {
 	cd $(dirname ${0})/..
@@ -103,7 +103,7 @@ function update_changelog() {
 	local KEYWORD="Unreleased"
 
 	sed -i".bak" -r \
-		-e "s/^((##\s+)\[${KEYWORD}\])$/\1\n\n\2[${VERSION}] - ${DATE}/" \
+		-e "s/^((##[[:space:]]+)\[${KEYWORD}\])$/\1\n\n\2[${VERSION}] - ${DATE}/" \
 		-e "s/^(\[${KEYWORD}\](.*))(v.*)\.\.\.HEAD$/\1v${VERSION}...HEAD\n[${VERSION}]\2\3...v${VERSION}/" \
 		CHANGELOG.md
 }
