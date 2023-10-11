@@ -102,6 +102,9 @@ export function main(): void {
     }
     common.saveCreatedFileNames(createdFileNames);
 
+    if (backupSuffix !== "") {
+        console.log(`✅SSH directory "${sshDirName}" has been created successfully.`);
+    }
     console.log(`✅Following files has been created in "${sshDirName}" successfully; ${createdFileNames.join(", ")}`);
     if (backedUpFileNames.length > 0) {
         console.log(`✅Following files has been backed up in suffix "${backupSuffix}" successfully; ${backedUpFileNames.join(", ")}`);
