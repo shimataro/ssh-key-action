@@ -1,14 +1,23 @@
-import fs from "fs";
-import path from "path";
+import * as fs from "fs";
+import * as path from "path";
 
 import * as core from "@actions/core";
 
+import * as common from "./common";
+
+/** file creation info */
 interface FileInfo {
+    /** file name */
     name: string;
+    /** file contents */
     contents: string;
+    /** creation options */
     options: fs.WriteFileOptions;
+    /** file must not exist when creating */
+    mustNotExist: boolean;
 }
 
+/** default known_hosts */
 const KNOWN_HOSTS = [
     "github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=",
 ];
@@ -24,34 +33,7 @@ try {
 /**
  * main function
  */
-function main(): void {
-    if (!isPost()) {
-        setup();
-        setPost();
-    } else {
-        cleanup();
-    }
-}
-
-/**
- * is post process?
- * @returns Yes/No
- */
-function isPost(): boolean {
-    return Boolean(core.getState("isPost"));
-}
-
-/**
- * update post state
- */
-function setPost(): void {
-    core.saveState("isPost", "true");
-}
-
-/**
- * setup function
- */
-function setup(): void {
+export function main(): void {
     // parameters
     const key = core.getInput("key", {
         required: true,
@@ -64,7 +46,12 @@ function setup(): void {
     const ifKeyExists = core.getInput("if_key_exists");
 
     // create ".ssh" directory
-    const sshDirName = createSshDirectory();
+    const sshDirName = common.getSshDirectory();
+    const backupSuffix = common.createBackupSuffix(sshDirName);
+    if (backupSuffix === "") {
+        createDirectory(sshDirName);
+        console.log(`✅SSH directory "${sshDirName}" has been created successfully.`);
+    }
 
     // files to be created
     const files: FileInfo[] = [
@@ -75,6 +62,7 @@ function setup(): void {
                 mode: 0o644,
                 flag: "a",
             },
+            mustNotExist: false,
         },
     ];
     if (shouldCreateKeyFile(path.join(sshDirName, name), ifKeyExists)) {
@@ -85,6 +73,7 @@ function setup(): void {
                 mode: 0o400,
                 flag: "wx",
             },
+            mustNotExist: true,
         });
     }
     if (config !== "") {
@@ -95,93 +84,64 @@ function setup(): void {
                 mode: 0o644,
                 flag: "a",
             },
+            mustNotExist: false,
         });
     }
 
     // create files
+    const createdFileNames: string[] = [];
+    const backedUpFileNames: string[] = [];
     for (const file of files) {
         const fileName = path.join(sshDirName, file.name);
+        if (backup(fileName, backupSuffix, file.mustNotExist)) {
+            backedUpFileNames.push(file.name);
+        }
+
         fs.writeFileSync(fileName, file.contents, file.options);
+        createdFileNames.push(file.name);
     }
+    common.saveCreatedFileNames(createdFileNames);
 
-    console.log(`SSH key has been stored to ${sshDirName} successfully.`);
+    console.log(`✅Following files have been created in "${sshDirName}" successfully; ${createdFileNames.join(", ")}`);
+    if (backedUpFileNames.length > 0) {
+        console.log(`✅Following files have been backed up in suffix "${backupSuffix}" successfully; ${backedUpFileNames.join(", ")}`);
+    }
 }
 
 /**
- * cleanup function
+ * create directory
+ * @param dirName directory name to remove
  */
-function cleanup(): void {
-    // remove ".ssh" directory
-    const sshDirName = removeSshDirectory();
-
-    console.log(`SSH key in ${sshDirName} has been removed successfully.`);
-}
-
-/**
- * create ".ssh" directory
- * @returns directory name
- */
-function createSshDirectory(): string {
-    const dirName = getSshDirectory();
+function createDirectory(dirName: string): void {
     fs.mkdirSync(dirName, {
         recursive: true,
         mode: 0o700,
     });
-    return dirName;
 }
 
 /**
- * remove ".ssh" directory
- * @returns removed directory name
+ * back up file
+ * @param fileName file to back up
+ * @param backupSuffix suffix
+ * @param removeOrig remove original file
+ * @returns is file backed up?
  */
-function removeSshDirectory(): string {
-    const dirName = getSshDirectory();
-    fs.rmSync(dirName, {
-        recursive: true,
-        force: true,
-    });
-    return dirName;
-}
-
-/**
- * get SSH directory
- * @returns SSH directory name
- */
-function getSshDirectory(): string {
-    return path.resolve(getHomeDirectory(), ".ssh");
-}
-
-/**
- * get home directory
- * @returns home directory name
- */
-function getHomeDirectory(): string {
-    const homeEnv = getHomeEnv();
-    const home = process.env[homeEnv];
-    if (home === undefined) {
-        throw Error(`${homeEnv} is not defined`);
+function backup(fileName: string, backupSuffix: string, removeOrig: boolean): boolean {
+    if (backupSuffix === "") {
+        return false;
+    }
+    if (!fs.existsSync(fileName)) {
+        return false;
     }
 
-    if (home === "/github/home") {
-        // Docker container
-        return "/root";
+    // move -> copy (in order to keep permissions when restore)
+    const fileNameBak = `${fileName}${backupSuffix}`;
+    fs.renameSync(fileName, fileNameBak);
+    if (!removeOrig) {
+        fs.copyFileSync(fileNameBak, fileName);
     }
 
-    return home;
-}
-
-/**
- * get HOME environment name
- * @returns HOME environment name
- */
-function getHomeEnv(): string {
-    if (process.platform === "win32") {
-        // Windows
-        return "USERPROFILE";
-    }
-
-    // macOS / Linux
-    return "HOME";
+    return true;
 }
 
 /**
@@ -222,8 +182,7 @@ function shouldCreateKeyFile(keyFilePath: string, ifKeyExists: string): boolean 
 
     switch (ifKeyExists) {
         case "replace":
-            // remove file and should create if replace
-            fs.unlinkSync(keyFilePath);
+            // should create if replace (existing file will be backed up when creating)
             return true;
 
         case "ignore":

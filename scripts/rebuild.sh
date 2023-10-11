@@ -7,4 +7,4 @@ npm run verify
 
 rm -rf node_modules
 npm ci --only=production
-git add lib
+git add dist
