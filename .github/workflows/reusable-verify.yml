@@ -162,7 +162,7 @@ jobs:
       with:
         key: "dummy" # replaced
         known_hosts: unnecessary
-    - name: Install SSH key (replace)
+    - name: Install SSH key (replaces existing key)
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
@@ -181,7 +181,7 @@ jobs:
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
       uses: actions/checkout@v3
-    - name: Install SSH key (replace)
+    - name: Install SSH key
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
@@ -200,12 +200,12 @@ jobs:
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
       uses: actions/checkout@v3
-    - name: Install SSH key (dummy)
+    - name: Install SSH key
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
         known_hosts: unnecessary
-    - name: Install SSH key (replace)
+    - name: Install SSH key (does nothing)
       uses: ./.
       with:
         key: "dummy" # ignored
@@ -224,7 +224,7 @@ jobs:
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
       uses: actions/checkout@v3
-    - name: Install SSH key (replace)
+    - name: Install SSH key
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
@@ -243,15 +243,15 @@ jobs:
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
       uses: actions/checkout@v3
-    - name: Install SSH key (dummy)
+    - name: Install SSH key
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
         known_hosts: unnecessary
-    - name: Install SSH key (replace)
+    - name: Install SSH key (fails)
       uses: ./.
       with:
-        key: "dummy" # ignored
+        key: "dummy" # fails
         known_hosts: unnecessary
         if_key_exists: fail
       continue-on-error: true
@@ -268,7 +268,7 @@ jobs:
       if: ${{ inputs.package_installation_command != '' }}
     - name: Checkout source codes
       uses: actions/checkout@v3
-    - name: Install SSH key (replace)
+    - name: Install SSH key
       uses: ./.
       with:
         key: ${{ secrets.SSH_KEY_PEM }}
