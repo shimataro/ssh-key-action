@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+* JSON parse error on exit, if `if_key_exists`=`fail` and key exists
+
 ## [2.6.0] - 2023-10-11
 
 ### Others
