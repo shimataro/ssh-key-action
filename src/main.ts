@@ -104,7 +104,7 @@ export function main(): void {
 
     console.log(`SSH key has been stored to ${sshDirName} successfully.`);
     if (backedUpFileNames.length > 0) {
-        console.log(`Following files are backed up in suffix "${backupSuffix}"; ${backedUpFileNames.join(", ")}`);
+        console.log(`Following files has been backed up in suffix "${backupSuffix}"; ${backedUpFileNames.join(", ")}`);
     }
 }
 

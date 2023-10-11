@@ -25,9 +25,10 @@ export function post(): void {
         console.log(`SSH key in ${sshDirName} has been removed successfully.`);
     } else {
         // remove created files and restore from backup
-        removeCreatedFiles(sshDirName);
+        const removedFileNames = removeCreatedFiles(sshDirName);
         const restoredFileNames = restoreFiles(sshDirName, backupSuffix);
-        console.log(`Following files in suffix "${backupSuffix}" are restored; ${restoredFileNames.join(", ")}`);
+        console.log(`Following files has been removed; ${removedFileNames.join(", ")}`);
+        console.log(`Following files in suffix "${backupSuffix}" has been restored; ${restoredFileNames.join(", ")}`);
     }
 }
 
@@ -45,14 +46,16 @@ function removeDirectory(dirName: string): void {
 /**
  * remove created files in main phase
  * @param dirName directory name
+ * @returns removed file names
  */
-function removeCreatedFiles(dirName: string): void {
+function removeCreatedFiles(dirName: string): string[] {
     const createdFileNames = common.loadCreatedFileNames();
     for (const fileName of createdFileNames) {
         const pathName = path.join(dirName, fileName);
 
         fs.rmSync(pathName);
     }
+    return createdFileNames;
 }
 
 /**
