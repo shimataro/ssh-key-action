@@ -1,17 +1,14 @@
 #!/bin/bash
-# requires following packages:
+# requires following programs:
 # - git; I believe you have already installed.
-# - sed; GNU sed is preferred. POSIX sed may not work.
-# - perl; Already installed on most of unix system.
+# - sed; Both GNU sed and POSIX sed will work.
 set -eu
 
-BASE_BRANCH="develop"
+GITHUB_BASE="https://github.com"
+GITHUB_USER="shimataro"
+GITHUB_REPO="ssh-key-action"
 
-PACKAGE_NAME="ssh-key-action"
-URL_PRODUCT="https://github.com/shimataro/${PACKAGE_NAME}"
-URL_REPOSITORY="${URL_PRODUCT}.git"
-URL_COMPARE="${URL_PRODUCT}/compare"
-URL_RELEASE="${URL_PRODUCT}/releases/new"
+UPSTREAM="origin"
 
 COLOR_ERROR="\033[1;41m"
 COLOR_SECTION="\033[1;34m"
@@ -24,45 +21,54 @@ COLOR_INPUT="\033[1;31m"
 COLOR_SELECT="\033[1;32m"
 COLOR_RESET="\033[m"
 
+URL_PRODUCT="${GITHUB_BASE}/${GITHUB_USER}/${GITHUB_REPO}"
+URL_REPOSITORY="${URL_PRODUCT}.git"
+URL_COMPARE="${URL_PRODUCT}/compare"
+URL_RELEASE="${URL_PRODUCT}/releases/new"
+
 function main() {
 	cd $(dirname ${0})/..
 
-	if [ $# -lt 1 ]; then
+	if [[ $# -lt 1 ]]; then
 		usage
 	fi
 
-	local VERSION=$1
-	local BRANCH="release/v${VERSION}"
-	local TAG="v${VERSION}"
+	local NEW_VERSION=$1
+	local CURRENT_VERSION=$(
+		node -e 'console.log(JSON.parse(require("fs").readFileSync("package.json")).version)'
+	)
+	local TAG="v${NEW_VERSION}"
+	local BRANCH="release/v${NEW_VERSION}"
+	local BASE_BRANCH="${TAG%%.*}"
 
-	check_version_format ${VERSION}
-	check_current_branch
+	check_version_format ${NEW_VERSION}
+	check_current_branch ${BASE_BRANCH}
 
-	create_branch ${BRANCH}
-	update_changelog ${VERSION}
-	update_package_version ${VERSION}
-	build_package
-	commit_changes ${VERSION}
-	finish ${VERSION} ${BRANCH} ${TAG}
+	create_branch ${BRANCH} ${BASE_BRANCH}
+	update_package_version ${NEW_VERSION}
+	update_changelog ${NEW_VERSION}
+	verify_package
+	commit_changes ${NEW_VERSION}
+	finish ${NEW_VERSION} ${CURRENT_VERSION} ${BRANCH} ${BASE_BRANCH} ${TAG}
 }
 
 function usage() {
-	local COMMAND=`basename ${0}`
+	local COMMAND=$(basename ${0})
 
 	echo -e "${COLOR_SECTION}NAME${COLOR_RESET}
-	${COMMAND} - Create a branch and prepare for new release
+	${COMMAND} - Prepare for new release
 
 ${COLOR_SECTION}SYNOPSIS${COLOR_RESET}
 	${COLOR_COMMAND_NAME}${COMMAND}${COLOR_RESET} <${COLOR_OPTION}new-version${COLOR_RESET}>
 
 ${COLOR_SECTION}DESCRIPTION${COLOR_RESET}
-	This command:
-	- creates a new branch for release
-	- updates ${COLOR_FILE}CHANGELOG.md${COLOR_RESET}
-	- updates package version in ${COLOR_FILE}package.json${COLOR_RESET}
-	- updates dependencies version in ${COLOR_FILE}package.json${COLOR_RESET}
-	- verifies
-	- ...and commits!
+	This command will...
+	- create a new branch for release
+	- update ${COLOR_FILE}CHANGELOG.md${COLOR_RESET}
+	- update package version in ${COLOR_FILE}package.json${COLOR_RESET}
+	- update dependencies version in ${COLOR_FILE}package.json${COLOR_RESET}
+	- verify
+	- ...and commit!
 
 	${COLOR_OPTION}new-version${COLOR_RESET} must follow \"Semantic Versioning\" <https://semver.org/>.
 "
@@ -70,7 +76,7 @@ ${COLOR_SECTION}DESCRIPTION${COLOR_RESET}
 }
 
 function check_version_format() {
-	if [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+	if [[ ${1} =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*) ]]; then
 		return
 	fi
 
@@ -80,7 +86,8 @@ function check_version_format() {
 }
 
 function check_current_branch() {
-	local CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+	local BASE_BRANCH=$1
+	local CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 	if [ ${CURRENT_BRANCH} = ${BASE_BRANCH} ]; then
 		return
 	fi
@@ -93,8 +100,15 @@ function check_current_branch() {
 
 function create_branch() {
 	local BRANCH=$1
+	local BASE_BRANCH=$2
 
 	git checkout -b ${BRANCH} ${BASE_BRANCH}
+}
+
+function update_package_version() {
+	local VERSION=$1
+
+	npm version --no-git-tag-version ${VERSION}
 }
 
 function update_changelog() {
@@ -108,32 +122,40 @@ function update_changelog() {
 		CHANGELOG.md
 }
 
-function update_package_version() {
-	local VERSION=$1
-
-	# update package.json
-	npm version --no-git-tag-version ${VERSION}
-}
-
-function build_package() {
-	npm run build
+function verify_package() {
 	npm run verify
 }
 
 function commit_changes() {
 	local VERSION=$1
 
-	git add .
+	git add CHANGELOG.md package.json package-lock.json examples/package.json
 	git commit -m "version ${VERSION}"
 }
 
 function finish() {
-	local VERSION=$1
-	local BRANCH=$2
-	local TAG=$3
-	local TARGET_BRANCH="v${VERSION%%[!0-9]*}"
-	local UPSTREAM="origin"
-	local CHANGELOG=$(git diff ${UPSTREAM}/${TARGET_BRANCH} ${BRANCH} CHANGELOG.md | sed -e "/^[^+]/d" -e "s/^\+\(.*\)$/\1/" -e "/^## /d" -e "/^\+/d" -e "/^\[/d" -e "s/\s/%20/g" -e "s/#/%23/g" -e 's/\n//g' | perl -pe "s/\n/%0A/g" | perl -pe "s/^(%0A)+//" | perl -pe "s/(%0A)+$//")
+	local NEW_VERSION="${1}"
+	local CURRENT_VERSION="${2}"
+	local BRANCH="${3}"
+	local BASE_BRANCH="${4}"
+	local TAG="${5}"
+
+	local TITLE="${GITHUB_REPO} ${NEW_VERSION} released"
+	local CHANGELOG=$(
+		git diff v${CURRENT_VERSION} -- CHANGELOG.md |
+		sed -r -e '/^[^+]/d' -e 's/^\+(.*)$/\1/' -e '/^## /d' -e '/^\+/d' -e '/^\[/d' |
+		urlencode |
+		replace_lf
+	)
+	local PRERELEASE=0
+	if [[ ${NEW_VERSION} == "0."* ]]; then
+		# < 1.0.0
+		PRERELEASE=1
+	fi
+	if [[ ${NEW_VERSION} =~ -[0-9a-zA-Z] ]]; then
+		# -alpha, -pre, -rc, etc...
+		PRERELEASE=1
+	fi
 
 	echo -e "
 Branch ${COLOR_BRANCH}${BRANCH}${COLOR_RESET} has been created.
@@ -146,16 +168,13 @@ Remaining processes are...
 3. Create a pull-request: ${COLOR_BRANCH}${BRANCH}${COLOR_RESET} to ${COLOR_BRANCH}${BASE_BRANCH}${COLOR_RESET}
 	${URL_COMPARE}/${BASE_BRANCH}...${BRANCH}?expand=1
 	select ${COLOR_SELECT}Squash and merge${COLOR_RESET}
-4. Create a pull-request: ${COLOR_BRANCH}${BASE_BRANCH}${COLOR_RESET} to ${COLOR_BRANCH}${TARGET_BRANCH}${COLOR_RESET}
-	${URL_COMPARE}/${TARGET_BRANCH}...${BASE_BRANCH}?expand=1&title=version%20${VERSION}&body=${CHANGELOG}
-	select ${COLOR_SELECT}Create a merge commit${COLOR_RESET}
-5. Create a new release
-	${URL_RELEASE}?tag=${TAG}&target=${TARGET_BRANCH}&title=${PACKAGE_NAME}%20${VERSION}%20released&body=${CHANGELOG}
+4. Create a new release
+	${URL_RELEASE}?tag=${TAG}&target=${BASE_BRANCH}&title=$(urlencode <<<"${TITLE}")&body=${CHANGELOG}&prerelease=${PRERELEASE}
 	Tag version: ${COLOR_INPUT}${TAG}${COLOR_RESET}
-	Target: ${COLOR_INPUT}${TARGET_BRANCH}${COLOR_RESET}
-	Release title: ${COLOR_INPUT}${PACKAGE_NAME} ${VERSION} released${COLOR_RESET}
+	Target: ${COLOR_INPUT}${BASE_BRANCH}${COLOR_RESET}
+	Release title: ${COLOR_INPUT}${TITLE}${COLOR_RESET}
 	Description this release: (copy and paste CHANGELOG.md)
-6. Post processing
+5. Post processing
 	${COLOR_COMMAND}git checkout ${BASE_BRANCH}${COLOR_RESET}
 	${COLOR_COMMAND}git pull${COLOR_RESET}
 	${COLOR_COMMAND}git fetch -p${COLOR_RESET}
@@ -163,6 +182,21 @@ Remaining processes are...
 
 That's all!
 "
+}
+
+function urlencode() {
+	# https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
+	sed -r \
+		-e 's/%/%25/g' \
+		-e 's/\$/%24/g' -e 's/\(/%28/g' -e 's/\)/%29/g' -e 's/\*/%2A/g' -e 's/\+/%2B/g' -e 's/\//%2F/g' -e 's/\?/%3F/g' -e 's/\[/%5B/g' -e 's/\]/%5D/g' \
+		-e 's/!/%21/g' -e 's/#/%23/g' -e 's/&/%26/g' -e "s/'/%27/g" -e 's/,/%2C/g' -e 's/:/%3A/g' -e 's/;/%3B/g' -e 's/=/%3D/g' -e 's/@/%40/g' \
+		-e 's/ /+/g'
+}
+
+function replace_lf() {
+	sed -r \
+		-e ':a' -e 'N' -e '$!ba' \
+		-e 's/^\n+//' -e 's/\n+$//' -e 's/\n/%0A/g'
 }
 
 main "$@"
