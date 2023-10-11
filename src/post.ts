@@ -22,13 +22,14 @@ export function post(): void {
     if (backupSuffix === "") {
         // remove ".ssh" directory if suffix is not set
         removeDirectory(sshDirName);
-        console.log(`SSH key in ${sshDirName} has been removed successfully.`);
+        console.log(`✅SSH key in ${sshDirName} has been removed successfully.`);
     } else {
         // remove created files and restore from backup
         const removedFileNames = removeCreatedFiles(sshDirName);
+        console.log(`✅Following files has been removed successfully; ${removedFileNames.join(", ")}`);
+
         const restoredFileNames = restoreFiles(sshDirName, backupSuffix);
-        console.log(`Following files has been removed; ${removedFileNames.join(", ")}`);
-        console.log(`Following files in suffix "${backupSuffix}" has been restored; ${restoredFileNames.join(", ")}`);
+        console.log(`✅Following files in suffix "${backupSuffix}" has been restored successfully; ${restoredFileNames.join(", ")}`);
     }
 }
 
