@@ -11,11 +11,10 @@ const STATE_CREATED_FILES = "created-files";
 /**
  * create backup suffix name
  * @param dirName directory to back up
- * @returns backup suffix
+ * @returns backup suffix; empty string if directory does not exist
  */
 export function createBackupSuffix(dirName: string): string {
     if (!fs.existsSync(dirName)) {
-        // do nothing if directory does not exist
         return "";
     }
 
@@ -47,6 +46,10 @@ export function saveCreatedFileNames(fileNames: string[]): void {
  */
 export function loadCreatedFileNames(): string[] {
     const json = core.getState(STATE_CREATED_FILES);
+    if (json === "") {
+        return [];
+    }
+
     return JSON.parse(json) as string[];
 }
 
