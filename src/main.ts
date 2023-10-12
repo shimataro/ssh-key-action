@@ -34,6 +34,46 @@ try {
  * main function
  */
 export function main(): void {
+    const sshDirName = common.getSshDirectory();
+
+    // create ".ssh" directory
+    const backupSuffix = common.createBackupSuffix(sshDirName);
+    if (backupSuffix === "") {
+        createDirectory(sshDirName);
+        console.log(`✅SSH directory "${sshDirName}" has been created successfully.`);
+    }
+
+    // files to be created
+    const files = buildFilesToCreate(sshDirName);
+
+    // back up & create files
+    const createdFileNames: string[] = [];
+    const backedUpFileNames: string[] = [];
+    for (const file of files) {
+        const pathName = path.join(sshDirName, file.name);
+        if (backup(pathName, backupSuffix, file.mustNotExist)) {
+            backedUpFileNames.push(file.name);
+        }
+
+        fs.writeFileSync(pathName, file.contents, file.options);
+        createdFileNames.push(file.name);
+    }
+    common.saveCreatedFileNames(createdFileNames);
+
+    if (createdFileNames.length > 0) {
+        console.log(`✅Following files have been created in "${sshDirName}" successfully; ${createdFileNames.join(", ")}`);
+    }
+    if (backedUpFileNames.length > 0) {
+        console.log(`✅Following files have been backed up in suffix "${backupSuffix}" successfully; ${backedUpFileNames.join(", ")}`);
+    }
+}
+
+/**
+ * build files to create
+ * @param dirName directory name in where files will be created
+ * @returns files
+ */
+function buildFilesToCreate(dirName: string): FileInfo[] {
     // parameters
     const key = core.getInput("key", {
         required: true,
@@ -44,14 +84,6 @@ export function main(): void {
     });
     const config = core.getInput("config");
     const ifKeyExists = core.getInput("if_key_exists");
-
-    // create ".ssh" directory
-    const sshDirName = common.getSshDirectory();
-    const backupSuffix = common.createBackupSuffix(sshDirName);
-    if (backupSuffix === "") {
-        createDirectory(sshDirName);
-        console.log(`✅SSH directory "${sshDirName}" has been created successfully.`);
-    }
 
     // files to be created
     const files: FileInfo[] = [
@@ -65,7 +97,7 @@ export function main(): void {
             mustNotExist: false,
         },
     ];
-    if (shouldCreateKeyFile(path.join(sshDirName, name), ifKeyExists)) {
+    if (shouldCreateKeyFile(path.join(dirName, name), ifKeyExists)) {
         files.push({
             name: name,
             contents: insertLf(key, false, true),
@@ -88,24 +120,7 @@ export function main(): void {
         });
     }
 
-    // create files
-    const createdFileNames: string[] = [];
-    const backedUpFileNames: string[] = [];
-    for (const file of files) {
-        const fileName = path.join(sshDirName, file.name);
-        if (backup(fileName, backupSuffix, file.mustNotExist)) {
-            backedUpFileNames.push(file.name);
-        }
-
-        fs.writeFileSync(fileName, file.contents, file.options);
-        createdFileNames.push(file.name);
-    }
-    common.saveCreatedFileNames(createdFileNames);
-
-    console.log(`✅Following files have been created in "${sshDirName}" successfully; ${createdFileNames.join(", ")}`);
-    if (backedUpFileNames.length > 0) {
-        console.log(`✅Following files have been backed up in suffix "${backupSuffix}" successfully; ${backedUpFileNames.join(", ")}`);
-    }
+    return files;
 }
 
 /**
