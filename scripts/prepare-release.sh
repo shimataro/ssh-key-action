@@ -129,7 +129,7 @@ function verify_package() {
 function commit_changes() {
 	local VERSION=$1
 
-	git add CHANGELOG.md package.json package-lock.json examples/package.json
+	git add CHANGELOG.md package.json package-lock.json
 	git commit -m "version ${VERSION}"
 }
 
