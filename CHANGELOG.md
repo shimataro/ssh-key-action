@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.1] - 2023-10-13
+
 ### Fixed
 
 * JSON parse error on exit, if `if_key_exists`=`fail` and key exists
@@ -197,7 +199,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * First release.
 
-[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.6.0...HEAD
+[Unreleased]: https://github.com/shimataro/ssh-key-action/compare/v2.6.1...HEAD
+[2.6.1]: https://github.com/shimataro/ssh-key-action/compare/v2.6.0...v2.6.1
 [2.6.0]: https://github.com/shimataro/ssh-key-action/compare/v2.5.1...v2.6.0
 [2.5.1]: https://github.com/shimataro/ssh-key-action/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/shimataro/ssh-key-action/compare/v2.4.0...v2.5.0
