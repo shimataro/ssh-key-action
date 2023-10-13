@@ -3,13 +3,21 @@
 set -eu
 
 DATE=$(date +"%Y%m%d")
-BRANCH=feature/update-dependencies-${DATE}
-COLOR_SUCCESS="\e[1;32m"
-COLOR_RESET="\e[m"
+BASE_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+TARGET_BRANCH=feature/update-dependencies-${DATE}
 
-# create branch
-git checkout develop
-git checkout -b ${BRANCH}
+COLOR_SUCCESS="\033[1;32m"
+COLOR_ERROR="\033[1;41m"
+COLOR_RESET="\033[m"
+
+cd $(dirname ${0})/..
+
+# create target branch
+if [[ ! ${BASE_BRANCH} =~ ^v[0-9]+$ ]]; then
+	echo -e "${COLOR_ERROR}Error:${COLOR_RESET} Base branch must match 'v*'; got '${BASE_BRANCH}'."
+	exit 1
+fi
+git checkout -b ${TARGET_BRANCH}
 
 # check updates
 npm ci
@@ -20,7 +28,7 @@ rm -rf package-lock.json node_modules
 npm i
 npm dedupe
 
-# check
+# test
 npm run build
 npm run verify
 
@@ -32,7 +40,7 @@ git commit -m "update dependencies"
 echo -e "
 ${COLOR_SUCCESS}🎉All dependencies are updated successfully.🎉${COLOR_RESET}
 
-Push changes and merge into 'develop' branch.
+Push changes and merge into '${BASE_BRANCH}' branch.
 
-    git push --set-upstream origin ${BRANCH}
+    git push --set-upstream origin ${TARGET_BRANCH}
 "
