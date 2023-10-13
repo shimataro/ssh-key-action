@@ -1,0 +1,25 @@
+# https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+name: Cache NPM
+description: Composite action (cache NPM)
+
+runs:
+  using: composite
+  steps:
+    # https://github.com/actions/cache/blob/master/examples.md#node---npm
+    # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter
+    - name: Get NPM cache directory
+      run: echo "NPM_CACHE_DIRECTORY=$(npm config get cache)" >> ${{ github.env }} # use "github.env" instead of "github.output"; if use "github.output", "Warning: Input required and not supplied: path" is displayed on post-process
+      shell: pwsh # use PowerShell; Bash doesn't work on Windows because the value of "github.env" is like "D:\a\_temp\_runner_file_commands\set_env_XXX".
+
+    - name: Get Node.js version
+      run: echo "NODEJS_VERSION=$(node -v)" >> ${{ github.env }}
+      shell: pwsh
+
+    - name: Cache NPM modules
+      uses: actions/cache@v3
+      with:
+        path: ${{ env.NPM_CACHE_DIRECTORY }}
+        key: npm-${{ runner.os }}-${{ runner.arch }}-${{ env.NODEJS_VERSION }}-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          npm-${{ runner.os }}-${{ runner.arch }}-${{ env.NODEJS_VERSION }}-
+          npm-${{ runner.os }}-${{ runner.arch }}
