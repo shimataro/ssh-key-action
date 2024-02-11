@@ -14,7 +14,6 @@ jobs:
         - ubuntu-20.04
         - ubuntu-22.04
         docker_image:
-        - quay.io/centos/centos:centos7
         - quay.io/centos/centos:stream8
     uses: "./.github/workflows/reusable-verify.yml"
     with:
