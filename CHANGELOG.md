@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Others
 
 * Update to Node.js v20 (thanks [@princemaple](https://github.com/princemaple))
+* drop old containers; Ubuntu 16.04, and CentOS 7
 
 ## [2.6.1] - 2023-10-13
 
