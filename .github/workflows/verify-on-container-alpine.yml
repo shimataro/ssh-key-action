@@ -14,10 +14,9 @@ jobs:
         - ubuntu-22.04
         - ubuntu-24.04
         docker_image:
-        - alpine:3.10
-        - alpine:3.11
-        - alpine:3.12
-        - alpine:3.13
+        - alpine:3.21
+        - alpine:3.22
+        - alpine:3.23
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}
