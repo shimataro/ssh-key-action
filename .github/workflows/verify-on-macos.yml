@@ -11,8 +11,8 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - macos-11
-        - macos-12
+        - macos-14
+        - macos-15
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}
