@@ -12,24 +12,22 @@ jobs:
     strategy:
       matrix:
         os:
-        - windows-2019
         - windows-2022
-        - macos-11
-        - macos-12
-        - ubuntu-20.04
+        - windows-2025
+        - macos-14
+        - macos-15
         - ubuntu-22.04
-        nodejs:
-        - 20
+        - ubuntu-24.04
       fail-fast: false
     steps:
     - name: Turn off auto-crlf
       run: git config --global core.autocrlf false
     - name: Checkout source codes
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     - name: Install Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
-        node-version: ${{ matrix.nodejs }}
+        node-version-file: package.json
     - name: Cache NPM
       uses: ./.github/actions/cache-npm
     - name: Install dependencies

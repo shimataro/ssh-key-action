@@ -11,8 +11,8 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - windows-2019
         - windows-2022
+        - windows-2025
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}

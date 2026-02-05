@@ -11,11 +11,11 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - ubuntu-20.04
         - ubuntu-22.04
+        - ubuntu-24.04
         docker_image:
-        - ubuntu:20.04
         - ubuntu:22.04
+        - ubuntu:24.04
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}
