@@ -4,7 +4,6 @@
   "private": true,
   "description": "Install SSH key in .ssh",
   "main": "./dist/main.js",
-  "type": "module",
   "engines": {
     "node": ">=24",
     "npm": ">=11"
