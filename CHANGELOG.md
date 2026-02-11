@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * drop support: `windows-2019`, `macos-11`, `macos-12`, and `ubuntu-20.04`
 * add container support: `alpine:3.21` - `alpine:3.23`, `centos:stream10`, and `ubuntu:24.04`
 * drop container support: `alpine:3.10` - `alpine:3.13`, `centos:stream8`, and `ubuntu:20.04`
+* Add workaround; "HOME is not defined" (refer to: [issue #184](https://github.com/shimataro/ssh-key-action/issues/184))
 
 ## [2.7.0] - 2024-02-11
 
