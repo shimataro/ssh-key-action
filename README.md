@@ -150,6 +150,23 @@ If **"It is hard to prefetch server key because the server will be created dynam
 You should use it ONLY IF you are using secure methods...
 It is `known_hosts: unnecessary`.
 
+### Got an error: "HOME is not defined"
+
+This error has been reported on several self-hosted runners.
+
+If this error occurs, try specifying the environment variable `HOME` as follows.
+
+```yaml
+- name: Install SSH key
+  ses: shimataro/ssh-key-action@v2
+  env:
+    HOME: /root
+  with:
+    .....
+```
+
+Refer to: [issue #184](https://github.com/shimataro/ssh-key-action/issues/184)
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
