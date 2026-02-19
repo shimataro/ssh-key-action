@@ -16,6 +16,7 @@ jobs:
         - ubuntu-latest
         docker_image:
         - quay.io/centos/centos:stream10
+        - quay.io/centos/centos:latest
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}

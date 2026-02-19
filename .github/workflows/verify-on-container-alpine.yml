@@ -18,6 +18,7 @@ jobs:
         - alpine:3.21
         - alpine:3.22
         - alpine:3.23
+        - alpine:latest
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}

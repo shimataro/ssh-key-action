@@ -17,6 +17,7 @@ jobs:
         docker_image:
         - ubuntu:22.04
         - ubuntu:24.04
+        - ubuntu:latest
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}
