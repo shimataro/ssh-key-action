@@ -13,6 +13,7 @@ jobs:
         os:
         - macos-14
         - macos-15
+        - macos-latest
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}

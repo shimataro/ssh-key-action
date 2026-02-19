@@ -14,10 +14,13 @@ jobs:
         os:
         - windows-2022
         - windows-2025
+        - windows-latest
         - macos-14
         - macos-15
+        - macos-latest
         - ubuntu-22.04
         - ubuntu-24.04
+        - ubuntu-latest
       fail-fast: false
     steps:
     - name: Turn off auto-crlf
