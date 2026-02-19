@@ -13,6 +13,7 @@ jobs:
         os:
         - windows-2022
         - windows-2025
+        - windows-latest
     uses: "./.github/workflows/reusable-verify.yml"
     with:
       os: ${{ matrix.os }}
