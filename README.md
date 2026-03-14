@@ -158,7 +158,7 @@ If this error occurs, try specifying the environment variable `HOME` as follows.
 
 ```yaml
 - name: Install SSH key
-  ses: shimataro/ssh-key-action@v2
+  uses: shimataro/ssh-key-action@v2
   env:
     HOME: /root
   with:
