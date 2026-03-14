@@ -26,6 +26,6 @@ inputs:
     required: false
     default: "fail"
 runs:
-  using: "node20"
+  using: "node24"
   main: "./dist/main.js"
   post: "./dist/post.js"
