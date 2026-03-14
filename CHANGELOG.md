@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+* typo in REDME (thanks [@epistrephein](https://github.com/epistrephein))
 * v2.8.0 forgot to update the base (thanks [@MarnuLombard](https://github.com/MarnuLombard))
 
 ## [2.8.0] - 2026-02-19
