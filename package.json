@@ -43,7 +43,7 @@
     "@types/node": "25.5.0",
     "@typescript-eslint/eslint-plugin": "8.57.1",
     "@typescript-eslint/parser": "8.57.1",
-    "esbuild": "0.27.4",
+    "esbuild": "0.28.1",
     "eslint": "10.1.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-jsdoc": "62.8.0",
